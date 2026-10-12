@@ -45,6 +45,8 @@ class ShortcutForgeTests(unittest.TestCase):
             uid = actions[0]["WFWorkflowActionParameters"]["UUID"]
             token = actions[1]["WFWorkflowActionParameters"]["WFNotificationActionBody"]
             self.assertEqual(token["Value"]["attachmentsByRange"]["{0, 1}"]["OutputUUID"], uid)
+            self.assertTrue(all(action["WFWorkflowActionParameters"].get("UUID") for action in actions))
+            self.assertEqual(actions[0]["WFWorkflowActionParameters"]["CustomOutputName"], "now")
 
 
 if __name__ == "__main__":
