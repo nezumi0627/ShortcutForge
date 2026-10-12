@@ -22,10 +22,12 @@ def load_plan(path: Path) -> dict[str, Any]:
     if not isinstance(data.get("actions"), list):
         raise IRValidationError("actions must be a list")
     for i, action in enumerate(data["actions"]):
-        if not isinstance(action, dict) or set(action) - {"id", "params", "as"}:
-            raise IRValidationError(f"actions[{i}] must contain only id, params, and optional as")
-        if not isinstance(action.get("id"), str) or not isinstance(action.get("params", {}), dict):
-            raise IRValidationError(f"actions[{i}] requires a string id and object params")
+        if not isinstance(action, dict) or set(action) - {"id", "identifier", "params", "as"}:
+            raise IRValidationError(f"actions[{i}] must contain id or identifier, params, and optional as")
+        has_id = isinstance(action.get("id"), str) and bool(action["id"])
+        has_identifier = isinstance(action.get("identifier"), str) and bool(action["identifier"])
+        if has_id == has_identifier or not isinstance(action.get("params", {}), dict):
+            raise IRValidationError(f"actions[{i}] requires exactly one string id/identifier and object params")
         if "as" in action and not isinstance(action["as"], str):
             raise IRValidationError(f"actions[{i}].as must be a string")
     return data

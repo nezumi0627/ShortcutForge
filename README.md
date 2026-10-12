@@ -18,9 +18,33 @@ Install the shared Skill at `skills/shortcutforge` in Codex or Claude Code; see 
 
 The private GitHub Actions workflow invokes Apple's `shortcuts sign --mode anyone` on macOS. Live testing confirmed GitHub-hosted macOS runners need an iCloud sign-in and fail without it. ShortcutForge places the base64 payload in a uniquely named repository secret, dispatches the workflow, then removes that secret; the runner masks its value in logs. Payloads must be under 60 KB encoded. Apple receives a copy for validation. Artifacts expire after one day. See `docs/signing-validation.md` for the live result and limitation.
 
+## JSON plans and manual authoring
+
+Plans accept three levels of detail: a readable catalog action ID and parameter names, Apple parameter keys for catalogued actions, or a raw Apple action identifier with its complete parameter dictionary. Raw values may be nested JSON objects and arrays when they match plist-compatible types.
+
+Readable form:
+
+```json
+{"version":1,"name":"Notify current time","actions":[{"id":"current_date","as":"now"},{"id":"notify","params":{"text":{"ref":"now"}}}]}
+```
+
+Apple-key form (equivalent parameter spelling):
+
+```json
+{"version":1,"name":"Notify","actions":[{"id":"notify","params":{"WFNotificationActionBody":"Hello"}}]}
+```
+
+Raw action form (for actions not in the convenience catalog):
+
+```json
+{"version":1,"name":"Raw notification","actions":[{"identifier":"is.workflow.actions.notification","params":{"WFNotificationActionBody":"Hello","WFNotificationActionSound":false}}]}
+```
+
+Use `id` for a known catalog action and `identifier` for an explicit Apple action identifier. Raw actions receive basic JSON/plist validation; ShortcutForge cannot verify their iOS availability, required parameters, or runtime behavior. You can choose either style per action. Do not provide the same parameter twice using both spellings.
+
 ## Current limits
 
-The action catalog is intentionally small. Unknown actions fail closed. Current date, text, notification, speech, and URL actions are mapped; output references can be passed into action parameters. Binary plist validity does not prove Apple Shortcuts accepts or executes a file. Conditional/loop compilation and calendar actions are not implemented. No real iPhone import or iOS 27 validation has been performed.
+The convenience action catalog is intentionally small. Current date, text, notification, speech, and URL actions are mapped; output references can be passed into catalogued parameters. Raw Apple identifiers allow manual authoring outside that catalog, but action-specific validation is unavailable. Binary plist validity does not prove Apple Shortcuts accepts or executes a file. Conditional/loop compilation and calendar actions are not implemented. No real iPhone import or iOS 27 validation has been performed.
 
 ## Development
 

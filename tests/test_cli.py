@@ -50,6 +50,41 @@ class ShortcutForgeTests(unittest.TestCase):
             self.assertTrue(all(action["WFWorkflowActionParameters"].get("UUID") for action in actions))
             self.assertEqual(actions[0]["WFWorkflowActionParameters"]["CustomOutputName"], "now")
 
+    def test_accepts_apple_parameter_keys_and_nested_plist_values(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "raw.shortcut"
+            plan = {"version": 1, "name": "Raw keys", "actions": [
+                {"id": "text", "params": {"WFTextActionText": {"Value": {"string": "Hello"}, "WFSerializationType": "WFTextTokenString"}}}
+            ]}
+            compile_plan(plan, out)
+            action = plistlib.loads(out.read_bytes())["WFWorkflowActions"][0]
+            self.assertEqual(action["WFWorkflowActionParameters"]["WFTextActionText"]["Value"]["string"], "Hello")
+
+    def test_accepts_explicit_raw_action_identifier_and_parameters(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "raw.shortcut"
+            plan = {"version": 1, "name": "Raw action", "actions": [
+                {"identifier": "is.workflow.actions.notification", "params": {"WFNotificationActionBody": "Hello"}}
+            ]}
+            compile_plan(plan, out)
+            action = plistlib.loads(out.read_bytes())["WFWorkflowActions"][0]
+            self.assertEqual(action["WFWorkflowActionIdentifier"], "is.workflow.actions.notification")
+            self.assertEqual(action["WFWorkflowActionParameters"]["WFNotificationActionBody"], "Hello")
+
+    def test_rejects_duplicate_alias_and_internal_parameter(self):
+        plan = {"version": 1, "name": "Duplicate", "actions": [
+            {"id": "text", "params": {"text": "one", "WFTextActionText": "two"}}
+        ]}
+        with self.assertRaisesRegex(IRValidationError, "duplicate parameter"):
+            validate(plan)
+
+    def test_rejects_non_plist_json_values(self):
+        plan = {"version": 1, "name": "Invalid", "actions": [
+            {"identifier": "is.workflow.actions.example", "params": {"WFExample": None}}
+        ]}
+        with self.assertRaisesRegex(IRValidationError, "JSON-compatible plist"):
+            validate(plan)
+
 
 if __name__ == "__main__":
     unittest.main()
