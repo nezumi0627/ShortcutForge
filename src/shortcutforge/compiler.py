@@ -17,7 +17,7 @@ def compile_plan(plan: dict[str, Any], output: Path) -> None:
         if "as" in item:
             params["CustomOutputName"] = item["as"]
         for key, plist_key in spec["parameters"].items():
-            value = item["params"][key]
+            value = item.get("params", {}).get(key, spec.get("defaults", {}).get(key))
             if isinstance(value, dict):
                 name = value["ref"]
                 value = {"Value": {"string": "\ufffc", "attachmentsByRange": {"{0, 1}": {"OutputName": name, "OutputUUID": output_ids[name], "Type": "ActionOutput"}}}, "WFSerializationType": "WFTextTokenString"}

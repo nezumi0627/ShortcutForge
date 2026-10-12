@@ -13,7 +13,7 @@ def validate(plan: dict[str, Any]) -> None:
         unknown = set(item.get("params", {})) - set(spec["parameters"])
         if unknown:
             raise IRValidationError(f"actions[{i}]: unsupported parameters: {', '.join(sorted(unknown))}")
-        missing = set(spec["parameters"]) - set(item.get("params", {}))
+        missing = set(spec["parameters"]) - set(spec.get("defaults", {})) - set(item.get("params", {}))
         if missing:
             raise IRValidationError(f"actions[{i}]: missing parameters: {', '.join(sorted(missing))}")
         for value in item.get("params", {}).values():

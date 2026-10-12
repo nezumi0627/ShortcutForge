@@ -42,6 +42,8 @@ class ShortcutForgeTests(unittest.TestCase):
             ]}
             compile_plan(plan, out)
             actions = plistlib.loads(out.read_bytes())["WFWorkflowActions"]
+            self.assertEqual(actions[0]["WFWorkflowActionIdentifier"], "is.workflow.actions.date")
+            self.assertEqual(actions[0]["WFWorkflowActionParameters"]["WFDateActionMode"], "Current Date")
             uid = actions[0]["WFWorkflowActionParameters"]["UUID"]
             token = actions[1]["WFWorkflowActionParameters"]["WFNotificationActionBody"]
             self.assertEqual(token["Value"]["attachmentsByRange"]["{0, 1}"]["OutputUUID"], uid)
