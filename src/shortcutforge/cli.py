@@ -1,55 +1,110 @@
 from __future__ import annotations
+
 import argparse
 import json
 import plistlib
 import sys
+from collections.abc import Sequence
 from pathlib import Path
-from .actions import CATALOG
+
 from .compiler import compile_plan
 from .ir import IRValidationError, load_plan
 from .parser import inspect
 from .signing import sign
-from .validator import validate
 
 
-def main() -> int:
+def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="shortcutforge")
-    sub = parser.add_subparsers(dest="command", required=True)
-    build = sub.add_parser("build"); build.add_argument("input", type=Path); build.add_argument("-o", "--output", type=Path)
-    val = sub.add_parser("validate"); val.add_argument("input", type=Path)
-    ins = sub.add_parser("inspect"); ins.add_argument("input", type=Path)
-    sign_cmd = sub.add_parser("sign"); sign_cmd.add_argument("input", type=Path)
-    actions = sub.add_parser("actions"); actions.add_argument("operation", choices=["list"])
+    commands = parser.add_subparsers(dest="command", required=True)
+
+    build = commands.add_parser("build")
+    build.add_argument("input", type=Path)
+    build.add_argument("-o", "--output", type=Path)
+
+    validate = commands.add_parser("validate")
+    validate.add_argument("input", type=Path)
+
+    inspect_command = commands.add_parser("inspect")
+    inspect_command.add_argument("input", type=Path)
+
+    sign_command = commands.add_parser("sign")
+    sign_command.add_argument("input", type=Path)
+
+    actions = commands.add_parser("actions")
+    actions.add_argument("operation", choices=["list"])
     actions.add_argument("--os", choices=["17", "18", "26", "27"], required=True)
     actions.add_argument("--query", "-q")
     actions.add_argument("--format", choices=["json", "table", "markdown"], default="markdown")
     actions.add_argument("--lang", choices=["en", "ja"], default="en")
     actions.add_argument("--output", "-o", type=Path, help="write Markdown catalog to this file")
-    args = parser.parse_args()
+    return parser
+
+
+def _build(args: argparse.Namespace) -> None:
+    plan = load_plan(args.input)
+    output = args.output or args.input.with_suffix(".shortcut")
+    compile_plan(plan, output)
+    print(output)
+
+
+def _validate(args: argparse.Namespace) -> None:
+    document = plistlib.loads(args.input.read_bytes())
+    if not isinstance(document, dict) or not isinstance(document.get("WFWorkflowActions"), list):
+        raise ValueError("not a Shortcuts workflow plist")
+    print("Valid plist structure (Apple action semantics not verified)")
+
+
+def _inspect(args: argparse.Namespace) -> None:
+    print(json.dumps(inspect(args.input), ensure_ascii=False, indent=2))
+
+
+def _list_actions(args: argparse.Namespace) -> None:
+    from .catalog import get_default_catalog
+
+    catalog = get_default_catalog()
+    entries = catalog.list_actions(args.os, query=args.query)
+
+    if args.format == "markdown":
+        markdown = catalog.render_markdown(args.os, args.lang, query=args.query)
+        if args.output:
+            args.output.write_text(markdown, encoding="utf-8")
+            print(args.output)
+        else:
+            print(markdown, end="")
+        return
+
+    if args.output:
+        raise ValueError("--output can only be used with --format markdown")
+    if args.format == "json":
+        payload = [entry.to_dict(include_display_name=True) for entry in entries]
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
+        return
+
+    print(f"IDENTIFIER\tNAME/ALIAS\tIOS{args.os}\tPARAMS")
+    for entry in entries:
+        name = entry.display_name or ", ".join(entry.aliases[:2])
+        availability = entry.availability.get(args.os, "unknown")
+        print(f"{entry.identifier}\t{name}\t{availability}\t{len(entry.parameters)}")
+
+
+def _sign(args: argparse.Namespace) -> None:
+    print(sign(args.input, args.input.parent / "signed"))
+
+
+_HANDLERS = {
+    "build": _build,
+    "validate": _validate,
+    "inspect": _inspect,
+    "actions": _list_actions,
+    "sign": _sign,
+}
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    args = _build_parser().parse_args(argv)
     try:
-        if args.command == "build":
-            plan = load_plan(args.input); out = args.output or args.input.with_suffix(".shortcut"); compile_plan(plan, out); print(out)
-        elif args.command == "validate":
-            doc = plistlib.loads(args.input.read_bytes())
-            if not isinstance(doc, dict) or not isinstance(doc.get("WFWorkflowActions"), list): raise ValueError("not a Shortcuts workflow plist")
-            print("Valid plist structure (Apple action semantics not verified)")
-        elif args.command == "inspect": print(json.dumps(inspect(args.input), ensure_ascii=False, indent=2))
-        elif args.command == "actions":
-            from .catalog import catalog_entries, render_catalog_markdown
-            entries = catalog_entries(args.os, args.query)
-            if args.format == "markdown":
-                markdown = render_catalog_markdown(args.os, args.lang, args.query)
-                if args.output:
-                    args.output.write_text(markdown, encoding="utf-8")
-                    print(args.output)
-                else:
-                    print(markdown, end="")
-            elif args.format == "json": print(json.dumps(entries, ensure_ascii=False, indent=2))
-            else:
-                print(f"IDENTIFIER\tNAME/ALIAS\tIOS{args.os}\tPARAMS")
-                for item in entries:
-                    print(f"{item['identifier']}\t{item.get('display_name') or ', '.join(item.get('aliases', [])[:2])}\t{item['availability'].get(args.os, 'unknown')}\t{len(item.get('parameters', []))}")
-        elif args.command == "sign": print(sign(args.input, args.input.parent / "signed"))
-        return 0
+        _HANDLERS[args.command](args)
     except (IRValidationError, OSError, ValueError, RuntimeError) as exc:
-        print(f"shortcutforge: {exc}", file=sys.stderr); return 2
+        print(f"shortcutforge: {exc}", file=sys.stderr)
+        return 2
+    return 0

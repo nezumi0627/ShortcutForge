@@ -18,6 +18,17 @@ Install the shared Skill at `skills/shortcutforge` in Codex or Claude Code; see 
 
 Before using the action catalog, select the target iOS version. Choose `17`, `18`, `26`, or `27`; `--lang` selects English (`en`) or Japanese (`ja`). Markdown output can be saved directly with `--output`. Read the [English catalog guide](docs/action-catalog.en.md) or [Japanese catalog guide](docs/action-catalog.ja.md).
 
+The same catalog is available as a typed Python API:
+
+```python
+from shortcutforge import ActionCatalog, IOSVersion
+
+catalog = ActionCatalog.from_package()
+actions = catalog.list_actions(IOSVersion.IOS_26, query="calendar")
+status = catalog.get_availability("is.workflow.actions.notification", IOSVersion.IOS_26)
+markdown = catalog.render_markdown(IOSVersion.IOS_26, language="ja", query="calendar")
+```
+
 ## Signing and privacy
 
 The private GitHub Actions workflow invokes Apple's `shortcuts sign --mode anyone` on macOS. Live testing confirmed GitHub-hosted macOS runners need an iCloud sign-in and fail without it. ShortcutForge places the base64 payload in a uniquely named repository secret, dispatches the workflow, then removes that secret; the runner masks its value in logs. Payloads must be under 60 KB encoded. Apple receives a copy for validation. Artifacts expire after one day. See `docs/signing-validation.md` for the live result and limitation.
