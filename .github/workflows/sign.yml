@@ -34,15 +34,43 @@ jobs:
           NONCE: ${{ inputs.nonce }}
         run: |
           set -euo pipefail
-          tmp="$(mktemp -d)"
-          trap 'rm -rf "$tmp"' EXIT
+          tmp="$(mktemp -d "$RUNNER_TEMP/shortcutforge.XXXXXX")"
           case "$SAFE_NAME" in *[!A-Za-z0-9._-]*|'') echo 'Invalid filename' >&2; exit 2;; esac
           printf '%s' "$PAYLOAD" | base64 -D > "$tmp/input.shortcut"
-          /usr/bin/shortcuts sign --mode anyone --input "$tmp/input.shortcut" --output "$tmp/$SAFE_NAME"
-          echo "signed_path=$tmp/$SAFE_NAME" >> "$GITHUB_OUTPUT"
+          cp "$tmp/input.shortcut" "$tmp/$SAFE_NAME"
+          echo "unsigned_path=$tmp/$SAFE_NAME" >> "$GITHUB_OUTPUT"
+          echo "temp_dir=$tmp" >> "$GITHUB_OUTPUT"
+          /usr/bin/shortcuts sign --mode anyone --input "$tmp/input.shortcut" --output "$tmp/signed-$SAFE_NAME"
+          echo "signed_path=$tmp/signed-$SAFE_NAME" >> "$GITHUB_OUTPUT"
           echo "artifact_name=shortcut-$NONCE" >> "$GITHUB_OUTPUT"
-      - uses: actions/upload-artifact@v4
+      - name: Upload shortcut artifact
+        id: upload
+        if: always() && steps.sign.outputs.unsigned_path != ''
+        uses: actions/upload-artifact@v4
         with:
           name: shortcut-${{ inputs.nonce }}
-          path: ${{ steps.sign.outputs.signed_path }}
+          path: ${{ steps.sign.outcome == 'success' && steps.sign.outputs.signed_path || steps.sign.outputs.unsigned_path }}
           retention-days: 1
+      - name: Add download link to Actions summary
+        if: always()
+        env:
+          SIGN_OUTCOME: ${{ steps.sign.outcome }}
+          ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+        run: |
+          if [[ "$SIGN_OUTCOME" == "success" ]]; then
+            echo "## ShortcutForge: signed shortcut" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "## ShortcutForge: signing failed" >> "$GITHUB_STEP_SUMMARY"
+            echo "The attached file is **unsigned** and may not import on iPhone. The signing step requires an iCloud-authenticated Apple environment." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          if [[ -n "$ARTIFACT_URL" ]]; then
+            echo "[Download .shortcut artifact]($ARTIFACT_URL) (available for 1 day)" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Artifact upload failed; no download is available." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Remove temporary shortcut files
+        if: always() && steps.sign.outputs.temp_dir != ''
+        env:
+          TEMP_DIR: ${{ steps.sign.outputs.temp_dir }}
+        run: |
+          case "$TEMP_DIR" in "$RUNNER_TEMP"/shortcutforge.*) rm -rf "$TEMP_DIR";; *) echo "Refusing unexpected temporary path" >&2; exit 1;; esac
