@@ -1,0 +1,48 @@
+name: Sign shortcut
+run-name: ShortcutForge signing ${{ inputs.nonce }}
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: Base64 encoded shortcut plist (private repo only; do not include secrets)
+        required: true
+        type: string
+      filename:
+        description: Output filename
+        required: true
+        type: string
+      nonce:
+        description: Correlation ID
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: shortcut-sign-${{ github.repository }}
+  cancel-in-progress: false
+jobs:
+  sign:
+    runs-on: macos-14
+    timeout-minutes: 10
+    steps:
+      - name: Sign and upload
+        id: sign
+        env:
+          PAYLOAD: ${{ inputs.payload }}
+          SAFE_NAME: ${{ inputs.filename }}
+          NONCE: ${{ inputs.nonce }}
+        run: |
+          set -euo pipefail
+          tmp="$(mktemp -d)"
+          trap 'rm -rf "$tmp"' EXIT
+          case "$SAFE_NAME" in *[!A-Za-z0-9._-]*|'') echo 'Invalid filename' >&2; exit 2;; esac
+          printf '%s' "$PAYLOAD" | base64 -D > "$tmp/input.shortcut"
+          /usr/bin/shortcuts sign --mode anyone --input "$tmp/input.shortcut" --output "$tmp/$SAFE_NAME"
+          echo "signed_path=$tmp/$SAFE_NAME" >> "$GITHUB_OUTPUT"
+          echo "artifact_name=shortcut-$NONCE" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shortcut-${{ inputs.nonce }}
+          path: ${{ steps.sign.outputs.signed_path }}
+          retention-days: 1
