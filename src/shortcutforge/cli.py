@@ -20,6 +20,9 @@ def main() -> int:
     ins = sub.add_parser("inspect"); ins.add_argument("input", type=Path)
     sign_cmd = sub.add_parser("sign"); sign_cmd.add_argument("input", type=Path)
     actions = sub.add_parser("actions"); actions.add_argument("operation", choices=["list"])
+    actions.add_argument("--os", choices=["17", "18", "26", "27"])
+    actions.add_argument("--query", "-q")
+    actions.add_argument("--format", choices=["json", "table"], default="json")
     args = parser.parse_args()
     try:
         if args.command == "build":
@@ -29,7 +32,14 @@ def main() -> int:
             if not isinstance(doc, dict) or not isinstance(doc.get("WFWorkflowActions"), list): raise ValueError("not a Shortcuts workflow plist")
             print("Valid plist structure (Apple action semantics not verified)")
         elif args.command == "inspect": print(json.dumps(inspect(args.input), ensure_ascii=False, indent=2))
-        elif args.command == "actions": print(json.dumps(CATALOG, ensure_ascii=False, indent=2))
+        elif args.command == "actions":
+            from .catalog import catalog_entries
+            entries = catalog_entries(args.os, args.query)
+            if args.format == "json": print(json.dumps(entries, ensure_ascii=False, indent=2))
+            else:
+                print("IDENTIFIER\tNAME/ALIAS\tIOS27\tPARAMS")
+                for item in entries:
+                    print(f"{item['identifier']}\t{', '.join(item.get('aliases', [])[:2])}\t{item['availability'].get('27', 'unknown')}\t{len(item.get('parameters', []))}")
         elif args.command == "sign": print(sign(args.input, args.input.parent / "signed"))
         return 0
     except (IRValidationError, OSError, ValueError, RuntimeError) as exc:

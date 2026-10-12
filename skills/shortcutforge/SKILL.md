@@ -10,7 +10,7 @@ Use the harness's reasoning to translate the user's intent into a version 1 JSON
 ## Procedure
 
 1. Ask only for details needed to resolve meaningful ambiguity (for example, which calendar or notification text).
-2. Check available actions with `shortcutforge actions list`. Prefer readable catalog IDs and parameter names. Apple plist parameter keys are also accepted. For an uncatalogued action, use `identifier` with an exact Apple action identifier and include its raw parameter dictionary, sourced from a real shortcut or trusted reference.
+2. Search the discovery catalog with `shortcutforge actions list --os 27 --query <term>` or `shortcutforge actions list --query <term>`. Treat results as evidence, not a guarantee: iOS 27 evidence is simulator-based, and iOS 17/18/26 availability is unknown. Prefer readable IDs from the small build-time schema catalog. Apple plist parameter keys are also accepted. For other actions, use `identifier` with an exact Apple action identifier and include its raw parameter dictionary, sourced from a real shortcut or trusted reference.
 3. Write the plan JSON to a temporary file outside the repository. Do not include passwords, tokens, or other secrets.
 4. Run `shortcutforge build plan.json -o result.shortcut`, then `shortcutforge validate result.shortcut` and `shortcutforge inspect result.shortcut`.
 5. Run `shortcutforge sign result.shortcut` only when the user requests a shareable signed shortcut and the private GitHub repository is configured. Signing sends the shortcut to Apple for validation and transmits its base64 payload as private GitHub workflow input; do not use it for sensitive personal data.
@@ -34,6 +34,8 @@ Raw Apple example:
 
 ```sh
 shortcutforge actions list
+shortcutforge actions list --os 27 --format table
+shortcutforge actions list --query calendar
 shortcutforge build plan.json -o Hello.shortcut
 shortcutforge validate Hello.shortcut
 shortcutforge inspect Hello.shortcut

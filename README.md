@@ -7,6 +7,7 @@ Python 3.11+ CLI and AI-harness Skill for building Apple Shortcuts from typed JS
 ```sh
 python -m pip install .
 shortcutforge actions list
+shortcutforge actions list --os 27 --query calendar --format table
 shortcutforge build examples/hello.json -o NotifyTime.shortcut
 shortcutforge validate NotifyTime.shortcut
 shortcutforge inspect NotifyTime.shortcut
@@ -44,7 +45,7 @@ Use `id` for a known catalog action and `identifier` for an explicit Apple actio
 
 ## Current limits
 
-The convenience action catalog is intentionally small. Current date, text, notification, speech, and URL actions are mapped; output references can be passed into catalogued parameters. Raw Apple identifiers allow manual authoring outside that catalog, but action-specific validation is unavailable. Binary plist validity does not prove Apple Shortcuts accepts or executes a file. Conditional/loop compilation and calendar actions are not implemented. No real iPhone import or iOS 27 validation has been performed.
+The discovery index contains 2,501 identifiers and provenance, while the build-time convenience schemas remain limited to current date, text, notification, speech, and URL. See [catalog coverage and sources](docs/action-catalog-sources.md). iOS 27 entries are simulator observations; iOS 17/18/26 availability is unknown because exact complete snapshots were not found. Binary plist validity does not prove Apple Shortcuts accepts or executes a file. Conditional/loop compilation and calendar actions are not implemented. No real iPhone import or runtime validation has been performed.
 
 ## Development
 
