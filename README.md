@@ -6,14 +6,17 @@ Python 3.11+ CLI and AI-harness Skill for building Apple Shortcuts from typed JS
 
 ```sh
 python -m pip install .
-shortcutforge actions list
+shortcutforge actions list --os 27
 shortcutforge actions list --os 27 --query calendar --format table
+shortcutforge actions list --os 26 --lang ja --format markdown --output ios26-actions.ja.md
 shortcutforge build examples/hello.json -o NotifyTime.shortcut
 shortcutforge validate NotifyTime.shortcut
 shortcutforge inspect NotifyTime.shortcut
 ```
 
 Install the shared Skill at `skills/shortcutforge` in Codex or Claude Code; see its `SKILL.md` for harness-specific locations and the workflow.
+
+Before using the action catalog, select the target iOS version. Choose `17`, `18`, `26`, or `27`; `--lang` selects English (`en`) or Japanese (`ja`). Markdown output can be saved directly with `--output`. Read the [English catalog guide](docs/action-catalog.en.md) or [Japanese catalog guide](docs/action-catalog.ja.md).
 
 ## Signing and privacy
 
@@ -46,6 +49,10 @@ Use `id` for a known catalog action and `identifier` for an explicit Apple actio
 ## Current limits
 
 The discovery index contains 2,501 identifiers and provenance, while the build-time convenience schemas remain limited to current date, text, notification, speech, and URL. See [catalog coverage and sources](docs/action-catalog-sources.md). iOS 27 entries are simulator observations; iOS 17/18/26 availability is unknown because exact complete snapshots were not found. Binary plist validity does not prove Apple Shortcuts accepts or executes a file. Conditional/loop compilation and calendar actions are not implemented. No real iPhone import or runtime validation has been performed.
+
+## Contributing catalog corrections
+
+Pull requests correcting or adding action identifiers, iOS-version change notes, source links, or English/Japanese catalog text are welcome. Include the source and the exact iOS version/device or simulator used where available. Keep unverified compatibility clearly labeled as unknown.
 
 ## Development
 
