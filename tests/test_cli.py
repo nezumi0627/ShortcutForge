@@ -33,6 +33,19 @@ class ShortcutForgeTests(unittest.TestCase):
             with self.assertRaises(IRValidationError):
                 load_plan(p)
 
+    def test_current_date_output_is_encoded_as_shortcut_reference(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "notify.shortcut"
+            plan = {"version": 1, "name": "Notify time", "actions": [
+                {"id": "current_date", "as": "now"},
+                {"id": "notify", "params": {"text": {"ref": "now"}}},
+            ]}
+            compile_plan(plan, out)
+            actions = plistlib.loads(out.read_bytes())["WFWorkflowActions"]
+            uid = actions[0]["WFWorkflowActionParameters"]["UUID"]
+            token = actions[1]["WFWorkflowActionParameters"]["WFNotificationActionBody"]
+            self.assertEqual(token["Value"]["attachmentsByRange"]["{0, 1}"]["OutputUUID"], uid)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -7,9 +7,9 @@ Python 3.11+ CLI and AI-harness Skill for building Apple Shortcuts from typed JS
 ```sh
 python -m pip install .
 shortcutforge actions list
-shortcutforge build examples/hello.json -o Hello.shortcut
-shortcutforge validate Hello.shortcut
-shortcutforge inspect Hello.shortcut
+shortcutforge build examples/hello.json -o NotifyTime.shortcut
+shortcutforge validate NotifyTime.shortcut
+shortcutforge inspect NotifyTime.shortcut
 ```
 
 Install the shared Skill at `skills/shortcutforge` in Codex or Claude Code; see its `SKILL.md` for harness-specific locations and the workflow.
@@ -20,7 +20,7 @@ The private GitHub Actions workflow invokes Apple's `shortcuts sign --mode anyon
 
 ## Current limits
 
-The action catalog is intentionally small. Unknown actions fail closed. Binary plist validity does not prove Apple Shortcuts accepts or executes a file. Conditional/loop compilation, rich variable interpolation, and broad calendar/action coverage are not implemented. No real iPhone import or iOS 27 validation has been performed.
+The action catalog is intentionally small. Unknown actions fail closed. Current date, text, notification, speech, and URL actions are mapped; output references can be passed into action parameters. Binary plist validity does not prove Apple Shortcuts accepts or executes a file. Conditional/loop compilation and calendar actions are not implemented. No real iPhone import or iOS 27 validation has been performed.
 
 ## Development
 

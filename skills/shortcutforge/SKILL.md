@@ -19,7 +19,7 @@ Use the harness's reasoning to translate the user's intent into a version 1 JSON
 ## Plan format
 
 ```json
-{"version":1,"name":"Say hello","actions":[{"id":"text","params":{"text":"Hello"}}]}
+{"version":1,"name":"Notify current time","actions":[{"id":"current_date","as":"now"},{"id":"notify","params":{"text":{"ref":"now"}}}]}
 ```
 
 An action may have an `as` output name and parameter references use `{"ref":"name"}`. Only catalogued actions are accepted. Check the catalog before promising that a requested action, variable, conditional, or loop is supported.

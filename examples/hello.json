@@ -1,5 +1,8 @@
 {
   "version": 1,
-  "name": "Hello",
-  "actions": [{"id": "text", "params": {"text": "Hello from ShortcutForge"}}]
+  "name": "Notify current time",
+  "actions": [
+    {"id": "current_date", "as": "now"},
+    {"id": "notify", "params": {"text": {"ref": "now"}}}
+  ]
 }
