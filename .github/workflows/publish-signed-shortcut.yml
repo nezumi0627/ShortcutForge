@@ -1,0 +1,66 @@
+name: Publish signed shortcut
+run-name: ShortcutForge artifact ${{ inputs.nonce }}
+on:
+  workflow_dispatch:
+    inputs:
+      secret_name:
+        description: Name of the short-lived repository secret containing the signed file
+        required: true
+        type: string
+      filename:
+        description: Downloaded shortcut filename
+        required: true
+        type: string
+      nonce:
+        description: Correlation ID
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: shortcutforge-publish-${{ inputs.nonce }}
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Prepare signed shortcut
+        id: prepare
+        env:
+          SIGNED_PAYLOAD: ${{ secrets[inputs.secret_name] }}
+          SAFE_NAME: ${{ inputs.filename }}
+        run: |
+          set -euo pipefail
+          case "$SAFE_NAME" in *[!A-Za-z0-9._-]*|'') echo 'Invalid filename' >&2; exit 2;; esac
+          tmp="$(mktemp -d "$RUNNER_TEMP/shortcutforge-publish.XXXXXX")"
+          printf '%s' "$SIGNED_PAYLOAD" | base64 --decode > "$tmp/$SAFE_NAME"
+          if [[ "$(head -c 4 "$tmp/$SAFE_NAME")" != "AEA1" ]]; then echo 'Signed shortcut header is invalid' >&2; exit 2; fi
+          echo "shortcut_path=$tmp/$SAFE_NAME" >> "$GITHUB_OUTPUT"
+          echo "temp_dir=$tmp" >> "$GITHUB_OUTPUT"
+      - name: Upload signed shortcut
+        id: upload
+        if: always() && steps.prepare.outputs.shortcut_path != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: signed-shortcut-${{ inputs.nonce }}
+          path: ${{ steps.prepare.outputs.shortcut_path }}
+          retention-days: 1
+      - name: Add download link to Actions summary
+        if: always()
+        env:
+          ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+        run: |
+          if [[ -n "$ARTIFACT_URL" ]]; then
+            echo "## ShortcutForge: signed shortcut" >> "$GITHUB_STEP_SUMMARY"
+            echo "[Download signed .shortcut]($ARTIFACT_URL) (available for 1 day)" >> "$GITHUB_STEP_SUMMARY"
+            echo "Signed through RoutineHub HubSign. The shortcut source was sent to that third-party service." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "## ShortcutForge: artifact upload failed" >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Remove temporary shortcut file
+        if: always() && steps.prepare.outputs.temp_dir != ''
+        env:
+          TEMP_DIR: ${{ steps.prepare.outputs.temp_dir }}
+        run: |
+          case "$TEMP_DIR" in "$RUNNER_TEMP"/shortcutforge-publish.*) rm -rf "$TEMP_DIR";; *) echo "Refusing unexpected temporary path" >&2; exit 1;; esac
