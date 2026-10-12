@@ -16,7 +16,7 @@ Install the shared Skill at `skills/shortcutforge` in Codex or Claude Code; see 
 
 ## Signing and privacy
 
-The private GitHub Actions workflow invokes Apple's `shortcuts sign --mode anyone` on macOS. GitHub-hosted runner feasibility and Apple account requirements have not yet been verified. The current workflow transports the base64-encoded shortcut as a private `workflow_dispatch` input (maximum practical size is limited by GitHub's input constraints). Workflow inputs may be visible to repository administrators and are not suitable for secrets or highly sensitive shortcuts. Apple states that signing sends a copy to Apple for validation. Artifacts expire after one day. See `docs/signing-validation.md` for the live test result.
+The private GitHub Actions workflow invokes Apple's `shortcuts sign --mode anyone` on macOS. Live testing confirmed GitHub-hosted macOS runners need an iCloud sign-in and fail without it. ShortcutForge places the base64 payload in a uniquely named repository secret, dispatches the workflow, then removes that secret; the runner masks its value in logs. Payloads must be under 60 KB encoded. Apple receives a copy for validation. Artifacts expire after one day. See `docs/signing-validation.md` for the live result and limitation.
 
 ## Current limits
 

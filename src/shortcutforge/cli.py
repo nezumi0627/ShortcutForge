@@ -18,7 +18,7 @@ def main() -> int:
     build = sub.add_parser("build"); build.add_argument("input", type=Path); build.add_argument("-o", "--output", type=Path)
     val = sub.add_parser("validate"); val.add_argument("input", type=Path)
     ins = sub.add_parser("inspect"); ins.add_argument("input", type=Path)
-    sign = sub.add_parser("sign"); sign.add_argument("input", type=Path)
+    sign_cmd = sub.add_parser("sign"); sign_cmd.add_argument("input", type=Path)
     actions = sub.add_parser("actions"); actions.add_argument("operation", choices=["list"])
     args = parser.parse_args()
     try:

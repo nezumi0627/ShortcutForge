@@ -3,8 +3,8 @@ run-name: ShortcutForge signing ${{ inputs.nonce }}
 on:
   workflow_dispatch:
     inputs:
-      payload:
-        description: Base64 encoded shortcut plist (private repo only; do not include secrets)
+      secret_name:
+        description: Name of short-lived repository secret containing the base64 payload
         required: true
         type: string
       filename:
@@ -29,7 +29,7 @@ jobs:
       - name: Sign and upload
         id: sign
         env:
-          PAYLOAD: ${{ inputs.payload }}
+          PAYLOAD: ${{ secrets[inputs.secret_name] }}
           SAFE_NAME: ${{ inputs.filename }}
           NONCE: ${{ inputs.nonce }}
         run: |
