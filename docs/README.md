@@ -5,6 +5,8 @@ Start with the README for installation and the shortest working example. These p
 ## User guides
 
 - [JSON plan format](json-plan-format.md): version 1 schema, action forms, parameters, and output references.
+- [Cherri integration](cherri-integration.md): optional `.cherri` compiler setup, unsigned builds, and platform caveats.
+- [Cherri If/Repeat example](../examples/cherri-control-flow.cherri): a compact source example used in the Windows compiler smoke test.
 - [Action catalog: English](action-catalog.en.md) · [日本語](action-catalog.ja.md): search and render catalog entries for a selected iOS version.
 - [Catalog sources and coverage](action-catalog-sources.md): provenance, evidence levels, and version gaps.
 - [Signing setup and validation](signing-validation.md): available signers, Windows platform limits, data handling, and validation limits.

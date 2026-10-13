@@ -4,7 +4,7 @@ Corrections and additions to the action catalog are welcome, as are focused fixe
 
 ## Development setup
 
-Requires Python 3.11 or newer. The project has no runtime dependency outside the standard library.
+Requires Python 3.11 or newer. The JSON path has no runtime dependency outside the standard library. Cherri integration is optional and requires the separate Cherri executable; see the [integration guide](cherri-integration.md).
 
 ```sh
 git clone https://github.com/nezumi0627/ShortcutForge.git

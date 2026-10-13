@@ -6,7 +6,8 @@ ShortcutForge handles workflow definitions that can include personal data. Build
 
 | Operation | Data handling |
 | --- | --- |
-| `build` | Reads a local JSON plan and writes a local plist. It does not execute actions or upload the plan. |
+| `build PLAN.json` | Reads a local JSON plan and writes a local plist. It does not execute actions or upload the plan. |
+| `build SOURCE.cherri` | Starts the separately installed Cherri process locally with signing disabled. Cherri may read includes or packages referenced by the source; ShortcutForge does not upload the source during compilation. Review Cherri source and dependencies as code. |
 | `validate` / `inspect` | Reads a local plist; does not execute its workflow actions. |
 | `actions list` | Reads the bundled catalog; does not need user data. |
 | `sign` (default) | Sends the unsigned shortcut to Shortcuty's signing service in a multipart HTTPS request. No API key is required. The returned AEA1 format and input/output SHA-256 checksums are verified before writing locally. |

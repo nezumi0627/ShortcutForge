@@ -1,21 +1,22 @@
 # Architecture
 
-ShortcutForge keeps natural-language interpretation outside the Python package. An AI harness or human author creates a JSON plan; Python performs deterministic validation, compilation, and inspection. This avoids an LLM dependency and makes plans reviewable and hand-editable.
+ShortcutForge keeps natural-language interpretation outside the Python package. An AI harness or human author creates either a typed JSON plan or Cherri source; the selected compiler builds an unsigned workflow. This avoids an LLM dependency and keeps both source formats reviewable and hand-editable.
 
 ## Data flow
 
 ```text
 Natural-language request (optional)
         │ interpreted by a person or AI harness
-        ▼
-Version 1 JSON plan ──► loader ──► validator ──► binary plist compiler
-                                              │
-Existing .shortcut ──────────────────────────┴──► read-only inspector
+        ├──► Version 1 JSON ──► loader ──► validator ──► Python plist compiler ──┐
+        └──► Cherri source ──► external Cherri compiler (--skip-sign) ───────────┤
+                                                                                ├─► unsigned .shortcut
+Existing .shortcut ───────────────────────────► read-only inspector ────────────┘
 
 Action research ──► evidence catalog ──► version-filtered CLI / Markdown
+Unsigned .shortcut ──► explicit signer ──► signed artifact
 ```
 
-The CLI is a thin adapter around package operations. `ir.py` loads plan JSON, `validator.py` checks supported semantics and safe plist value types, `compiler.py` writes a binary plist, and `parser.py` inspects an existing workflow without executing it. `actions.py` is the intentionally small build-time schema. `catalog.py` exposes the larger, evidence-oriented discovery index; discovery entries do not automatically become compilable actions.
+The CLI is a thin adapter around package operations. `ir.py` loads plan JSON, `validator.py` checks supported semantics and safe plist value types, and `compiler.py` writes a binary plist. For `.cherri`, `cherri.py` invokes an optional executable, disables its signing, validates the returned plist, and atomically writes the requested output. `parser.py` inspects a workflow without executing it. `actions.py` is the intentionally small JSON build-time schema. `catalog.py` exposes the larger, evidence-oriented discovery index; discovery entries do not automatically become compilable actions.
 
 ## Core design decisions
 
@@ -29,17 +30,21 @@ The discovery catalog is useful for research and manual authoring. It tracks ver
 
 ### Keep the core dependency-light
 
-Python standard-library modules handle JSON, CLI parsing, plist serialization, and process invocation. GitHub CLI (`gh`) is an external executable needed only by signing orchestration. The package does not contact an AI service.
+Python standard-library modules handle JSON, CLI parsing, plist serialization, and process invocation. Cherri is an optional, separately installed executable used only for `.cherri` builds. The package does not contact an AI service.
 
 ### Treat signing as an explicit external operation
 
 `shortcutforge sign` uses Shortcuty's keyless signing service by default and Shortcuty is the only enabled signer on Windows. On supported non-Windows hosts, `--via hubsign` selects RoutineHub HubSign and `--via macos` runs Apple's `shortcuts sign --mode anyone` locally. Other Windows signing approaches remain under research and are not exposed as working commands. GitHub Actions are reserved for CI and do not receive user shortcut files. The build output is unsigned; signing is required before file import into Shortcuts on iPhone/iPad. Remote signers receive the shortcut for signing. See [signing validation](signing-validation.md) and the [security model](security.md).
 
+### Keep compiler guarantees distinct
+
+The JSON compiler validates its versioned plan shape and its small named-action schema. Cherri owns parsing and language semantics for `.cherri`; ShortcutForge only controls invocation and checks that Cherri returned an unsigned plist with a workflow action list. Neither path proves the generated file imports or runs on a target iOS release.
+
 ## Compatibility boundaries
 
 - A valid binary plist is a serialization result, not proof of import or runtime behavior.
 - The named compiler actions are currently `current_date`, `text`, `notify`, `speak`, and `open_url`.
-- The compiler has no high-level conditional/repeat DSL. Raw control-flow markers can be authored as a flat action list, but only plist structure is checked; the [Battery Decision Lab example](../examples/battery-decision-lab.json) shows this escape hatch.
+- The JSON compiler has no high-level conditional/repeat DSL. For code-first control flow, use the optional Cherri adapter and its [integration guide](cherri-integration.md).
 - The version catalog is an evidence index, not a complete Apple-maintained API catalog.
 - No physical iPhone import/runtime check has been completed; iOS 27 import remains unverified.
 

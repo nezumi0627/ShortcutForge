@@ -2,7 +2,10 @@ import json
 import plistlib
 import tempfile
 import unittest
+import io
 from pathlib import Path
+from unittest.mock import patch
+from shortcutforge.cli import main
 from shortcutforge.compiler import compile_plan
 from shortcutforge.ir import IRValidationError, load_plan
 from shortcutforge.parser import inspect
@@ -10,6 +13,52 @@ from shortcutforge.validator import validate
 
 
 class ShortcutForgeTests(unittest.TestCase):
+    def test_build_cherri_reports_when_external_compiler_is_missing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            source = Path(tmp) / "hello.cherri"
+            source.write_text('alert("Hello")\n', encoding="utf-8")
+            stderr = io.StringIO()
+            with patch.dict("os.environ", {"PATH": ""}), patch("sys.stderr", stderr):
+                self.assertEqual(main(["build", str(source)]), 2)
+            self.assertIn("Cherri compiler was not found", stderr.getvalue())
+
+    def test_build_cherri_rejects_output_that_would_be_deleted_as_intermediate(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "hello.cherri"
+            source.write_text('alert("Hello")\n', encoding="utf-8")
+            stderr = io.StringIO()
+            with patch("shortcutforge.cherri.shutil.which", return_value="cherri.exe"), patch("sys.stderr", stderr):
+                self.assertEqual(main(["build", str(source), "-o", str(root / "hello_unsigned.shortcut")]), 2)
+            self.assertIn("must not overwrite Cherri's temporary", stderr.getvalue())
+
+    def test_build_cherri_compiles_unsigned_plist_and_moves_it_to_output(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "hello.cherri"
+            output = root / "artifacts" / "hello.shortcut"
+            source.write_text('alert("Hello")\n', encoding="utf-8")
+            unsigned_output = root / "hello_unsigned.shortcut"
+
+            def compile_source(command, **kwargs):
+                self.assertEqual(command[1:], [source.name, "--skip-sign", "--no-ansi"])
+                unsigned_output.write_bytes(plistlib.dumps(
+                    {"WFWorkflowName": "hello", "WFWorkflowActions": []},
+                    fmt=plistlib.FMT_BINARY,
+                ))
+                return type("Result", (), {"returncode": 0, "stderr": ""})()
+
+            with (
+                patch("shortcutforge.cherri.shutil.which", return_value="cherri.exe"),
+                patch("shortcutforge.cherri.subprocess.run", side_effect=compile_source),
+                patch("sys.stdout", new_callable=io.StringIO) as stdout,
+            ):
+                self.assertEqual(main(["build", str(source), "-o", str(output)]), 0)
+
+            self.assertEqual(stdout.getvalue().strip(), str(output))
+            self.assertEqual(plistlib.loads(output.read_bytes())["WFWorkflowName"], "hello")
+            self.assertFalse(unsigned_output.exists())
+
     def test_compile_binary_plist_and_inspect(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

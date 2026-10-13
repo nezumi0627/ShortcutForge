@@ -10,6 +10,7 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from .compiler import compile_plan
+from .cherri import compile_cherri
 from .ir import IRValidationError, load_plan
 from .parser import inspect
 from .signing import (
@@ -57,9 +58,12 @@ def _build_parser() -> argparse.ArgumentParser:
 
 
 def _build(args: argparse.Namespace) -> None:
-    plan = load_plan(args.input)
     output = args.output or args.input.with_suffix(".shortcut")
-    compile_plan(plan, output)
+    if args.input.suffix.casefold() == ".cherri":
+        compile_cherri(args.input, output)
+    else:
+        plan = load_plan(args.input)
+        compile_plan(plan, output)
     print(output)
 
 

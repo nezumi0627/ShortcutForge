@@ -5,15 +5,15 @@ description: Use when a user wants to create, inspect, validate, or sign an Appl
 
 # ShortcutForge
 
-Use the harness's reasoning to translate the user's intent into a version 1 JSON plan. ShortcutForge performs deterministic schema validation and binary plist generation; it does not call an LLM.
+Use the harness's reasoning to translate the user's intent into a version 1 JSON plan or Cherri source. ShortcutForge validates and compiles JSON itself; for `.cherri` files it delegates to the optional external Cherri compiler. Neither tool calls an LLM.
 
 ## Procedure
 
 1. Ask only for details needed to resolve meaningful ambiguity (for example, which calendar or notification text).
 2. Determine the iOS version installed on the target device (17, 18, 26, or 27) before selecting actions; ask if it is unknown. Actions may be added, changed, or removed between iOS releases. Search the selected version with `shortcutforge actions list --os <version> --query <term> --format json`. Generate a localized Markdown catalog when helpful: `shortcutforge actions list --os <version> --lang ja --format markdown --output actions.md` (`--lang en` for English). Treat results as evidence, not a guarantee: iOS 27 evidence is simulator-based, and iOS 17/18/26 compatibility is not fully verified. Never assume an action or parameter exists on another version. If availability is unknown, look for an export or reliable source from the exact target version. Prefer readable IDs from the small build-time schema catalog. Apple plist parameter keys are also accepted. For other actions, use `identifier` with an exact Apple action identifier and include its raw parameter dictionary, sourced from a real shortcut or trusted reference.
-3. Write the plan JSON to a temporary file outside the repository. Do not include passwords, tokens, or other secrets.
-4. Run `shortcutforge build plan.json -o result.shortcut`, then `shortcutforge validate result.shortcut` and `shortcutforge inspect result.shortcut`.
-5. Treat the build output as unsigned. A signed `.shortcut` is required for file import into Shortcuts on iPhone/iPad; never tell the user an unsigned file is import-ready. On Windows, use only `shortcutforge sign FILE` (Shortcuty); it uploads the complete workflow to Shortcuty's no-key signing service. Disclose this transfer and never send private, secret, or sensitive shortcut data without authorization. Windows use of HubSign, Apple's signer, or iCloud-based approaches is under research and is not an available workflow. On supported non-Windows hosts, `--via hubsign` requires its API key and `--via macos` invokes Apple's local CLI. Apple receives a copy for validation when using the Mac signer. Never send shortcut contents to GitHub Actions.
+3. Choose source format: use JSON for simple workflows covered by ShortcutForge's small named action schema; use Cherri for code-first workflows with If/Repeat/functions or when the user asks for Cherri. Cherri must be installed and available as `cherri` on `PATH`. Do not invent unknown action names or parameters. Write the source to a temporary file outside the repository unless the user wants to keep it as source; do not include passwords, tokens, or other secrets.
+4. Build with `shortcutforge build plan.json -o result.shortcut` or `shortcutforge build plan.cherri -o result.shortcut`. The Cherri adapter always passes `--skip-sign`, validates the plist output, and does not forward Cherri's captured diagnostics. Then run `shortcutforge validate result.shortcut` and `shortcutforge inspect result.shortcut`.
+5. Treat every build output as unsigned. A signed `.shortcut` is required for file import into Shortcuts on iPhone/iPad; never tell the user an unsigned file is import-ready. On Windows, use only `shortcutforge sign FILE` (Shortcuty); it uploads the complete workflow to Shortcuty's no-key signing service. Disclose this transfer and never send private, secret, or sensitive shortcut data without authorization. Windows use of HubSign, Apple's signer, or iCloud-based approaches is under research and is not an available workflow. On supported non-Windows hosts, `--via hubsign` requires its API key and `--via macos` invokes Apple's local CLI. Apple receives a copy for validation when using the Mac signer. Never send shortcut contents to GitHub Actions.
 6. Verify the signed output exists and has the AEA1 header. Give the user its path and state which signer received the file, plus any unsupported or unverified behavior. If signing is unavailable, label the output unsigned and explain it cannot yet be imported.
 
 ## Plan format
@@ -38,6 +38,7 @@ shortcutforge actions list --os 27 --format table
 shortcutforge actions list --os 27 --query calendar
 shortcutforge actions list --os 26 --lang ja --format markdown --output ios26-actions.ja.md
 shortcutforge build plan.json -o Hello.shortcut
+shortcutforge build examples/cherri-control-flow.cherri -o CherriExample.shortcut
 shortcutforge validate Hello.shortcut
 shortcutforge inspect Hello.shortcut
 shortcutforge sign Hello.shortcut

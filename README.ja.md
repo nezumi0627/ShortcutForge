@@ -1,39 +1,36 @@
 # ShortcutForge
 
-**型付きJSONからAppleショートカットを作成するPython CLIと、Codex・Claude Code向けSkillです。** AIハーネスが自然言語を解釈し、ShortcutForgeは入力検証とBinary PLIST生成を決定的に行います。Python 3.11以上、Windows・macOS・Linuxに対応します。
+**型付きJSONまたは[Cherri](https://github.com/electrikmilk/cherri)ソースからAppleショートカットを作成します。** ShortcutForgeはPython製CLIと、Codex・Claude Codeで使えるSkillです。AIハーネスが自然言語を解釈して設計する使い方と、人がJSONやCherriを直接書く使い方の両方に対応します。ビルド時にLLM APIは使いません。
 
-[English README](README.md) · [ドキュメント一覧](docs/README.md) · [貢献ガイド](docs/contributing.md) · [MIT License](LICENSE)
+[English](README.md) · [ドキュメント一覧](docs/README.md) · [貢献ガイド](docs/contributing.md) · [MIT License](LICENSE)
 
-> **読み込みには署名が必要です:** iPhone/iPadのショートカットAppへファイルを読み込むには、署名済み`.shortcut`が必要です。`build`は未署名のBinary PLISTを生成します。`sign`はAPIキー不要のShortcuty署名サービスを既定で使い、ショートカット全体を同サービスへ送信します。Windowsで利用できる署名方式はShortcutyのみです。HubSign（APIキー・メンバーシップが必要）とApple純正Mac署名は対応する非Windows環境で選べます。Apple署名では検証のためAppleへコピーが送信されます。その他のWindows署名方式は研究中です。GitHub Actionsでは署名しません。[署名方法とプライバシー](docs/signing-validation.md)を確認してください。
+> **署名と読み込み:** `build`が生成する`.shortcut`は未署名です。iPhone/iPadのショートカットAppへファイルとして読み込む前に署名してください。Windowsで使える署名方式はShortcutyのみで、ショートカット全体をShortcutyのサービスへ送信します。対応する非Windows環境ではHubSignまたはApple純正macOS署名を選べます。GitHub Actionsでは署名しません。外部署名サービスに送る前に[署名とプライバシー](docs/signing-validation.md)を確認してください。
 
 ## できること
 
-- JSONプランから`.shortcut`ファイルを生成
-- 既知アクション、パラメータ、plist互換値、出力参照を検証
-- 既存のワークフローplistを実行せずに解析
-- iOS 17・18・26・27を指定してアクションカタログを検索
-- Codex・Claude Codeから使える、モデルAPIに依存しないSkillを提供
+- バージョン付きJSONプランを内蔵Pythonコンパイラで生成
+- `.cherri`を別途インストールしたCherriコンパイラへ渡して生成（Cherri側の署名は無効）
+- ワークフローplistの基本構造を検証し、既存ファイルを実行せずに解析
+- iOS 17・18・26・27別のアクション調査カタログを検索し、英語・日本語Markdownを出力
+- AIハーネスから使えるSkillを提供。自然言語理解はハーネス側で行い、ShortcutForgeはモデルAPIを呼び出さない
 
-GUI、Webアプリ、常駐サーバー、LLM API、Python標準ライブラリ以外の実行依存関係はありません。
+JSONコンパイラの名前付きアクションは意図的に小さく保っています。大規模なアクションカタログは調査用インデックスであり、すべてをコンパイルできるという保証ではありません。
 
-## クイックスタート
+## インストール
 
 Python 3.11以上が必要です。
 
 ```sh
 python -m pip install .
-shortcutforge build examples/hello.json -o Hello.shortcut
-shortcutforge validate Hello.shortcut
-shortcutforge inspect Hello.shortcut
-# ShortcutyはAPIキー不要。署名時にショートカットを同サービスへ送信する
-shortcutforge sign Hello.shortcut
 ```
 
-`shortcutforge`コマンドがPATHにない場合は、`python -m shortcutforge`を使えます。
+`shortcutforge`コマンドがPATHにない場合は`python -m shortcutforge`を使ってください。
 
-## JSONを手で作成する
+Cherriビルドは任意機能です。利用する場合はCherri本体を別途インストールし、実行ファイルをPATHに追加します。手順とWindowsの制約は[Cherri連携ガイド](docs/cherri-integration.md)を参照してください。
 
-プランは通常のJSONです。テキストエディターで作成でき、AIハーネスから生成することもできます。
+## JSONから作成する
+
+`plan.json`を作成します。
 
 ```json
 {
@@ -46,19 +43,32 @@ shortcutforge sign Hello.shortcut
 }
 ```
 
+ビルド・確認後、インポート前に署名します。
+
 ```sh
 shortcutforge build plan.json -o NotifyCurrentTime.shortcut
 shortcutforge validate NotifyCurrentTime.shortcut
 shortcutforge inspect NotifyCurrentTime.shortcut
+shortcutforge sign NotifyCurrentTime.shortcut
 ```
 
-アクションID、Appleパラメーターキー、rawアクションID、出力参照の仕様は[JSONプラン形式](docs/json-plan-format.md)を参照してください。Rawアクションの識別子とパラメーターは、互換性のあるショートカットまたは信頼できる情報源から取得してください。構造検証だけでは実行互換性を確認できません。生成ファイルは未署名のため、iPhone/iPadへ読み込む前に署名してください。`shortcutforge sign FILE`は既定でShortcutyを使い、署名結果を元ファイルの隣の`signed/`へ保存します。ショートカット全体がShortcutyへ送信されます。Windowsで利用できる署名方式はShortcutyのみです。HubSign、Apple純正署名、iCloud経由の方式をWindowsから使う方法は研究中です。
+組み込みの名前付きアクションは`current_date`、`text`、`notify`、`speak`、`open_url`です。正確なAppleアクション識別子とパラメーター辞書を指定するraw形式も使えますが、ShortcutForgeが行うのは基本的な構造検査だけです。[JSONプラン形式](docs/json-plan-format.md)を参照してください。
 
-[Battery Decision Labの例](examples/battery-decision-lab.json)では、raw Appleアクションを使った入れ子のIfとRepeatを確認できます。iOS 27を想定し、バッテリーと振動の識別子はiOS 27 Simulatorのカタログにありますが、制御フローマーカーと実機iPhoneでの動作は未検証です。
+## Cherriソースから作成する
 
-## iOSバージョン別カタログ
+Cherriは制御フローや関数を含むコード中心のワークフローに向いた別言語・コンパイラです。Cherriをインストールしてから実行します。
 
-アクションを選ぶ前に、対象端末にインストールされているiOSバージョンを指定してください。iOSの版によってアクションが追加・変更・削除されることがあります。その版のカタログで利用可否と引数の根拠を調べ、不明な場合は同じiOS版から書き出したショートカットで確認してください。カタログは観測済み情報と不明な互換性を区別し、動作を保証するものではありません。
+```sh
+shortcutforge build examples/cherri-control-flow.cherri -o CherriExample.shortcut
+shortcutforge validate CherriExample.shortcut
+shortcutforge inspect CherriExample.shortcut
+```
+
+ShortcutForgeはCherriを`--skip-sign`付きで呼び出し、未署名plistを検証して指定先へ保存します。署名は別の明示的な操作です。付属例ではIfとRepeatを使っています。Windowsで上流ソースからビルドしたCherriによるスモークテストは成功しましたが、上流の案内ではWindowsの安定対応に制約があります。詳細は[Cherri連携ガイド](docs/cherri-integration.md)を参照してください。
+
+## 対象iOSのアクションを調べる
+
+アクション選択前に、対象端末にインストールされたiOSバージョンを指定してください。カタログは識別子や根拠の検索を助けますが、網羅的ではなく、読み込みや実行を保証しません。
 
 ```sh
 shortcutforge actions list --os 27 --query notification
@@ -66,38 +76,52 @@ shortcutforge actions list --os 26 --lang ja --format markdown --output ios26-ac
 shortcutforge actions list --os 18 --format json
 ```
 
-[日本語カタログガイド](docs/action-catalog.ja.md)、[英語カタログガイド](docs/action-catalog.en.md)、[収録範囲と出典](docs/action-catalog-sources.md)を参照してください。カタログの訂正・追加を歓迎します。[貢献ガイド](docs/contributing.md)に従ってPRをお送りください。
+[日本語カタログガイド](docs/action-catalog.ja.md)、[英語カタログガイド](docs/action-catalog.en.md)、[出典と収録範囲](docs/action-catalog-sources.md)を参照してください。訂正・追加のPRを歓迎します。対象OSを特定できる根拠を添えて[貢献ガイド](docs/contributing.md)に従ってください。
+
+Python APIからも同じカタログを使えます。
+
+```python
+from shortcutforge import ActionCatalog, IOSVersion
+
+catalog = ActionCatalog.from_package()
+actions = catalog.list_actions(IOSVersion.IOS_26, query="calendar")
+availability = catalog.get_availability(
+    "is.workflow.actions.notification", IOSVersion.IOS_26
+)
+markdown = catalog.render_markdown(IOSVersion.IOS_26, language="ja")
+```
 
 ## AIハーネス用Skill
 
-`skills/shortcutforge/SKILL.md`はCodexとClaude Codeに対応しています。Pythonパッケージをインストール後、`skills/shortcutforge`を各ハーネスのSkillディレクトリへコピーまたはリンクしてください。自然言語の解釈とJSON作成はAI側が行い、ShortcutForgeはモデルAPIを呼び出しません。具体的な配置先と安全な手順はSkillファイルを確認してください。
+[ShortcutForge Skill](skills/shortcutforge/SKILL.md)はCodexとClaude Codeに対応しています。`python -m pip install .`の後、`skills/shortcutforge`を各ハーネスのSkillディレクトリへコピーまたはリンクしてください。Skillはハーネス自身の推論を使うため、独立したモデルAPIキーは不要です。対象iOSの確認、ビルド、解析を案内し、署名をデータ送信を伴う別工程として扱います。
 
 ## コマンド
 
 | コマンド | 用途 |
 | --- | --- |
-| `shortcutforge build PLAN -o FILE` | JSONを検証してBinary PLISTを生成 |
-| `shortcutforge validate FILE` | plist構造を検証（Appleアクションの意味検証はしません） |
-| `shortcutforge inspect FILE` | 実行せずにワークフロー名とアクションIDを表示 |
-| `shortcutforge actions list --os VERSION` | バージョン別のアクション候補を検索 |
-| `shortcutforge sign FILE` | Shortcutyで署名（既定・Windows唯一）。HubSignとmacOS署名は対応する非Windows環境で選択可能 |
+| `shortcutforge build PLAN.json -o FILE` | JSONを検証してBinary PLISTを生成 |
+| `shortcutforge build SOURCE.cherri -o FILE` | 別途インストールしたCherriで未署名ビルド |
+| `shortcutforge validate FILE` | plist構造を検査（Appleアクションの意味は未検証） |
+| `shortcutforge inspect FILE` | 実行せずにワークフロー情報とアクション識別子を表示 |
+| `shortcutforge actions list --os VERSION` | 指定iOS版の調査カタログを検索 |
+| `shortcutforge sign FILE` | 既定でShortcuty署名。Windowsで使える署名方式はShortcutyのみ |
 
-各コマンドのオプションは`shortcutforge COMMAND --help`で確認できます。
+`shortcutforge COMMAND --help`で詳細を確認できます。対応する非Windows環境ではHubSignまたはApple純正macOSコマンドも選べます。[署名手順](docs/signing-validation.md)を参照してください。
 
-## 既知の制限
+## 制限と検証状況
 
-- ビルド時の便利なスキーマは`current_date`、`text`、`notify`、`speak`、`open_url`のみです。Raw Appleアクションには基本的な構造検証だけを行います。
-- 高水準のIf/Repeatビルダーはありません。例のようにraw制御フローアクションを記述できますが、ブロックの意味的な検証は行いません。
-- 2,501件の識別子カタログはAppleの完全なスキーマではありません。iOS 27はSimulatorでの観測情報があり、iOS 17・18・26は互換性が不明、または部分的な変更報告に基づきます。
-- 実機iPhoneへの読み込み・実行テストは未実施です。iOS 27への読み込みも未検証です。
-- 生成される`.shortcut`は未署名です。読み込み前に署名してください。既定のShortcuty署名はAPIキー不要ですが、ショートカット全体を外部サービスへ送信します。HubSignにはAPIキーとアカウント権限が必要です。
-- Windowsで利用できる署名方式はShortcutyのみです。Windowsネイティブ署名やiCloud共有を使う方法は研究中で、利用可能な機能としては提供していません。
-- GitHubホストmacOSではiCloud認証環境を用意できないため、Actions経由の署名機能を削除しました。[署名検証記録](docs/signing-validation.md)を参照してください。
+- JSONの名前付きアクションは5種類です。数千件のカタログ識別子すべてをコンパイルできるわけではありません。
+- plistとして有効でも、ショートカットAppが認識・読み込み・実行できることの証明にはなりません。
+- Cherriは別プロジェクトです。WindowsではIf/Repeat例をスモークテストしましたが、全機能・全リリースの動作保証ではありません。
+- iOS 27の根拠はSimulatorでの観測です。iOS 17・18・26は情報が部分的または不明です。
+- 実機iPhoneでの読み込み・実行テストは未実施です。iOS 27への読み込みも未検証です。
+- ビルド結果は未署名です。ShortcutyとHubSignはショートカットを外部サービスへ送信し、Apple純正macOS署名も検証のためAppleへコピーを送ります。WindowsではShortcuty以外の署名方式は研究中です。
 
 ## 開発
 
 ```sh
 python -m unittest discover -s tests -v
+python -m compileall -q src
 ```
 
-変更前に[アーキテクチャ](docs/architecture.md)、[セキュリティ](docs/security.md)、[貢献ガイド](docs/contributing.md)、[AGENTS.md](AGENTS.md)を確認してください。このPublicリポジトリはGitHubテンプレートとしても利用できます。複製前に[テンプレート利用上の注意](docs/template-and-release.md)を確認してください。
+[アーキテクチャ](docs/architecture.md)、[セキュリティ](docs/security.md)、[貢献ガイド](docs/contributing.md)、[AGENTS.md](AGENTS.md)を確認してください。このPublicリポジトリはGitHubテンプレートでもあります。派生リポジトリ作成前に[テンプレート利用ガイド](docs/template-and-release.md)を参照してください。

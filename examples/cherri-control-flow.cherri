@@ -1,0 +1,11 @@
+#define name ShortcutForge Cherri Control Flow
+
+const message = "Cherri compiled this shortcut"
+
+if message == "Cherri compiled this shortcut" {
+    repeat i for 2 {
+        alert("{message} — run {@i}")
+    }
+} else {
+    alert("Unexpected message")
+}
