@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 from shortcutforge.cli import main
 from shortcutforge.signing import HUBSIGN_API_KEY_ENV
-from shortcutforge.signing import sign_with_hubsign
+from shortcutforge.signing import sign_with_hubsign, sign_with_macos
 
 
 class HubSignTests(unittest.TestCase):
@@ -53,17 +53,39 @@ class HubSignTests(unittest.TestCase):
             sign_file.assert_not_called()
             self.assertIn(HUBSIGN_API_KEY_ENV, stderr.getvalue())
 
-    def test_cli_keeps_apple_workflow_as_explicit_fallback(self):
+    def test_cli_selects_native_macos_signer(self):
         with tempfile.TemporaryDirectory() as temp:
             source = Path(temp) / "input.shortcut"
             source.write_bytes(b"not read by the signer")
-            result = Path(temp) / "signed" / "input.shortcut"
+            result = Path(temp) / "signed" / "input.signed.shortcut"
             with (
-                patch("shortcutforge.cli.sign", return_value=result) as sign_file,
+                patch("shortcutforge.cli.sign_with_macos", return_value=result) as sign_file,
                 patch("sys.stdout", new_callable=io.StringIO),
             ):
-                self.assertEqual(main(["sign", str(source), "--via", "github-actions"]), 0)
+                self.assertEqual(main(["sign", str(source), "--via", "macos"]), 0)
             sign_file.assert_called_once_with(source, source.parent / "signed")
+
+    def test_macos_signer_invokes_apple_cli_and_saves_signed_output(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            source = root / "Check Battery.shortcut"
+            self.write_shortcut(source)
+
+            def run(args, **kwargs):
+                self.assertEqual(args[0], "shortcuts")
+                self.assertEqual(args[1:4], ["sign", "--mode", "anyone"])
+                output = Path(args[args.index("--output") + 1])
+                output.write_bytes(b"AEA1 signed by Apple")
+                return type("Result", (), {"returncode": 0, "stderr": "", "stdout": ""})()
+
+            with patch("shortcutforge.signing.platform.system", return_value="Darwin"), patch(
+                "shortcutforge.signing.subprocess.run", side_effect=run
+            ) as run_command:
+                output = sign_with_macos(source, root / "signed")
+
+            self.assertEqual(output.name, "Check Battery.signed.shortcut")
+            self.assertEqual(output.read_bytes(), b"AEA1 signed by Apple")
+            run_command.assert_called_once()
 
     def test_uploads_unsigned_file_and_saves_signed_response(self):
         with tempfile.TemporaryDirectory() as temp:

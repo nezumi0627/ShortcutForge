@@ -10,9 +10,9 @@ ShortcutForge handles workflow definitions that can include personal data. Build
 | `validate` / `inspect` | Reads a local plist; does not execute its workflow actions. |
 | `actions list` | Reads the bundled catalog; does not need user data. |
 | `sign` (default) | Sends the unsigned shortcut and HubSign API key in a multipart HTTPS request to RoutineHub. The key is read from `SHORTCUTFORGE_HUBSIGN_API_KEY` or a concealed terminal prompt and is not placed in arguments or logs. The returned bytes are checked for the `AEA1` signed-file header before being written locally. |
-| `sign --via github-actions` | Stores the shortcut briefly as a uniquely named GitHub repository secret, dispatches the Apple signer workflow, and downloads its artifact. The runner uses a temporary directory and one-day artifact retention. Apple may receive the shortcut. The hosted macOS attempt currently fails without iCloud sign-in. |
+| `sign --via macos` | Runs Apple's `shortcuts sign --mode anyone` locally on the user's Mac. Apple receives a copy for validation; the signed file is written locally. |
 
-HubSign key setup and the data recipient are documented in [signing validation](signing-validation.md). The GitHub fallback client removes its temporary secret after the run; cleanup is best effort if the process or network is interrupted, and repository administrators can inspect and remove leftovers. A prior HubSign run succeeded; the GitHub-hosted Apple run failed before producing a signed artifact because iCloud authentication was unavailable.
+HubSign key setup and signing data recipients are documented in [signing validation](signing-validation.md). GitHub Actions are CI-only and do not receive shortcut payloads. Apple's local signer sends a copy to Apple for validation as Apple's documentation states.
 
 ## Public repository considerations
 

@@ -4,7 +4,7 @@
 
 [日本語](README.ja.md) · [Documentation index](docs/README.md) · [Contributing](docs/contributing.md) · [MIT License](LICENSE)
 
-> **Import requirement:** iPhone/iPad Shortcuts requires a signed `.shortcut` file for file import. `build` creates an unsigned binary plist. Use HubSign as the recommended signing route; it sends the shortcut to RoutineHub and requires a HubSign API key plus an active membership (unless you are an approved partner client). The GitHub-hosted macOS signer remains an explicit fallback and currently fails because its runner is not signed in to iCloud. See [signing setup and privacy](docs/signing-validation.md).
+> **Import requirement:** iPhone/iPad Shortcuts requires a signed `.shortcut` file for file import. `build` creates an unsigned binary plist. On Windows/Linux, use HubSign; on a Mac, choose HubSign or Apple's local signer. HubSign uploads the shortcut to RoutineHub and requires an API key plus active membership (unless you are an approved partner client). Apple's signer sends a copy to Apple for validation. GitHub Actions are not used for signing. See [signing setup and privacy](docs/signing-validation.md).
 
 ## What it does
 
@@ -25,8 +25,9 @@ python -m pip install .
 shortcutforge build examples/hello.json -o Hello.shortcut
 shortcutforge validate Hello.shortcut
 shortcutforge inspect Hello.shortcut
-# Set SHORTCUTFORGE_HUBSIGN_API_KEY first, or enter it at the hidden terminal prompt.
+# HubSign is the default; on macOS use --via macos for Apple's local signer.
 shortcutforge sign Hello.shortcut
+shortcutforge sign Hello.shortcut --via macos
 ```
 
 Use `python -m shortcutforge` instead of `shortcutforge` if the script entry point is not on `PATH`.
@@ -97,7 +98,7 @@ markdown = catalog.render_markdown(
 | `shortcutforge validate FILE` | Check plist structure; does not validate Apple action semantics. |
 | `shortcutforge inspect FILE` | Print the workflow name and action identifiers without running it. |
 | `shortcutforge actions list --os VERSION` | Search the version-scoped action discovery catalog. |
-| `shortcutforge sign FILE` | Sign with HubSign (default); use `--via github-actions` to select the Apple macOS workflow fallback. |
+| `shortcutforge sign FILE` | Sign with HubSign (default); use `--via macos` on a Mac for Apple's local signer. |
 
 Run `shortcutforge COMMAND --help` for options.
 
@@ -108,7 +109,7 @@ Run `shortcutforge COMMAND --help` for options.
 - The 2,501-identifier discovery catalog is not a complete Apple schema. iOS 27 identifiers have simulator evidence; iOS 17, 18, and 26 compatibility is unknown or based on partial change reports.
 - No real iPhone import or runtime test has been completed. iOS 27 import is unverified.
 - Generated `.shortcut` files are unsigned and cannot be imported into iPhone/iPad Shortcuts until signed. HubSign signing requires the user's own API key and account access.
-- GitHub-hosted macOS signing was tested and failed with Apple's “you must be signed into iCloud” requirement. No signed artifact is produced by that path today. See [signing validation](docs/signing-validation.md).
+- GitHub Actions signing was removed because hosted macOS lacks the iCloud-authenticated environment required by Apple's signer. See [signing validation](docs/signing-validation.md).
 
 ## Development
 

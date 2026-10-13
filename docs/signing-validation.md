@@ -2,30 +2,47 @@
 
 ## Import requirement
 
-**A `.shortcut` file must be signed before importing it as a file into Shortcuts on iPhone or iPad.** `build` writes an unsigned binary plist. `validate` checks only its structure; it does not sign the file or prove that Apple will import or run it.
+**A `.shortcut` file must be signed before importing it as a file into Shortcuts on iPhone or iPad.** `build` writes an unsigned binary plist. `validate` checks structure only; it does not prove Apple will import or run the workflow.
 
-## Recommended: RoutineHub HubSign
+## Choose a signer
 
-`shortcutforge sign FILE` sends an unsigned workflow to RoutineHub's HubSign API and saves the returned signed file at `FILE`'s sibling `signed/` directory. The API requires a separate HubSign API key and active RoutineHub membership, unless the caller is an approved partner client. See the [official API reference](https://routinehub.co/v1/openapi.json), endpoint `POST /api/v1/sign-shortcut`.
+```sh
+# Windows/Linux or any platform: RoutineHub HubSign (default)
+shortcutforge sign BatteryDecisionLab.shortcut
 
-Provide the key without putting it in command arguments or a plan:
-
-```powershell
-shortcutforge sign .\BatteryDecisionLab.shortcut
+# A Mac with Shortcuts and iCloud configured: Apple's local signer
+shortcutforge sign BatteryDecisionLab.shortcut --via macos
 ```
 
-In an interactive terminal, `shortcutforge sign FILE` also prompts for the key without echoing it. On a non-interactive runner, set `SHORTCUTFORGE_HUBSIGN_API_KEY` through that runner's secret manager. Never commit the key. The command checks that the input is a Shortcuts workflow plist and that the response begins with HubSign's signed-file header (`AEA1`) before saving it.
+`--via` selects the signing tool:
 
-**Privacy:** HubSign receives the full shortcut file and the API key in an HTTPS form request. Do not send shortcuts containing passwords, authentication tokens, private medical/financial details, or other sensitive content. Successful signing in this repository was recorded on 2026-10-12 in [Actions run 38319254307](https://github.com/nezumi0627/ShortcutForge/actions/runs/38319254307); the downloaded file had the signed `AEA1` header. This is evidence of a successful HubSign response, not an iPhone runtime test.
+| Option | Runs where | Data sent | Requirements |
+| --- | --- | --- | --- |
+| `hubsign` (default) | Windows, macOS, Linux | HTTPS request to RoutineHub, including the shortcut and API key | HubSign API key and active RoutineHub membership unless approved as a partner client |
+| `macos` | Local Mac only | Apple receives a copy for validation | macOS Shortcuts CLI and an Apple environment able to sign in to iCloud |
 
-## Optional fallback: Apple signing on GitHub-hosted macOS
+HubSign uses `SHORTCUTFORGE_HUBSIGN_API_KEY` or a concealed interactive prompt. Do not put the key in command arguments, files committed to Git, Actions secrets, or chat. Do not send shortcuts with sensitive data to a third party unless the user has authorized that transfer.
 
-Use `shortcutforge sign FILE --via github-actions` only when explicitly selecting the Apple workflow. On 2026-10-12 and again on 2026-10-13, `/usr/bin/shortcuts sign --mode anyone` on GitHub-hosted `macos-14` exited with `In order to do this, you must be signed into iCloud.` The workflow uploaded an unsigned fallback artifact after the Apple command failed. It did not produce a signed file. A Mac signed into iCloud may be used manually; self-hosting an authenticated runner needs separate security and reliability review.
+Apple documents `shortcuts sign` for signing exported shortcuts, and says Apple receives a copy for validation. ShortcutForge invokes:
 
-The GitHub fallback stores the base64 file briefly in a unique repository secret, removes it after the run, and retains the artifact for one day. Repository admins and GitHub receive the workflow payload. Apple's validation service may also receive the shortcut if the command reaches that step. See [security and data handling](security.md).
+```sh
+shortcuts sign --mode anyone --input unsigned.shortcut --output signed.shortcut
+```
+
+The `anyone` mode allows anyone to import the shortcut. Apple also offers `people-who-know-me`, which restricts import to people who have the signer in their contacts and includes contact information in the file. ShortcutForge currently exposes `anyone` only.
+
+## GitHub Actions
+
+GitHub Actions are used for CI tests only. The signing and signed-artifact transport workflows have been removed: GitHub-hosted macOS did not provide the iCloud-authenticated Apple environment, and repository Actions should not receive user shortcut payloads. A previously successful signed artifact is available at [Actions artifact 11777771604](https://github.com/nezumi0627/ShortcutForge/suites/103817533071/artifacts/11777771604). This proves that this specific artifact was produced successfully; it does not validate this repository's local macOS signer or physical iPhone execution.
 
 ## Validation limits
 
-- The HubSign command's automated check verifies the returned signed-file header, not its action semantics.
-- The sample with nested If and Repeat blocks has not been imported or run on a physical iPhone.
-- Select the target iOS version before selecting actions. Versioned catalog evidence is not a runtime guarantee.
+- The signing commands verify the returned Apple-style `AEA1` header, not action semantics.
+- The nested If/Repeat sample has not been imported or run on a physical iPhone.
+- Select the target iOS version before choosing actions. Catalog evidence is not a runtime guarantee.
+
+## Sources
+
+- [Apple: Run shortcuts from the command line](https://support.apple.com/guide/shortcuts-mac/apd455c82f02/mac)
+- [Apple: Share shortcuts on Mac](https://support.apple.com/guide/shortcuts-mac/apdf01f8c054/mac)
+- [RoutineHub API reference](https://routinehub.co/v1/openapi.json), `POST /api/v1/sign-shortcut`

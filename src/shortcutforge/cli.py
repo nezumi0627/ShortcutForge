@@ -12,7 +12,7 @@ from pathlib import Path
 from .compiler import compile_plan
 from .ir import IRValidationError, load_plan
 from .parser import inspect
-from .signing import HUBSIGN_API_KEY_ENV, sign, sign_with_hubsign
+from .signing import HUBSIGN_API_KEY_ENV, sign_with_hubsign, sign_with_macos
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -33,9 +33,9 @@ def _build_parser() -> argparse.ArgumentParser:
     sign_command.add_argument("input", type=Path)
     sign_command.add_argument(
         "--via",
-        choices=["hubsign", "github-actions"],
+        choices=["hubsign", "macos"],
         default="hubsign",
-        help="signing service (default: hubsign)",
+        help="signing tool: HubSign (default) or Apple's local macOS signer",
     )
 
     actions = commands.add_parser("actions")
@@ -97,8 +97,8 @@ def _list_actions(args: argparse.Namespace) -> None:
 
 def _sign(args: argparse.Namespace) -> None:
     output_dir = args.input.parent / "signed"
-    if args.via == "github-actions":
-        print(sign(args.input, output_dir))
+    if args.via == "macos":
+        print(sign_with_macos(args.input, output_dir))
         return
 
     api_key = os.environ.get(HUBSIGN_API_KEY_ENV)

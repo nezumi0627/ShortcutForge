@@ -12,7 +12,7 @@ ShortcutForge is a public GitHub template repository. Creating a repository from
 
 ## Signing is not ready on hosted macOS
 
-The checked-in workflow documents the intended Apple signing command but the hosted macOS trial failed because iCloud sign-in is required. Do not assume that a template copy can sign unattended. A self-hosted Mac or another signing service requires separate setup, trust review, and validation; no credentials or signing identity are included in this template.
+GitHub Actions run CI tests only and do not sign shortcuts. Use HubSign, or select `--via macos` on a locally authenticated Mac. A template copy contains no HubSign API key or Apple account credentials; configure signing access separately.
 
 ## Before publishing a release
 

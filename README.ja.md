@@ -4,7 +4,7 @@
 
 [English README](README.md) · [ドキュメント一覧](docs/README.md) · [貢献ガイド](docs/contributing.md) · [MIT License](LICENSE)
 
-> **読み込みには署名が必要です:** iPhone/iPadのショートカットAppへファイルを読み込むには、署名済み`.shortcut`が必要です。`build`は未署名のBinary PLISTを生成します。署名方法はHubSignを推奨します。ショートカットはRoutineHubへ送信され、HubSign APIキーと有効なメンバーシップ（または承認済みパートナー）が必要です。GitHubホストmacOS署名は明示指定の代替経路として残していますが、RunnerがiCloudにサインインしていないため現在失敗します。[HubSignの設定とプライバシー](docs/signing-validation.md)を確認してください。
+> **読み込みには署名が必要です:** iPhone/iPadのショートカットAppへファイルを読み込むには、署名済み`.shortcut`が必要です。`build`は未署名のBinary PLISTを生成します。Windows/LinuxではHubSignを、MacではHubSignまたはApple純正のローカル署名を選べます。HubSignはショートカットをRoutineHubへ送信し、APIキーと有効なメンバーシップ（または承認済みパートナー）が必要です。Apple署名では検証のためAppleへコピーが送信されます。GitHub Actionsでは署名しません。[署名方法とプライバシー](docs/signing-validation.md)を確認してください。
 
 ## できること
 
@@ -80,7 +80,7 @@ shortcutforge actions list --os 18 --format json
 | `shortcutforge validate FILE` | plist構造を検証（Appleアクションの意味検証はしません） |
 | `shortcutforge inspect FILE` | 実行せずにワークフロー名とアクションIDを表示 |
 | `shortcutforge actions list --os VERSION` | バージョン別のアクション候補を検索 |
-| `shortcutforge sign FILE` | HubSignで署名（既定）。Apple macOSワークフローは`--via github-actions`で選択 |
+| `shortcutforge sign FILE` | HubSignで署名（既定）。Macでは`--via macos`でApple純正署名を選択 |
 
 各コマンドのオプションは`shortcutforge COMMAND --help`で確認できます。
 
@@ -91,7 +91,7 @@ shortcutforge actions list --os 18 --format json
 - 2,501件の識別子カタログはAppleの完全なスキーマではありません。iOS 27はSimulatorでの観測情報があり、iOS 17・18・26は互換性が不明、または部分的な変更報告に基づきます。
 - 実機iPhoneへの読み込み・実行テストは未実施です。iOS 27への読み込みも未検証です。
 - 生成される`.shortcut`は未署名です。iPhone/iPadのショートカットAppへ読み込む前に署名してください。HubSignには利用者自身のAPIキーとアカウント権限が必要です。
-- GitHubホストmacOSでの署名は、AppleからiCloudサインインを要求されて失敗しました。現状この経路では署名済み成果物を生成できません。[署名検証記録](docs/signing-validation.md)を参照してください。
+- GitHubホストmacOSではiCloud認証環境を用意できないため、Actions経由の署名機能を削除しました。[署名検証記録](docs/signing-validation.md)を参照してください。
 
 ## 開発
 
