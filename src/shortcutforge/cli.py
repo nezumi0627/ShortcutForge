@@ -12,7 +12,7 @@ from pathlib import Path
 from .compiler import compile_plan
 from .ir import IRValidationError, load_plan
 from .parser import inspect
-from .signing import HUBSIGN_API_KEY_ENV, sign_with_hubsign, sign_with_macos
+from .signing import HUBSIGN_API_KEY_ENV, sign_with_hubsign, sign_with_macos, sign_with_shortcuty
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -33,9 +33,9 @@ def _build_parser() -> argparse.ArgumentParser:
     sign_command.add_argument("input", type=Path)
     sign_command.add_argument(
         "--via",
-        choices=["hubsign", "macos"],
-        default="hubsign",
-        help="signing tool: HubSign (default) or Apple's local macOS signer",
+        choices=["shortcuty", "hubsign", "macos"],
+        default="shortcuty",
+        help="signing tool: Shortcuty (default, no API key), HubSign, or Apple's local macOS signer",
     )
 
     actions = commands.add_parser("actions")
@@ -97,6 +97,9 @@ def _list_actions(args: argparse.Namespace) -> None:
 
 def _sign(args: argparse.Namespace) -> None:
     output_dir = args.input.parent / "signed"
+    if args.via == "shortcuty":
+        print(sign_with_shortcuty(args.input, output_dir))
+        return
     if args.via == "macos":
         print(sign_with_macos(args.input, output_dir))
         return

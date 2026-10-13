@@ -4,7 +4,7 @@
 
 [English README](README.md) · [ドキュメント一覧](docs/README.md) · [貢献ガイド](docs/contributing.md) · [MIT License](LICENSE)
 
-> **読み込みには署名が必要です:** iPhone/iPadのショートカットAppへファイルを読み込むには、署名済み`.shortcut`が必要です。`build`は未署名のBinary PLISTを生成します。Windows/LinuxではHubSignを、MacではHubSignまたはApple純正のローカル署名を選べます。HubSignはショートカットをRoutineHubへ送信し、APIキーと有効なメンバーシップ（または承認済みパートナー）が必要です。Apple署名では検証のためAppleへコピーが送信されます。GitHub Actionsでは署名しません。[署名方法とプライバシー](docs/signing-validation.md)を確認してください。
+> **読み込みには署名が必要です:** iPhone/iPadのショートカットAppへファイルを読み込むには、署名済み`.shortcut`が必要です。`build`は未署名のBinary PLISTを生成します。`sign`はAPIキー不要のShortcuty署名サービスを既定で使い、ショートカット全体を同サービスへ送信します。HubSign（APIキー・メンバーシップが必要）とApple純正Mac署名も選べます。Apple署名では検証のためAppleへコピーが送信されます。GitHub Actionsでは署名しません。[署名方法とプライバシー](docs/signing-validation.md)を確認してください。
 
 ## できること
 
@@ -25,8 +25,10 @@ python -m pip install .
 shortcutforge build examples/hello.json -o Hello.shortcut
 shortcutforge validate Hello.shortcut
 shortcutforge inspect Hello.shortcut
-# SHORTCUTFORGE_HUBSIGN_API_KEYを設定するか、対話端末の非表示入力を使う
+# ShortcutyはAPIキー不要。署名時にショートカットを同サービスへ送信する
 shortcutforge sign Hello.shortcut
+shortcutforge sign Hello.shortcut --via hubsign
+shortcutforge sign Hello.shortcut --via macos
 ```
 
 `shortcutforge`コマンドがPATHにない場合は、`python -m shortcutforge`を使えます。
@@ -52,7 +54,7 @@ shortcutforge validate NotifyCurrentTime.shortcut
 shortcutforge inspect NotifyCurrentTime.shortcut
 ```
 
-アクションID、Appleパラメーターキー、rawアクションID、出力参照の仕様は[JSONプラン形式](docs/json-plan-format.md)を参照してください。Rawアクションの識別子とパラメーターは、互換性のあるショートカットまたは信頼できる情報源から取得してください。構造検証だけでは実行互換性を確認できません。生成ファイルは未署名のため、iPhone/iPadへ読み込む前に署名してください。`shortcutforge sign FILE`はHubSignを使い、確認済みの署名済みファイルを元ファイルの隣の`signed/`へ保存します。
+アクションID、Appleパラメーターキー、rawアクションID、出力参照の仕様は[JSONプラン形式](docs/json-plan-format.md)を参照してください。Rawアクションの識別子とパラメーターは、互換性のあるショートカットまたは信頼できる情報源から取得してください。構造検証だけでは実行互換性を確認できません。生成ファイルは未署名のため、iPhone/iPadへ読み込む前に署名してください。`shortcutforge sign FILE`は既定でShortcutyを使い、署名結果を元ファイルの隣の`signed/`へ保存します。ショートカット全体がShortcutyへ送信されます。
 
 [Battery Decision Labの例](examples/battery-decision-lab.json)では、raw Appleアクションを使った入れ子のIfとRepeatを確認できます。iOS 27を想定し、バッテリーと振動の識別子はiOS 27 Simulatorのカタログにありますが、制御フローマーカーと実機iPhoneでの動作は未検証です。
 
@@ -80,7 +82,7 @@ shortcutforge actions list --os 18 --format json
 | `shortcutforge validate FILE` | plist構造を検証（Appleアクションの意味検証はしません） |
 | `shortcutforge inspect FILE` | 実行せずにワークフロー名とアクションIDを表示 |
 | `shortcutforge actions list --os VERSION` | バージョン別のアクション候補を検索 |
-| `shortcutforge sign FILE` | HubSignで署名（既定）。Macでは`--via macos`でApple純正署名を選択 |
+| `shortcutforge sign FILE` | Shortcutyで署名（既定・APIキー不要）。`--via hubsign`またはMacで`--via macos`も選択可能 |
 
 各コマンドのオプションは`shortcutforge COMMAND --help`で確認できます。
 
@@ -90,7 +92,7 @@ shortcutforge actions list --os 18 --format json
 - 高水準のIf/Repeatビルダーはありません。例のようにraw制御フローアクションを記述できますが、ブロックの意味的な検証は行いません。
 - 2,501件の識別子カタログはAppleの完全なスキーマではありません。iOS 27はSimulatorでの観測情報があり、iOS 17・18・26は互換性が不明、または部分的な変更報告に基づきます。
 - 実機iPhoneへの読み込み・実行テストは未実施です。iOS 27への読み込みも未検証です。
-- 生成される`.shortcut`は未署名です。iPhone/iPadのショートカットAppへ読み込む前に署名してください。HubSignには利用者自身のAPIキーとアカウント権限が必要です。
+- 生成される`.shortcut`は未署名です。読み込み前に署名してください。既定のShortcuty署名はAPIキー不要ですが、ショートカット全体を外部サービスへ送信します。HubSignにはAPIキーとアカウント権限が必要です。
 - GitHubホストmacOSではiCloud認証環境を用意できないため、Actions経由の署名機能を削除しました。[署名検証記録](docs/signing-validation.md)を参照してください。
 
 ## 開発

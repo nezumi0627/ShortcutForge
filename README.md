@@ -4,7 +4,7 @@
 
 [日本語](README.ja.md) · [Documentation index](docs/README.md) · [Contributing](docs/contributing.md) · [MIT License](LICENSE)
 
-> **Import requirement:** iPhone/iPad Shortcuts requires a signed `.shortcut` file for file import. `build` creates an unsigned binary plist. On Windows/Linux, use HubSign; on a Mac, choose HubSign or Apple's local signer. HubSign uploads the shortcut to RoutineHub and requires an API key plus active membership (unless you are an approved partner client). Apple's signer sends a copy to Apple for validation. GitHub Actions are not used for signing. See [signing setup and privacy](docs/signing-validation.md).
+> **Import requirement:** iPhone/iPad Shortcuts requires a signed `.shortcut` file for file import. `build` creates an unsigned binary plist. `sign` uses Shortcuty's keyless signing service by default; the shortcut is uploaded to Shortcuty. HubSign (API key and membership required) and Apple's local macOS signer are also selectable. Apple receives a copy for validation when using Apple's signer. GitHub Actions are not used for signing. See [signing setup and privacy](docs/signing-validation.md).
 
 ## What it does
 
@@ -25,8 +25,9 @@ python -m pip install .
 shortcutforge build examples/hello.json -o Hello.shortcut
 shortcutforge validate Hello.shortcut
 shortcutforge inspect Hello.shortcut
-# HubSign is the default; on macOS use --via macos for Apple's local signer.
+# Shortcuty is the default (no API key); it uploads the shortcut to its signing service.
 shortcutforge sign Hello.shortcut
+shortcutforge sign Hello.shortcut --via hubsign
 shortcutforge sign Hello.shortcut --via macos
 ```
 
@@ -55,7 +56,7 @@ shortcutforge validate NotifyCurrentTime.shortcut
 shortcutforge inspect NotifyCurrentTime.shortcut
 ```
 
-The [JSON plan reference](docs/json-plan-format.md) describes readable action IDs, Apple parameter keys, raw action identifiers, and output references. For raw actions, obtain identifiers and parameters from a compatible shortcut or a trusted source; structural validation cannot establish runtime compatibility. The resulting file is unsigned and must be signed before importing it into Shortcuts on iPhone or iPad. `shortcutforge sign FILE` uses HubSign and saves the verified signed response under `signed/` beside the source file.
+The [JSON plan reference](docs/json-plan-format.md) describes readable action IDs, Apple parameter keys, raw action identifiers, and output references. For raw actions, obtain identifiers and parameters from a compatible shortcut or a trusted source; structural validation cannot establish runtime compatibility. The resulting file is unsigned and must be signed before importing it into Shortcuts on iPhone or iPad. `shortcutforge sign FILE` uses Shortcuty by default and saves its signed response under `signed/` beside the source file. The signer uploads the entire shortcut to Shortcuty's service; see [signing setup and privacy](docs/signing-validation.md).
 
 The [Battery Decision Lab example](examples/battery-decision-lab.json) demonstrates nested If blocks and a Repeat block using raw Apple action definitions. It assumes iOS 27; battery and vibration identifiers are present in the iOS 27 Simulator catalog, while the control-flow marker compatibility and physical iPhone behavior remain unverified.
 
@@ -98,7 +99,7 @@ markdown = catalog.render_markdown(
 | `shortcutforge validate FILE` | Check plist structure; does not validate Apple action semantics. |
 | `shortcutforge inspect FILE` | Print the workflow name and action identifiers without running it. |
 | `shortcutforge actions list --os VERSION` | Search the version-scoped action discovery catalog. |
-| `shortcutforge sign FILE` | Sign with HubSign (default); use `--via macos` on a Mac for Apple's local signer. |
+| `shortcutforge sign FILE` | Sign with Shortcuty (default, no API key); use `--via hubsign` or `--via macos` to select another signer. |
 
 Run `shortcutforge COMMAND --help` for options.
 
@@ -108,7 +109,7 @@ Run `shortcutforge COMMAND --help` for options.
 - The compiler does not offer high-level If/Repeat builders. Authors can include raw control-flow marker actions as in the example; ShortcutForge checks plist structure but does not validate block semantics.
 - The 2,501-identifier discovery catalog is not a complete Apple schema. iOS 27 identifiers have simulator evidence; iOS 17, 18, and 26 compatibility is unknown or based on partial change reports.
 - No real iPhone import or runtime test has been completed. iOS 27 import is unverified.
-- Generated `.shortcut` files are unsigned and cannot be imported into iPhone/iPad Shortcuts until signed. HubSign signing requires the user's own API key and account access.
+- Generated `.shortcut` files are unsigned and cannot be imported into iPhone/iPad Shortcuts until signed. The default Shortcuty signer needs no API key but uploads the shortcut to its service. HubSign signing requires an API key and account access.
 - GitHub Actions signing was removed because hosted macOS lacks the iCloud-authenticated environment required by Apple's signer. See [signing validation](docs/signing-validation.md).
 
 ## Development

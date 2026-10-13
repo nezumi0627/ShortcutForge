@@ -1,6 +1,6 @@
 # Security model
 
-ShortcutForge handles workflow definitions that can include personal data. Building and inspecting a file are local operations. The recommended HubSign route sends both the shortcut and its API key to RoutineHub over HTTPS. The optional GitHub Actions Apple route stores the shortcut briefly in a repository secret and may send it to Apple's validation service. Do not sign secrets or highly sensitive shortcut contents through either remote route.
+ShortcutForge handles workflow definitions that can include personal data. Building and inspecting a file are local operations. The default Shortcuty route sends the shortcut to an external signing service without requiring an API key. HubSign sends the shortcut and its API key to RoutineHub over HTTPS. Apple's local Mac signer sends a copy to Apple for validation. Do not send secrets or highly sensitive shortcut contents to remote signing services.
 
 ## Data boundaries
 
@@ -9,10 +9,11 @@ ShortcutForge handles workflow definitions that can include personal data. Build
 | `build` | Reads a local JSON plan and writes a local plist. It does not execute actions or upload the plan. |
 | `validate` / `inspect` | Reads a local plist; does not execute its workflow actions. |
 | `actions list` | Reads the bundled catalog; does not need user data. |
-| `sign` (default) | Sends the unsigned shortcut and HubSign API key in a multipart HTTPS request to RoutineHub. The key is read from `SHORTCUTFORGE_HUBSIGN_API_KEY` or a concealed terminal prompt and is not placed in arguments or logs. The returned bytes are checked for the `AEA1` signed-file header before being written locally. |
+| `sign` (default) | Sends the unsigned shortcut to Shortcuty's signing service in a multipart HTTPS request. No API key is required. The returned AEA1 format and input/output SHA-256 checksums are verified before writing locally. |
+| `sign --via hubsign` | Sends the shortcut and HubSign API key in a multipart HTTPS request to RoutineHub. The key is read from `SHORTCUTFORGE_HUBSIGN_API_KEY` or a concealed terminal prompt and is not placed in arguments or logs. |
 | `sign --via macos` | Runs Apple's `shortcuts sign --mode anyone` locally on the user's Mac. Apple receives a copy for validation; the signed file is written locally. |
 
-HubSign key setup and signing data recipients are documented in [signing validation](signing-validation.md). GitHub Actions are CI-only and do not receive shortcut payloads. Apple's local signer sends a copy to Apple for validation as Apple's documentation states.
+Shortcuty's signer page says uploaded files are kept only while signing. HubSign key setup and signing data recipients are documented in [signing validation](signing-validation.md). GitHub Actions are CI-only and do not receive shortcut payloads. Apple's local signer sends a copy to Apple for validation as Apple's documentation states.
 
 ## Public repository considerations
 

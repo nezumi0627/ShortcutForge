@@ -33,7 +33,7 @@ Python standard-library modules handle JSON, CLI parsing, plist serialization, a
 
 ### Treat signing as an explicit external operation
 
-`shortcutforge sign` uses RoutineHub HubSign by default on all platforms. On macOS, `--via macos` runs Apple's `shortcuts sign --mode anyone` locally. GitHub Actions are reserved for CI and do not receive user shortcut files. The build output is unsigned; signing is required before file import into Shortcuts on iPhone/iPad. Both HubSign and Apple's signer transmit the shortcut for validation/signing. See [signing validation](signing-validation.md) and the [security model](security.md).
+`shortcutforge sign` uses Shortcuty's keyless signing service by default. `--via hubsign` selects RoutineHub HubSign; `--via macos` runs Apple's `shortcuts sign --mode anyone` locally. GitHub Actions are reserved for CI and do not receive user shortcut files. The build output is unsigned; signing is required before file import into Shortcuts on iPhone/iPad. Remote signers receive the shortcut for signing. See [signing validation](signing-validation.md) and the [security model](security.md).
 
 ## Compatibility boundaries
 
