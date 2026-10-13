@@ -1,6 +1,6 @@
 ---
 name: shortcutforge
-description: Create, validate, inspect, and sign Apple Shortcuts from natural-language requests using the local ShortcutForge CLI.
+description: Use when a user wants to create, inspect, validate, or sign an Apple Shortcut with the ShortcutForge CLI.
 ---
 
 # ShortcutForge
@@ -13,8 +13,8 @@ Use the harness's reasoning to translate the user's intent into a version 1 JSON
 2. Determine the iOS version installed on the target device (17, 18, 26, or 27) before selecting actions; ask if it is unknown. Actions may be added, changed, or removed between iOS releases. Search the selected version with `shortcutforge actions list --os <version> --query <term> --format json`. Generate a localized Markdown catalog when helpful: `shortcutforge actions list --os <version> --lang ja --format markdown --output actions.md` (`--lang en` for English). Treat results as evidence, not a guarantee: iOS 27 evidence is simulator-based, and iOS 17/18/26 compatibility is not fully verified. Never assume an action or parameter exists on another version. If availability is unknown, look for an export or reliable source from the exact target version. Prefer readable IDs from the small build-time schema catalog. Apple plist parameter keys are also accepted. For other actions, use `identifier` with an exact Apple action identifier and include its raw parameter dictionary, sourced from a real shortcut or trusted reference.
 3. Write the plan JSON to a temporary file outside the repository. Do not include passwords, tokens, or other secrets.
 4. Run `shortcutforge build plan.json -o result.shortcut`, then `shortcutforge validate result.shortcut` and `shortcutforge inspect result.shortcut`.
-5. Treat the build output as unsigned. A signed `.shortcut` is required for file import into Shortcuts on iPhone/iPad; never tell the user an unsigned file is import-ready. The configured GitHub-hosted macOS signer currently fails because Apple requires an iCloud-authenticated runner. RoutineHub HubSign requires its API key and active membership (unless an approved partner client is used) and sends the shortcut to that third party. Use only an available, authorized signer and state what service receives the file. Do not use signing for sensitive personal data.
-6. Give the user the resulting file path and clearly state whether it is signed, plus any unsupported or unverified behavior. If signing is unavailable, label the output unsigned and explain it cannot yet be imported.
+5. Treat the build output as unsigned. A signed `.shortcut` is required for file import into Shortcuts on iPhone/iPad; never tell the user an unsigned file is import-ready. HubSign is the preferred signer: `shortcutforge sign FILE` uses it by default, with the key from `SHORTCUTFORGE_HUBSIGN_API_KEY` or a concealed terminal prompt. The shortcut is sent to RoutineHub. Only use this route when the user requested HubSign or authorized that transfer; never send sensitive shortcut data without explicit authorization. The `--via github-actions` Apple signer is an optional fallback and currently fails on GitHub-hosted macOS because iCloud authentication is unavailable.
+6. Verify the signed output exists and has the HubSign `AEA1` signed-file header. Give the user its path and state which signer received the file, plus any unsupported or unverified behavior. If signing is unavailable, label the output unsigned and explain it cannot yet be imported.
 
 ## Plan format
 
@@ -41,6 +41,8 @@ shortcutforge build plan.json -o Hello.shortcut
 shortcutforge validate Hello.shortcut
 shortcutforge inspect Hello.shortcut
 shortcutforge sign Hello.shortcut
+# Optional Apple macOS workflow fallback:
+shortcutforge sign Hello.shortcut --via github-actions
 ```
 
 ## Installation

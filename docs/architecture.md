@@ -31,15 +31,15 @@ The discovery catalog is useful for research and manual authoring. It tracks ver
 
 Python standard-library modules handle JSON, CLI parsing, plist serialization, and process invocation. GitHub CLI (`gh`) is an external executable needed only by signing orchestration. The package does not contact an AI service.
 
-### Treat signing as an optional external operation
+### Treat signing as an explicit external operation
 
-The signing client dispatches a GitHub Actions workflow; Apple's `shortcuts sign` is run on macOS. Live testing showed that GitHub-hosted macOS requires iCloud sign-in and fails in the current configuration. The build output is unsigned; signing is required before file import into Shortcuts on iPhone/iPad. See [signing validation](signing-validation.md) and the [security model](security.md).
+`shortcutforge sign` uses RoutineHub HubSign by default, sending the unsigned workflow and a separately configured HubSign key over HTTPS and saving the signed response locally. The Apple `shortcuts sign` workflow remains available with `--via github-actions`, but live testing showed that GitHub-hosted macOS fails without iCloud sign-in. The build output is unsigned; signing is required before file import into Shortcuts on iPhone/iPad. See [signing validation](signing-validation.md) and the [security model](security.md).
 
 ## Compatibility boundaries
 
 - A valid binary plist is a serialization result, not proof of import or runtime behavior.
 - The named compiler actions are currently `current_date`, `text`, `notify`, `speak`, and `open_url`.
-- Variables/output references apply to the existing linear plan. Conditional and repeat blocks and calendar implementation are not supported.
+- The compiler has no high-level conditional/repeat DSL. Raw control-flow markers can be authored as a flat action list, but only plist structure is checked; the [Battery Decision Lab example](../examples/battery-decision-lab.json) shows this escape hatch.
 - The version catalog is an evidence index, not a complete Apple-maintained API catalog.
 - No physical iPhone import/runtime check has been completed; iOS 27 import remains unverified.
 

@@ -1,6 +1,6 @@
 # Security model
 
-ShortcutForge handles workflow definitions that can include personal data. Building and inspecting a file are local operations; signing dispatches data to GitHub and, if Apple's signing command reaches its validation service, to Apple. Do not use the current signing workflow for secrets or highly sensitive shortcut contents.
+ShortcutForge handles workflow definitions that can include personal data. Building and inspecting a file are local operations. The recommended HubSign route sends both the shortcut and its API key to RoutineHub over HTTPS. The optional GitHub Actions Apple route stores the shortcut briefly in a repository secret and may send it to Apple's validation service. Do not sign secrets or highly sensitive shortcut contents through either remote route.
 
 ## Data boundaries
 
@@ -9,9 +9,10 @@ ShortcutForge handles workflow definitions that can include personal data. Build
 | `build` | Reads a local JSON plan and writes a local plist. It does not execute actions or upload the plan. |
 | `validate` / `inspect` | Reads a local plist; does not execute its workflow actions. |
 | `actions list` | Reads the bundled catalog; does not need user data. |
-| `sign` | Encodes the shortcut, stores it briefly as a uniquely named GitHub repository secret, dispatches the Apple signer workflow, and attempts to download its artifact. The runner uses a temporary directory and short artifact retention. Apple validation may receive the shortcut. RoutineHub HubSign is a separate third-party route that requires its own key/access and receives the shortcut contents. |
+| `sign` (default) | Sends the unsigned shortcut and HubSign API key in a multipart HTTPS request to RoutineHub. The key is read from `SHORTCUTFORGE_HUBSIGN_API_KEY` or a concealed terminal prompt and is not placed in arguments or logs. The returned bytes are checked for the `AEA1` signed-file header before being written locally. |
+| `sign --via github-actions` | Stores the shortcut briefly as a uniquely named GitHub repository secret, dispatches the Apple signer workflow, and downloads its artifact. The runner uses a temporary directory and one-day artifact retention. Apple may receive the shortcut. The hosted macOS attempt currently fails without iCloud sign-in. |
 
-The signing client removes the temporary secret after the run. Cleanup is best effort if the process or network is interrupted; repository administrators can inspect and remove leftover secrets. The live GitHub-hosted runner test failed before producing a signed artifact because iCloud authentication was unavailable. See [signing validation](signing-validation.md).
+HubSign key setup and the data recipient are documented in [signing validation](signing-validation.md). The GitHub fallback client removes its temporary secret after the run; cleanup is best effort if the process or network is interrupted, and repository administrators can inspect and remove leftovers. A prior HubSign run succeeded; the GitHub-hosted Apple run failed before producing a signed artifact because iCloud authentication was unavailable.
 
 ## Public repository considerations
 

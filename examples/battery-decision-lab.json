@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "name": "Battery Decision Lab",
+  "actions": [
+    {
+      "identifier": "is.workflow.actions.getbatterylevel",
+      "params": {
+        "UUID": "A11CE000-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "identifier": "is.workflow.actions.conditional",
+      "params": {
+        "UUID": "A11CE000-0000-4000-8000-000000000002",
+        "GroupingIdentifier": "A11CE000-0000-4000-8000-000000000101",
+        "WFControlFlowMode": 0,
+        "WFInput": {
+          "Type": "Variable",
+          "Variable": {
+            "Value": {
+              "OutputUUID": "A11CE000-0000-4000-8000-000000000001",
+              "OutputName": "Battery Level",
+              "Type": "ActionOutput"
+            },
+            "WFSerializationType": "WFTextTokenAttachment"
+          }
+        },
+        "WFCondition": 0,
+        "WFNumberValue": "20"
+      }
+    },
+    {
+      "identifier": "is.workflow.actions.notification",
+      "params": {
+        "UUID": "A11CE000-0000-4000-8000-000000000003",
+        "WFNotificationActionTitle": "Battery critical",
+        "WFNotificationActionBody": "Battery is below 20%. Charge soon; two short vibrations will follow."
+      }
+    },
+    {
+      "identifier": "is.workflow.actions.repeat.count",
+      "params": {
+        "UUID": "A11CE000-0000-4000-8000-000000000004",
+        "GroupingIdentifier": "A11CE000-0000-4000-8000-000000000102",
+        "WFControlFlowMode": 0,
+        "WFRepeatCount": 2
+      }
+    },
+    {
+      "identifier": "is.workflow.actions.vibrate",
+      "params": {
+        "UUID": "A11CE000-0000-4000-8000-000000000005"
+      }
+    },
+    {
+      "identifier": "is.workflow.actions.delay",
+      "params": {
+        "UUID": "A11CE000-0000-4000-8000-000000000006",
+        "WFDelayTime": 1
+      }
+    },
+    {
+      "identifier": "is.workflow.actions.repeat.count",
+      "params": {
+        "UUID": "A11CE000-0000-4000-8000-000000000007",
+        "GroupingIdentifier": "A11CE000-0000-4000-8000-000000000102",
+        "WFControlFlowMode": 2
+      }
+    },
+    {
+      "identifier": "is.workflow.actions.conditional",
+      "params": {
+        "UUID": "A11CE000-0000-4000-8000-000000000008",
+        "GroupingIdentifier": "A11CE000-0000-4000-8000-000000000101",
+        "WFControlFlowMode": 1
+      }
+    },
+    {
+      "identifier": "is.workflow.actions.conditional",
+      "params": {
+        "UUID": "A11CE000-0000-4000-8000-000000000009",
+        "GroupingIdentifier": "A11CE000-0000-4000-8000-000000000103",
+        "WFControlFlowMode": 0,
+        "WFInput": {
+          "Type": "Variable",
+          "Variable": {
+            "Value": {
+              "OutputUUID": "A11CE000-0000-4000-8000-000000000001",
+              "OutputName": "Battery Level",
+              "Type": "ActionOutput"
+            },
+            "WFSerializationType": "WFTextTokenAttachment"
+          }
+        },
+        "WFCondition": 0,
+        "WFNumberValue": "50"
+      }
+    },
+    {
+      "identifier": "is.workflow.actions.notification",
+      "params": {
+        "UUID": "A11CE000-0000-4000-8000-000000000010",
+        "WFNotificationActionTitle": "Battery check",
+        "WFNotificationActionBody": "Battery is below 50%. Consider charging when convenient."
+      }
+    },
+    {
+      "identifier": "is.workflow.actions.conditional",
+      "params": {
+        "UUID": "A11CE000-0000-4000-8000-000000000011",
+        "GroupingIdentifier": "A11CE000-0000-4000-8000-000000000103",
+        "WFControlFlowMode": 1
+      }
+    },
+    {
+      "identifier": "is.workflow.actions.notification",
+      "params": {
+        "UUID": "A11CE000-0000-4000-8000-000000000012",
+        "WFNotificationActionTitle": "Battery check",
+        "WFNotificationActionBody": "Battery is at least 50%. No charging reminder needed."
+      }
+    },
+    {
+      "identifier": "is.workflow.actions.conditional",
+      "params": {
+        "UUID": "A11CE000-0000-4000-8000-000000000013",
+        "GroupingIdentifier": "A11CE000-0000-4000-8000-000000000103",
+        "WFControlFlowMode": 2
+      }
+    },
+    {
+      "identifier": "is.workflow.actions.conditional",
+      "params": {
+        "UUID": "A11CE000-0000-4000-8000-000000000014",
+        "GroupingIdentifier": "A11CE000-0000-4000-8000-000000000101",
+        "WFControlFlowMode": 2
+      }
+    }
+  ]
+}

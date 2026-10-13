@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import argparse
+import getpass
 import json
+import os
 import plistlib
 import sys
 from collections.abc import Sequence
@@ -10,7 +12,7 @@ from pathlib import Path
 from .compiler import compile_plan
 from .ir import IRValidationError, load_plan
 from .parser import inspect
-from .signing import sign
+from .signing import HUBSIGN_API_KEY_ENV, sign, sign_with_hubsign
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -29,6 +31,12 @@ def _build_parser() -> argparse.ArgumentParser:
 
     sign_command = commands.add_parser("sign")
     sign_command.add_argument("input", type=Path)
+    sign_command.add_argument(
+        "--via",
+        choices=["hubsign", "github-actions"],
+        default="hubsign",
+        help="signing service (default: hubsign)",
+    )
 
     actions = commands.add_parser("actions")
     actions.add_argument("operation", choices=["list"])
@@ -88,7 +96,19 @@ def _list_actions(args: argparse.Namespace) -> None:
 
 
 def _sign(args: argparse.Namespace) -> None:
-    print(sign(args.input, args.input.parent / "signed"))
+    output_dir = args.input.parent / "signed"
+    if args.via == "github-actions":
+        print(sign(args.input, output_dir))
+        return
+
+    api_key = os.environ.get(HUBSIGN_API_KEY_ENV)
+    if not api_key and sys.stdin.isatty():
+        api_key = getpass.getpass("HubSign API key (input hidden): ")
+    if not api_key:
+        raise ValueError(
+            f"set {HUBSIGN_API_KEY_ENV} or run sign from an interactive terminal to enter it securely"
+        )
+    print(sign_with_hubsign(args.input, output_dir, api_key))
 
 
 _HANDLERS = {

@@ -43,7 +43,7 @@ Parameters can use catalog aliases or Apple plist parameter keys. Do not provide
 
 Set `as` on an action that produces output, then refer to it in a later named action using the exact object `{"ref":"output_name"}`. References must point to an earlier output-producing action. Duplicate names, forward references, and references to actions without output are rejected.
 
-The current representation is linear. It does not define conditionals, loops, nested actions, or calendar access.
+The version 1 schema is a flat, ordered action list; it has no typed fields for conditions, loops, or nested blocks. A hand-authored plan can encode Apple control flow as raw marker actions with matching grouping IDs (see the example below), but the validator does not check their structure or semantics. The marker pattern is documented in community references such as [Shortcuts Playground](https://github.com/viticci/shortcuts-playground-plugin/blob/main/codex/skills/shortcuts-playground/SKILL.md) and [clean-shortcuts control flow](https://github.com/damionrashford/clean-shortcuts/blob/main/Documentation/CONTROL-FLOW.md); neither is an Apple compatibility guarantee. Calendar access is not implemented as a named action.
 
 ## Raw Apple actions
 
@@ -65,7 +65,7 @@ Use `identifier` for an exact Apple action identifier not present in the named c
 }
 ```
 
-Raw parameters must be JSON values compatible with plist serialization (objects with string keys, arrays, strings, booleans, integers, and finite numbers). `null` is not supported. ShortcutForge does not know if a raw action exists on the selected iOS release, whether its parameters are complete, or whether Apple will import or execute it. Prefer inspecting an actual compatible shortcut and cite the source when sharing a raw action definition.
+Raw parameters must be JSON values compatible with plist serialization (objects with string keys, arrays, strings, booleans, integers, and finite numbers). `null` is not supported. ShortcutForge does not know if a raw action exists on the selected iOS release, whether its parameters are complete, or whether Apple will import or execute it. Control flow can be represented as a flat sequence of raw actions sharing a `GroupingIdentifier` and using `WFControlFlowMode` markers; ShortcutForge does not validate that the groups are balanced or semantically correct. See the [Battery Decision Lab example](../examples/battery-decision-lab.json) and inspect an actual shortcut from the selected iOS version before relying on a raw shape.
 
 ## CLI workflow
 
