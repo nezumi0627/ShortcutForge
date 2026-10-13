@@ -1,6 +1,6 @@
 # Apple Shortcuts action catalog
 
-Generate a Markdown catalog for the iOS version you target:
+Before choosing actions, select the iOS version installed on the target device. Actions can be added, changed, or removed between iOS releases, so use the matching version catalog rather than assuming an action seen on another release is available:
 
 ```sh
 shortcutforge actions list --os 26 --lang en --format markdown --output ios26-actions.md
@@ -21,4 +21,4 @@ The full identifier list is not equally verified for every release. iOS 27 has 1
 | iOS 26.4 | Reported changes from iOS 26.2; platform-specific actions retained with notes | [Automators Talk](https://talk.automators.fm/t/os-26-2-26-4-new-and-updated-actions/19117) |
 | iOS 27 beta | Reported changes from OS 26.5 to beta 4, plus an iOS 27 Simulator identifier snapshot | [Change notes](https://talk.automators.fm/t/os-26-27-new-and-updated-actions/19177), [identifier source](https://github.com/viticci/shortcuts-playground-plugin) |
 
-Identifier presence is not a guarantee that the action works on a physical device or that its parameters are understood. Submit catalog corrections and additions as pull requests with evidence.
+Identifier presence is not a guarantee that the action works on a physical device or that its parameters are understood. If availability is unknown, check an exported shortcut or trusted source from the exact target version. Submit catalog corrections and additions as pull requests with evidence.

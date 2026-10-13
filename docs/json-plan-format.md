@@ -76,3 +76,5 @@ shortcutforge inspect Result.shortcut
 ```
 
 `validate` checks plist/workflow structure; it does not verify Apple action semantics. `inspect` reads the file without running it. Keep personal data and secrets out of example plans and shared PRs. See [security](security.md).
+
+`build` writes an unsigned binary plist. A signed `.shortcut` is required before importing the file into Shortcuts on iPhone/iPad. See [signing validation and available paths](signing-validation.md); a successful `validate` result does not prove that a file is signed or importable.

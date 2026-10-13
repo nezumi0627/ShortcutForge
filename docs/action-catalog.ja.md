@@ -1,6 +1,6 @@
 # Appleショートカット アクションカタログ
 
-対象のiOSバージョンを指定して、日本語Markdownカタログを生成します。
+アクションを選ぶ前に、対象端末にインストールされているiOSバージョンを選んでください。iOSの版によってアクションが追加・変更・削除される場合があるため、別の版で見つけたアクションが対象端末にもあるとは限りません。対象版の日本語Markdownカタログを生成します。
 
 ```sh
 shortcutforge actions list --os 26 --lang ja --format markdown --output ios26-actions.ja.md
@@ -21,4 +21,4 @@ shortcutforge actions list --os 26 --lang ja --format markdown --output ios26-ac
 | iOS 26.4 | iOS 26.2からの変更報告。OS限定の項目は注記付き | [Automators Talk](https://talk.automators.fm/t/os-26-2-26-4-new-and-updated-actions/19117) |
 | iOS 27 beta | OS 26.5からbeta 4までの変更報告とiOS 27 Simulatorの識別子一覧 | [変更履歴](https://talk.automators.fm/t/os-26-27-new-and-updated-actions/19177)、[識別子データ](https://github.com/viticci/shortcuts-playground-plugin) |
 
-識別子が一覧にあるだけでは、実機で動くことや引数仕様の正しさは保証されません。アクションの訂正・追加、版情報や出典、英語・日本語の修正PRを歓迎します。可能な場合は、根拠となる資料と確認したiOSバージョン・端末またはSimulatorを記載してください。
+識別子が一覧にあるだけでは、実機で動くことや引数仕様の正しさは保証されません。利用可否が不明なら、対象iOS版から書き出したショートカットまたは同じ版を確認できる信頼できる資料を調べてください。アクションの訂正・追加、版情報や出典、英語・日本語の修正PRを歓迎します。可能な場合は、根拠となる資料と確認したiOSバージョン・端末またはSimulatorを記載してください。

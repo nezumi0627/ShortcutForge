@@ -33,7 +33,7 @@ Python standard-library modules handle JSON, CLI parsing, plist serialization, a
 
 ### Treat signing as an optional external operation
 
-The signing client dispatches a GitHub Actions workflow; Apple's `shortcuts sign` is run on macOS. Live testing showed that GitHub-hosted macOS requires iCloud sign-in and fails in the current configuration. Signing is therefore documented as unavailable through that runner, not as a working capability. See [signing validation](signing-validation.md) and the [security model](security.md).
+The signing client dispatches a GitHub Actions workflow; Apple's `shortcuts sign` is run on macOS. Live testing showed that GitHub-hosted macOS requires iCloud sign-in and fails in the current configuration. The build output is unsigned; signing is required before file import into Shortcuts on iPhone/iPad. See [signing validation](signing-validation.md) and the [security model](security.md).
 
 ## Compatibility boundaries
 

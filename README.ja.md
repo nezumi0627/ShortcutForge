@@ -4,7 +4,7 @@
 
 [English README](README.md) · [ドキュメント一覧](docs/README.md) · [貢献ガイド](docs/contributing.md) · [MIT License](LICENSE)
 
-> **互換性:** Binary PLISTを生成できても、Appleショートカットへの読み込みや実行が保証されるわけではありません。GitHubホストmacOSでの署名は、RunnerがiCloudにサインインしていないため現在利用できません。詳細は[既知の制限](#既知の制限)を確認してください。
+> **読み込みには署名が必要です:** iPhone/iPadのショートカットAppへファイルを読み込むには、署名済み`.shortcut`が必要です。`build`が作るのは未署名のBinary PLISTで、そのままでは読み込み用として使えません。GitHubホストmacOSでの署名はRunnerがiCloudにサインインしていないため現在失敗します。[署名の検証記録](docs/signing-validation.md)と[既知の制限](#既知の制限)を確認してください。
 
 ## できること
 
@@ -50,11 +50,11 @@ shortcutforge validate NotifyCurrentTime.shortcut
 shortcutforge inspect NotifyCurrentTime.shortcut
 ```
 
-アクションID、Appleパラメーターキー、rawアクションID、出力参照の仕様は[JSONプラン形式](docs/json-plan-format.md)を参照してください。Rawアクションの識別子とパラメーターは、互換性のあるショートカットまたは信頼できる情報源から取得してください。構造検証だけでは実行互換性を確認できません。
+アクションID、Appleパラメーターキー、rawアクションID、出力参照の仕様は[JSONプラン形式](docs/json-plan-format.md)を参照してください。Rawアクションの識別子とパラメーターは、互換性のあるショートカットまたは信頼できる情報源から取得してください。構造検証だけでは実行互換性を確認できません。生成ファイルは未署名のため、iPhone/iPadへ読み込む前に署名してください。
 
 ## iOSバージョン別カタログ
 
-利用対象のiOSバージョンを必ず指定します。カタログは観測済み情報と不明な互換性を区別します。バージョン指定は動作保証ではありません。
+アクションを選ぶ前に、対象端末にインストールされているiOSバージョンを指定してください。iOSの版によってアクションが追加・変更・削除されることがあります。その版のカタログで利用可否と引数の根拠を調べ、不明な場合は同じiOS版から書き出したショートカットで確認してください。カタログは観測済み情報と不明な互換性を区別し、動作を保証するものではありません。
 
 ```sh
 shortcutforge actions list --os 27 --query notification
@@ -76,7 +76,7 @@ shortcutforge actions list --os 18 --format json
 | `shortcutforge validate FILE` | plist構造を検証（Appleアクションの意味検証はしません） |
 | `shortcutforge inspect FILE` | 実行せずにワークフロー名とアクションIDを表示 |
 | `shortcutforge actions list --os VERSION` | バージョン別のアクション候補を検索 |
-| `shortcutforge sign FILE` | GitHub Actions署名ワークフローを実行。現状は[署名制限](docs/signing-validation.md)あり |
+| `shortcutforge sign FILE` | GitHub ActionsのApple署名を実行。現在はiCloud認証がなく失敗。[署名方法と制限](docs/signing-validation.md) |
 
 各コマンドのオプションは`shortcutforge COMMAND --help`で確認できます。
 
@@ -86,6 +86,7 @@ shortcutforge actions list --os 18 --format json
 - 変数・出力参照は現在の直線的なアクション形式で利用できます。条件分岐・繰り返しのコンパイルとカレンダーアクションは未実装です。
 - 2,501件の識別子カタログはAppleの完全なスキーマではありません。iOS 27はSimulatorでの観測情報があり、iOS 17・18・26は互換性が不明、または部分的な変更報告に基づきます。
 - 実機iPhoneへの読み込み・実行テストは未実施です。iOS 27への読み込みも未検証です。
+- 生成される`.shortcut`は未署名です。iPhone/iPadのショートカットAppへ読み込むには署名が必要ですが、このリポジトリでは現在署名手段を設定していません。
 - GitHubホストmacOSでの署名は、AppleからiCloudサインインを要求されて失敗しました。現状この経路では署名済み成果物を生成できません。[署名検証記録](docs/signing-validation.md)を参照してください。
 
 ## 開発

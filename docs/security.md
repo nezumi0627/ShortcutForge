@@ -9,7 +9,7 @@ ShortcutForge handles workflow definitions that can include personal data. Build
 | `build` | Reads a local JSON plan and writes a local plist. It does not execute actions or upload the plan. |
 | `validate` / `inspect` | Reads a local plist; does not execute its workflow actions. |
 | `actions list` | Reads the bundled catalog; does not need user data. |
-| `sign` | Encodes the shortcut, stores it briefly as a uniquely named GitHub repository secret, dispatches a workflow, and attempts to download its artifact. The runner uses a temporary directory and short artifact retention. Apple validation may receive the shortcut. |
+| `sign` | Encodes the shortcut, stores it briefly as a uniquely named GitHub repository secret, dispatches the Apple signer workflow, and attempts to download its artifact. The runner uses a temporary directory and short artifact retention. Apple validation may receive the shortcut. RoutineHub HubSign is a separate third-party route that requires its own key/access and receives the shortcut contents. |
 
 The signing client removes the temporary secret after the run. Cleanup is best effort if the process or network is interrupted; repository administrators can inspect and remove leftover secrets. The live GitHub-hosted runner test failed before producing a signed artifact because iCloud authentication was unavailable. See [signing validation](signing-validation.md).
 
