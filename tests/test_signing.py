@@ -13,7 +13,11 @@ from unittest.mock import patch
 
 from shortcutforge.cli import main
 from shortcutforge.signing import HUBSIGN_API_KEY_ENV
-from shortcutforge.signing import sign_with_hubsign, sign_with_macos, sign_with_shortcuty
+from shortcutforge.signing import (
+    sign_with_hubsign,
+    sign_with_macos,
+    sign_with_shortcuty,
+)
 
 
 class HubSignTests(unittest.TestCase):
@@ -48,6 +52,7 @@ class HubSignTests(unittest.TestCase):
             stderr = io.StringIO()
             with (
                 patch.dict("os.environ", {}, clear=True),
+                patch("shortcutforge.cli.sys.platform", "linux"),
                 patch("sys.stdin", io.StringIO()),
                 patch("sys.stderr", stderr),
                 patch("shortcutforge.cli.sign_with_hubsign") as sign_file,
@@ -104,11 +109,31 @@ class HubSignTests(unittest.TestCase):
             source.write_bytes(b"not read by the signer")
             result = Path(temp) / "signed" / "input.signed.shortcut"
             with (
+                patch("shortcutforge.cli.sys.platform", "linux"),
                 patch("shortcutforge.cli.sign_with_macos", return_value=result) as sign_file,
                 patch("sys.stdout", new_callable=io.StringIO),
             ):
                 self.assertEqual(main(["sign", str(source), "--via", "macos"]), 0)
             sign_file.assert_called_once_with(source, source.parent / "signed")
+
+    def test_windows_rejects_every_signer_except_shortcuty(self):
+        with tempfile.TemporaryDirectory() as temp:
+            source = Path(temp) / "input.shortcut"
+            source.write_bytes(b"not read by signer")
+            for signer in ("hubsign", "macos"):
+                stderr = io.StringIO()
+                with (
+                    patch("shortcutforge.cli.sys.platform", "win32"),
+                    patch("sys.stderr", stderr),
+                    patch("shortcutforge.cli.sign_with_shortcuty") as sign_file,
+                    patch("shortcutforge.cli.sign_with_hubsign") as hubsign,
+                    patch("shortcutforge.cli.sign_with_macos") as macos,
+                ):
+                    self.assertEqual(main(["sign", str(source), "--via", signer]), 2)
+                self.assertIn("supports only Shortcuty", stderr.getvalue())
+                sign_file.assert_not_called()
+                hubsign.assert_not_called()
+                macos.assert_not_called()
 
     def test_macos_signer_invokes_apple_cli_and_saves_signed_output(self):
         with tempfile.TemporaryDirectory() as temp:

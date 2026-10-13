@@ -1,6 +1,6 @@
 # Security model
 
-ShortcutForge handles workflow definitions that can include personal data. Building and inspecting a file are local operations. The default Shortcuty route sends the shortcut to an external signing service without requiring an API key. HubSign sends the shortcut and its API key to RoutineHub over HTTPS. Apple's local Mac signer sends a copy to Apple for validation. Do not send secrets or highly sensitive shortcut contents to remote signing services.
+ShortcutForge handles workflow definitions that can include personal data. Building and inspecting a file are local operations. On Windows, Shortcuty is the only enabled signer and sends the shortcut to an external service without requiring an API key. HubSign and Apple's local Mac signer are available on supported non-Windows hosts. Do not send secrets or highly sensitive shortcut contents to remote signing services.
 
 ## Data boundaries
 

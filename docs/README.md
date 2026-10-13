@@ -7,7 +7,7 @@ Start with the README for installation and the shortest working example. These p
 - [JSON plan format](json-plan-format.md): version 1 schema, action forms, parameters, and output references.
 - [Action catalog: English](action-catalog.en.md) · [日本語](action-catalog.ja.md): search and render catalog entries for a selected iOS version.
 - [Catalog sources and coverage](action-catalog-sources.md): provenance, evidence levels, and version gaps.
-- [Signing setup and validation](signing-validation.md): recommended HubSign flow, key setup, data handling, and Apple runner fallback.
+- [Signing setup and validation](signing-validation.md): available signers, Windows platform limits, data handling, and validation limits.
 - [Battery Decision Lab](../examples/battery-decision-lab.json): nested If and Repeat raw-action example for iOS 27 research.
 - [Template and release notes](template-and-release.md): public template setup and safe first steps.
 

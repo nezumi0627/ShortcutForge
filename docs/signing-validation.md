@@ -24,6 +24,16 @@ shortcutforge sign BatteryDecisionLab.shortcut --via hubsign
 shortcutforge sign BatteryDecisionLab.shortcut --via macos
 ```
 
+### Windows support
+
+Windows currently supports Shortcuty only:
+
+```powershell
+shortcutforge sign BatteryDecisionLab.shortcut
+```
+
+The CLI rejects `--via hubsign` and `--via macos` on Windows. Windows-native signing, iPhone-assisted signing, and iCloud share creation/retrieval remain research topics and are not supported workflows. The iCloud route previously prototyped in ShortcutForge was removed from the CLI because it depended on an already-created iPhone share and did not provide reproducible Windows signing.
+
 HubSign reads `SHORTCUTFORGE_HUBSIGN_API_KEY` or prompts without echoing it. Do not put the key in command arguments, committed files, or chat. See the [RoutineHub API reference](https://routinehub.co/docs/api/), endpoint `POST /api/v1/sign-shortcut`.
 
 Apple documents `shortcuts sign` for signing exported shortcuts and says Apple receives a copy for validation. ShortcutForge invokes:
@@ -41,6 +51,7 @@ GitHub Actions are used for CI tests only. They do not sign or transport shortcu
 ## Validation limits
 
 - The signer validates response format and checksums; that does not verify action semantics or guarantee import/runtime behavior.
+- Windows signing methods other than Shortcuty have not been demonstrated as reproducible workflows.
 - The nested If/Repeat sample has not been imported or run on a physical iPhone.
 - Select the target iOS version before choosing actions. Catalog evidence is not a runtime guarantee.
 

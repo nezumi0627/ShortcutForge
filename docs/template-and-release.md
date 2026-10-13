@@ -12,7 +12,7 @@ ShortcutForge is a public GitHub template repository. Creating a repository from
 
 ## Signing is not ready on hosted macOS
 
-GitHub Actions run CI tests only and do not sign shortcuts. Use HubSign, or select `--via macos` on a locally authenticated Mac. A template copy contains no HubSign API key or Apple account credentials; configure signing access separately.
+GitHub Actions run CI tests only and do not sign shortcuts. On Windows, use Shortcuty only. On supported non-Windows hosts, use HubSign or select `--via macos` on a locally authenticated Mac. A template copy contains no HubSign API key or Apple account credentials; configure signing access separately.
 
 ## Before publishing a release
 

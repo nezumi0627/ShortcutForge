@@ -12,7 +12,12 @@ from pathlib import Path
 from .compiler import compile_plan
 from .ir import IRValidationError, load_plan
 from .parser import inspect
-from .signing import HUBSIGN_API_KEY_ENV, sign_with_hubsign, sign_with_macos, sign_with_shortcuty
+from .signing import (
+    HUBSIGN_API_KEY_ENV,
+    sign_with_hubsign,
+    sign_with_macos,
+    sign_with_shortcuty,
+)
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -35,7 +40,10 @@ def _build_parser() -> argparse.ArgumentParser:
         "--via",
         choices=["shortcuty", "hubsign", "macos"],
         default="shortcuty",
-        help="signing tool: Shortcuty (default, no API key), HubSign, or Apple's local macOS signer",
+        help=(
+            "signing tool: Shortcuty (default); Windows supports only Shortcuty, "
+            "while HubSign and Apple's macOS signer are available on supported hosts"
+        ),
     )
 
     actions = commands.add_parser("actions")
@@ -97,6 +105,8 @@ def _list_actions(args: argparse.Namespace) -> None:
 
 def _sign(args: argparse.Namespace) -> None:
     output_dir = args.input.parent / "signed"
+    if sys.platform == "win32" and args.via != "shortcuty":
+        raise ValueError("Windows currently supports only Shortcuty signing; other Windows signing methods are under research")
     if args.via == "shortcuty":
         print(sign_with_shortcuty(args.input, output_dir))
         return
