@@ -76,7 +76,7 @@ shortcutforge actions list --os 26 --lang ja --format markdown --output ios26-ac
 shortcutforge actions list --os 18 --format json
 ```
 
-Read the [English catalog guide](docs/action-catalog.en.md), [Japanese catalog guide](docs/action-catalog.ja.md), and [source and coverage notes](docs/action-catalog-sources.md). Corrections and additions are welcome; please include version-specific evidence in a [pull request](docs/contributing.md).
+Read the [English catalog guide](docs/action-catalog.en.md), [Japanese catalog guide](docs/action-catalog.ja.md), and [iOS 26/27 research and coverage](docs/ios26-27-catalog-research.md). iOS 27 includes 1,206 simulator-observed identifiers and detailed parameter metadata where available. iOS 26 includes individually sourced version changes, but no complete exact-ID or parameter snapshot is publicly available. Corrections and additions are welcome; please include version-specific evidence in a [pull request](docs/contributing.md).
 
 Python callers can query the same versioned catalog:
 

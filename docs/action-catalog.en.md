@@ -6,13 +6,13 @@ Before choosing actions, select the iOS version installed on the target device. 
 shortcutforge actions list --os 26 --lang en --format markdown --output ios26-actions.md
 ```
 
-Replace `26` with `17`, `18`, or `27`; use `--lang ja` for Japanese. Add `--query calendar` to narrow the list. The generated file contains the version change notes, identifiers, aliases/display names, evidence status, and source links.
+Replace `26` with `17`, `18`, or `27`; use `--lang ja` for Japanese. Add `--query calendar` to narrow the list. The generated file contains version change notes, identifiers, aliases/display names, evidence status, and source links. iOS 27 rows also include observed parameter keys, types, and enum choices where available.
 
 The language setting translates headings and curated change notes. Action names are kept in the language supplied by the source, usually English, so they can be matched to the Shortcuts app and action identifiers.
 
 ## Version evidence
 
-The full identifier list is not equally verified for every release. iOS 27 has 1,206 exact iOS 27 Simulator identifiers. Older releases currently use discovery candidates where exact-version evidence is not available. The change history below records named additions and changes reported for iOS 17, iOS 26.1/26.4, and iOS 27 beta; it does not imply every entry has an internal identifier or full parameter schema in this repository.
+The full identifier list is not equally verified for every release. iOS 27 has 1,206 exact iOS 27 Simulator identifiers and detailed metadata for actions in the ToolKit snapshot. iOS 26 has no complete exact-version identifier or parameter snapshot; its release-note additions and reported changes are listed individually but do not imply known internal IDs. Read [the iOS 26/27 research report](ios26-27-catalog-research.md) for counts, sources, and limitations.
 
 | Since | Evidence scope | Source |
 |---|---|---|

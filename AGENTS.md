@@ -65,6 +65,8 @@ Keep modules narrow and APIs typed. Prefer the Python standard library. Do not a
 - If evidence is unknown, state that and seek an export or reliable source from the exact target version. A version-filtered result remains evidence, not an on-device guarantee.
 - Keep identifier observation, parameter evidence, version availability, and import/runtime verification as distinct claims.
 - Preserve source URL, date/version, provenance, and license notices. Keep English and Japanese guides aligned.
+- iOS 27's current ToolKit v78 snapshot is exact for 1,206 simulator-observed IDs; its parameter metadata remains observed evidence, not proof of iPhone import/runtime support. Do not assign this snapshot to iOS 26. iOS 26 release-note entries may establish action names/platforms only, not internal IDs or plist schemas.
+- Keep `tools/import_ios26_27_catalog.py`, the pinned snapshot files, and `docs/ios26-27-catalog-research.md` aligned when refreshing iOS 27. Source snapshots stay out of built distributions.
 - The Python public API uses `IOSVersion` and `ActionCatalog`; retain compatibility functions in `catalog.py` unless an explicitly documented breaking change is intended.
 
 ## Skill maintenance

@@ -41,6 +41,18 @@ class CatalogTests(unittest.TestCase):
         with self.assertRaises(TypeError):
             actions[0].availability["26"] = "observed"
 
+    def test_ios27_parameters_retain_enum_choices_and_source_metadata(self):
+        action = ActionCatalog.from_package().get("com.apple.AppKit.WindowTabEntity")
+        self.assertIsNotNone(action)
+        parameter = next(
+            item for item in action.parameters
+            if item.key == "WFContentItemSortProperty"
+        )
+        self.assertEqual(parameter.sort_order, 1)
+        self.assertIn("iOS 27 Simulator", parameter.platforms)
+        self.assertIn("Title", {case["title"] for case in parameter.enum_cases})
+        self.assertEqual(action.to_dict()["tool_type"], "appIntent")
+
     def test_version_and_language_enums_parse_public_inputs(self):
         self.assertIs(IOSVersion.parse(26), IOSVersion.IOS_26)
         self.assertIs(CatalogLanguage.parse("ja"), CatalogLanguage.JAPANESE)
@@ -68,6 +80,7 @@ class CatalogTests(unittest.TestCase):
                 for action in ios27
             )
         )
+        self.assertEqual(sum(len(action.get("parameters", [])) for action in ios27), 3432)
 
     def test_unknown_versions_are_not_falsely_exact(self):
         for version in ("17", "18", "26"):
@@ -113,11 +126,15 @@ class CatalogTests(unittest.TestCase):
         en = render_catalog_markdown("26", "en", query="battery")
         ja = render_catalog_markdown("27", "ja", query="calendar")
         self.assertIn("iOS 26", en)
-        self.assertIn("iOS 26.4 | iOS 26.2 | Set Battery Charge Limit | Added", en)
+        self.assertIn("Set Battery Charge Limit | Added", en)
+        self.assertIn("iOS / iPadOS / macOS", en)
         self.assertIn("iOS 27", ja)
         self.assertIn("変更履歴", ja)
         self.assertIn("iOS 27 Simulator", ja)
         self.assertIn("iOSでの提供は未確認", ja)
+        self.assertIn("メッセージ：メッセージを検索", ja)
+        self.assertIn("27.2", ja)
+        self.assertIn("オートメーション：iPhone Duoの開閉", ja)
 
     def test_official_versioned_action_changes_appear_for_selected_ios(self):
         ios17 = render_catalog_markdown("17", "en")
@@ -126,7 +143,8 @@ class CatalogTests(unittest.TestCase):
 
         self.assertIn("Get Orientation", ios17)
         self.assertIn("Create Entry / Create Audio Entry / Search Entries (Journal)", ios18)
-        self.assertIn("Create Image / Use Model / Writing Tools actions", ios26)
+        self.assertIn("Image Playground: Create Image", ios26)
+        self.assertIn("Writing Tools: Proofread Text", ios26)
 
     def test_cli_supports_markdown_and_language(self):
         output = io.StringIO()

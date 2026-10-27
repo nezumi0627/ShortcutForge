@@ -99,6 +99,10 @@ class ActionParameter:
     key: str
     name: str | None = None
     value_type: str | None = None
+    sort_order: int | None = None
+    flags: int | None = None
+    platforms: tuple[str, ...] = ()
+    enum_cases: tuple[Mapping[str, str], ...] = ()
 
     @classmethod
     def from_dict(cls, data: Mapping[str, Any]) -> ActionParameter:
@@ -106,14 +110,26 @@ class ActionParameter:
             key=str(data["key"]),
             name=data.get("name"),
             value_type=data.get("type"),
+            sort_order=data.get("sort_order"),
+            flags=data.get("flags"),
+            platforms=tuple(data.get("platforms", ())),
+            enum_cases=tuple(MappingProxyType(dict(case)) for case in data.get("enum_cases", ())),
         )
 
-    def to_dict(self) -> dict[str, str]:
+    def to_dict(self) -> dict[str, Any]:
         result = {"key": self.key}
         if self.name is not None:
             result["name"] = self.name
         if self.value_type is not None:
             result["type"] = self.value_type
+        if self.sort_order is not None:
+            result["sort_order"] = self.sort_order
+        if self.flags is not None:
+            result["flags"] = self.flags
+        if self.platforms:
+            result["platforms"] = list(self.platforms)
+        if self.enum_cases:
+            result["enum_cases"] = [dict(case) for case in self.enum_cases]
         return result
 
 
@@ -127,6 +143,8 @@ class CatalogAction:
     display_name: str | None = None
     parameters: tuple[ActionParameter, ...] = ()
     parameter_evidence: Mapping[str, Any] | None = None
+    tool_type: str | None = None
+    tool_platforms: tuple[str, ...] = ()
 
     @classmethod
     def from_dict(
@@ -152,6 +170,8 @@ class CatalogAction:
                 if parameter_evidence
                 else None
             ),
+            tool_type=data.get("tool_type"),
+            tool_platforms=tuple(data.get("tool_platforms", ())),
         )
 
     def is_observed_on(self, version: IOSVersion | str | int) -> bool:
@@ -183,6 +203,10 @@ class CatalogAction:
             result["parameters"] = [item.to_dict() for item in self.parameters]
         if self.parameter_evidence is not None:
             result["parameter_evidence"] = dict(self.parameter_evidence)
+        if self.tool_type is not None:
+            result["tool_type"] = self.tool_type
+        if self.tool_platforms:
+            result["tool_platforms"] = list(self.tool_platforms)
         return result
 
 
@@ -238,6 +262,7 @@ _LABELS = {
         "baseline": "Compared with",
         "change": "Change",
         "platform": "Platform note",
+        "parameters": "Observed parameters (iOS 27 snapshot)",
         "source": "Source",
         "observed": "Observed in iOS {os_version} Simulator snapshot",
         "unknown": "Unknown / unverified",
@@ -245,6 +270,8 @@ _LABELS = {
         "removed": "Removed",
         "parameter": "Parameter change",
         "name_change": "Name / identifier change",
+        "condition": "Control-flow update",
+        "feature": "Editor / automation feature",
         "note": (
             "Identifier presence alone does not verify parameters, import, "
             "or runtime behavior."
@@ -263,6 +290,7 @@ _LABELS = {
         "baseline": "比較元",
         "change": "変更内容",
         "platform": "対応プラットフォームの注記",
+        "parameters": "確認済みパラメータ（iOS 27スナップショット）",
         "source": "出典",
         "observed": "iOS {os_version} Simulatorスナップショットで確認",
         "unknown": "不明／未検証",
@@ -270,6 +298,8 @@ _LABELS = {
         "removed": "削除",
         "parameter": "パラメータ変更",
         "name_change": "名称／識別子変更",
+        "condition": "条件分岐の更新",
+        "feature": "エディタ／オートメーション機能",
         "note": "識別子の記載だけでは、引数・読み込み・実行の互換性は確認できません。",
     },
 }
@@ -416,8 +446,8 @@ class ActionCatalog:
 
         lines.extend([
             "", f"## {labels['candidate']}", "",
-            f"| {labels['identifier']} | {labels['aliases']} | {labels['availability']} |",
-            "|---|---|---|",
+            f"| {labels['identifier']} | {labels['aliases']} | {labels['availability']} | {labels['parameters']} |",
+            "|---|---|---|---|",
         ])
         for action in actions:
             status = (
@@ -426,9 +456,23 @@ class ActionCatalog:
                 else labels["unknown"]
             )
             name = action.display_name or ", ".join(action.aliases[:2])
+            parameters = "<br>".join(
+                f"`{_markdown_cell(parameter.key)}`"
+                + (f" — {_markdown_cell(parameter.name)}" if parameter.name else "")
+                + (f" ({_markdown_cell(parameter.value_type)})" if parameter.value_type else "")
+                + (
+                    ": " + ", ".join(
+                        _markdown_cell(case.get("title", case.get("id", "")))
+                        for case in parameter.enum_cases
+                    )
+                    if parameter.enum_cases else ""
+                )
+                for parameter in action.parameters
+            ) if target is IOSVersion.IOS_27 else "—"
+            parameters = parameters or "—"
             lines.append(
                 f"| `{_markdown_cell(action.identifier)}` "
-                f"| {_markdown_cell(name)} | {status} |"
+                f"| {_markdown_cell(name)} | {status} | {parameters} |"
             )
         return "\n".join(lines) + "\n"
 

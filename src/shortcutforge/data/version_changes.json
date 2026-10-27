@@ -7,85 +7,1406 @@
     "ios26_apple": "https://support.apple.com/en-gb/125148",
     "ios26_1": "https://talk.automators.fm/t/ios-18-26-1-new-and-updated-actions/19029",
     "ios26_4": "https://talk.automators.fm/t/os-26-2-26-4-new-and-updated-actions/19117",
-    "ios27": "https://talk.automators.fm/t/os-26-27-new-and-updated-actions/19177"
+    "ios27": "https://talk.automators.fm/t/os-26-27-new-and-updated-actions/19177",
+    "ios27_apple": "https://support.apple.com/en-us/149045",
+    "ios26_updates": "https://support.apple.com/en-ie/123075"
   },
   "changes": [
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Delete Alarms","name_ja":"アラームを削除","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Edit Sleep Alarm","name_ja":"睡眠アラームを編集","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Start Stopwatch","name_ja":"ストップウォッチを開始","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Stop Stopwatch","name_ja":"ストップウォッチを停止","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Lap Stopwatch","name_ja":"ストップウォッチでラップを記録","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Reset Stopwatch","name_ja":"ストップウォッチをリセット","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Get Current Timer","name_ja":"現在のタイマーを取得","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Pause/Resume/Cancel Timer","name_ja":"タイマーを一時停止・再開・キャンセル","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Hotspot Password actions","name_ja":"インターネット共有のパスワード操作","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Cellular Plan actions","name_ja":"モバイル通信プランの操作","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Set Silent Mode","name_ja":"消音モードを設定","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"End Workout","name_ja":"ワークアウトを終了","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Open Camera","name_ja":"カメラを開く","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Scan Document","name_ja":"書類をスキャン","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Search in Files","name_ja":"ファイルを検索","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Make Image from Rich Text","name_ja":"リッチテキストから画像を作成","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Transcribe Audio","name_ja":"オーディオを文字起こし","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Listen to Page","name_ja":"ページを読み上げ","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Stop Recording (Voice Memos)","name_ja":"録音を停止（ボイスメモ）","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Freeform Board actions","name_ja":"フリーボードのボード操作","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Open Collection (Photos / Tips)","name_ja":"コレクションを開く（写真／ヒント）","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Show Passwords","name_ja":"パスワードを表示","change":"added"},
-    {"since":"17","baseline":"iOS 16","source":"ios17","name_en":"Folder action removed; merged into File","name_ja":"Folderアクションを廃止、Fileに統合","change":"removed"},
-    {"since":"17.4","baseline":"iOS 17.3","source":"ios17_apple","name_en":"Get Orientation","name_ja":"デバイスの向きを取得","change":"added"},
-    {"since":"17.4","baseline":"iOS 17.3","source":"ios17_apple","name_en":"Get Activity","name_ja":"アクティビティを取得","change":"added","platform":"iOS / iPadOS / watchOS","platform_ja":"iOS／iPadOS／watchOS"},
-    {"since":"18.0","baseline":"iOS 17","source":"ios18_apple","name_en":"Create Board / Open Board (Freeform)","name_ja":"ボードを作成／開く（フリーボード）","change":"added"},
-    {"since":"18.0","baseline":"iOS 17","source":"ios18_apple","name_en":"Create Entry / Create Audio Entry / Search Entries (Journal)","name_ja":"エントリーを作成／音声エントリーを作成／検索（ジャーナル）","change":"added"},
-    {"since":"18.0","baseline":"iOS 17","source":"ios18_apple","name_en":"Magnifier actions (Describe This, Detect Items, Open Reader, and more)","name_ja":"拡大鏡の操作（説明、項目を検出、リーダーを開く等）","change":"added"},
-    {"since":"18.0","baseline":"iOS 17","source":"ios18_apple","name_en":"Set Music Focus Filter / Open Card (Wallet)","name_ja":"ミュージックの集中モードフィルタを設定／カードを開く（ウォレット）","change":"added"},
-    {"since":"18.0","baseline":"iOS 17","source":"ios18_apple","name_en":"Create Folder / Create iCloud Link for Shortcut / Add Shortcut to Home Screen","name_ja":"フォルダ作成／ショートカットのiCloudリンク作成／ホーム画面に追加","change":"added"},
-    {"since":"18.1","baseline":"iOS 18.0","source":"ios18_apple","name_en":"Open Page (App Store) / Show Control Centre","name_ja":"ページを開く（App Store）／コントロールセンターを表示","change":"added"},
-    {"since":"18.1","baseline":"iOS 18.0","source":"ios18_apple","name_en":"Health actions (Open Data Type, Search in Health, Open View, Open Sleep Schedule)","name_ja":"ヘルスケア操作（データタイプ、検索、ビュー、睡眠スケジュール）","change":"added"},
-    {"since":"18.1","baseline":"iOS 18.0","source":"ios18_apple","name_en":"Check In / Move Shortcut / Rename Shortcut / Trim Whitespace","name_ja":"チェックイン／ショートカットを移動・名称変更／空白をトリミング","change":"added"},
-    {"since":"18.2","baseline":"iOS 18.1","source":"ios18_apple","name_en":"Get Current App / Fitness actions / Stocks watchlists","name_ja":"現在のAppを取得／フィットネス操作／株価ウォッチリスト","change":"added"},
-    {"since":"18.2","baseline":"iOS 18.1","source":"ios18_apple","name_en":"Rename Board / Update Board (Freeform)","name_ja":"ボードを名称変更／更新（フリーボード）","change":"added"},
-    {"since":"18.4","baseline":"iOS 18.3","source":"ios18_apple","name_en":"Add City / Remove City (Clock) / Open Conversation (Messages)","name_ja":"都市を追加／削除（時計）／会話を開く（メッセージ）","change":"added"},
-    {"since":"18.4","baseline":"iOS 18.3","source":"ios18_apple","name_en":"Get Settings / Change Settings for supported apps","name_ja":"対応Appの設定を取得／変更","change":"added"},
-    {"since":"18.5","baseline":"iOS 18.4","source":"ios18_apple","name_en":"Notes actions (Scan Documents, Rename Folder, Append Checklist Item, Add File)","name_ja":"メモ操作（書類スキャン、フォルダ名称変更、チェック項目・ファイル追加）","change":"added"},
-    {"since":"26.0","baseline":"iOS 18","source":"ios26_apple","name_en":"Create Image / Use Model / Writing Tools actions","name_ja":"画像を作成／モデルを使用／Writing Tools操作","change":"added"},
-    {"since":"26.0","baseline":"iOS 18","source":"ios26_apple","name_en":"Find Message / Find Conversation / Get App & Website Data","name_ja":"メッセージ・会話を検索／AppとWebサイトのデータを取得","change":"added"},
-    {"since":"26.0","baseline":"iOS 18","source":"ios26_apple","name_en":"Get Upcoming Sports Events / Launch Measure / Open Visual Intelligence","name_ja":"今後のスポーツイベントを取得／計測を起動／Visual Intelligenceを開く","change":"added"},
-    {"since":"26.0","baseline":"iOS 18","source":"ios26_apple","name_en":"Photos actions (Rename Album, Search Photos, Create New Memory, Filter Library)","name_ja":"写真操作（アルバム名称変更、検索、メモリー作成、ライブラリをフィルタ）","change":"added"},
-    {"since":"26.0","baseline":"iOS 18","source":"ios26_apple","name_en":"Show Quick Reminder / Find Voice Recording / Weather location lists / Stock symbols","name_ja":"クイックリマインダー／録音を検索／天気の場所リスト／株価銘柄操作","change":"added"},
-    {"since":"26.1","baseline":"iOS 18.4","source":"ios26_1","name_en":"Search in Files (iOS)","name_ja":"ファイルを検索（iOS）","change":"added"},
-    {"since":"26.1","baseline":"iOS 18.4","source":"ios26_1","name_en":"Open Person (Photos)","name_ja":"人物を開く（写真）","change":"added"},
-    {"since":"26.1","baseline":"iOS 18.4","source":"ios26_1","name_en":"Set Library View (Photos)","name_ja":"ライブラリ表示を設定（写真）","change":"added"},
-    {"since":"26.1","baseline":"iOS 18.4","source":"ios26_1","name_en":"Add Alarm: Open When Run parameter","name_ja":"アラームを追加：「実行時に開く」パラメータ","change":"parameter"},
-    {"since":"26.1","baseline":"iOS 18.4","source":"ios26_1","name_en":"Create List (Reminders): Type parameter","name_ja":"リストを作成（リマインダー）：「種類」パラメータ","change":"parameter"},
-    {"since":"26.1","baseline":"iOS 18.4","source":"ios26_1","name_en":"Add File (Notes) → Add File to Note","name_ja":"ファイルを追加（メモ）→ メモにファイルを追加","change":"name_change"},
-    {"since":"26.1","baseline":"iOS 18.4","source":"ios26_1","name_en":"Add New Contact / Event / Reminder renamed","name_ja":"連絡先／イベント／リマインダーを追加 の名称変更","change":"name_change"},
-    {"since":"26.1","baseline":"iOS 18.4","source":"ios26_1","name_en":"Show Result → Show Content","name_ja":"結果を表示 → コンテンツを表示","change":"name_change"},
-    {"since":"26.4","baseline":"iOS 26.2","source":"ios26_4","name_en":"Get Multitasking Mode","name_ja":"マルチタスクモードを取得","change":"added","platform":"iPadOS / macOS; iOS availability not established","platform_ja":"iPadOS／macOS。iOSでの提供は未確認"},
-    {"since":"26.4","baseline":"iOS 26.2","source":"ios26_4","name_en":"Set Multitasking Mode","name_ja":"マルチタスクモードを設定","change":"added","platform":"iPadOS / macOS; iOS availability not established","platform_ja":"iPadOS／macOS。iOSでの提供は未確認"},
-    {"since":"26.4","baseline":"iOS 26.2","source":"ios26_4","name_en":"Set Battery Charge Limit","name_ja":"バッテリー充電上限を設定","change":"added","platform":"iOS / iPadOS / macOS","platform_ja":"iOS／iPadOS／macOS"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Otherwise If","name_ja":"それ以外の場合（条件）","change":"added"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Store / Get / Delete Stored Content","name_ja":"コンテンツを保存／取得／削除","change":"added"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Add Item to List","name_ja":"リストに項目を追加","change":"added"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Get Selected Text","name_ja":"選択したテキストを取得","change":"added"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Get Current VPN / Find VPNs","name_ja":"現在のVPNを取得／VPNを検索","change":"added"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Share and Collaborate","name_ja":"共有して共同作業","change":"added"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Switch Control / Hearing Aid / Vehicle Motion Cues actions","name_ja":"スイッチコントロール／補聴器／車両モーションキュー操作","change":"added"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Messages actions (inbox, search, delete, mark read, Tapback)","name_ja":"メッセージ操作（受信箱、検索、削除、既読、Tapback）","change":"added"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Photos actions (albums, enhance, favorite, open, hide, delete)","name_ja":"写真操作（アルバム、補正、お気に入り、表示、非表示、削除）","change":"added"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Find Message (Mail)","name_ja":"メッセージを検索（メール）","change":"added"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Reminders actions (groups, sections, lists)","name_ja":"リマインダー操作（グループ、セクション、リスト）","change":"added"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Get What's On Screen (new identifier)","name_ja":"画面上の内容を取得（新しい識別子）","change":"added"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Get What’s On Screen (old identifier)","name_ja":"画面上の内容を取得（旧識別子）","change":"removed"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Extract Text from Image → Extract from Image","name_ja":"画像からテキストを抽出 → 画像から抽出","change":"name_change"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Set Light/Dark Mode → Set Appearance on Apple TV","name_ja":"ライト／ダークモードを設定 → Apple TVの外観を設定","change":"name_change"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Edit List identifier changed to com.apple.reminders.UpdateListAppIntent","name_ja":"リストを編集 の内部識別子を変更","change":"name_change"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Create / Append Note: Markdown and section parameters","name_ja":"メモ作成／追加：Markdown・セクション関連パラメータ","change":"parameter"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Scan QR or Barcode: mode and image parameters","name_ja":"QR／バーコードをスキャン：モード・画像パラメータ","change":"parameter"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Use Model: broad world knowledge parameter","name_ja":"モデルを使用：広範な知識パラメータ","change":"parameter"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Get Distance / Travel Time: avoid tolls and highways","name_ja":"距離／所要時間を取得：有料道路・高速道路を回避","change":"parameter"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Create Tab Group (Safari): Contents parameter","name_ja":"タブグループを作成（Safari）：「内容」パラメータ","change":"parameter"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Hide / Quit App: Apps parameter","name_ja":"アプリを隠す／終了：「アプリ」パラメータ","change":"parameter"},
-    {"since":"27 beta","baseline":"OS 26.5","source":"ios27","name_en":"Get Network Details: Ethernet details","name_ja":"ネットワーク詳細を取得：Ethernet情報","change":"parameter"}
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Delete Alarms",
+      "name_ja": "アラームを削除",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Edit Sleep Alarm",
+      "name_ja": "睡眠アラームを編集",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Start Stopwatch",
+      "name_ja": "ストップウォッチを開始",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Stop Stopwatch",
+      "name_ja": "ストップウォッチを停止",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Lap Stopwatch",
+      "name_ja": "ストップウォッチでラップを記録",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Reset Stopwatch",
+      "name_ja": "ストップウォッチをリセット",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Get Current Timer",
+      "name_ja": "現在のタイマーを取得",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Pause/Resume/Cancel Timer",
+      "name_ja": "タイマーを一時停止・再開・キャンセル",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Hotspot Password actions",
+      "name_ja": "インターネット共有のパスワード操作",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Cellular Plan actions",
+      "name_ja": "モバイル通信プランの操作",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Set Silent Mode",
+      "name_ja": "消音モードを設定",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "End Workout",
+      "name_ja": "ワークアウトを終了",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Open Camera",
+      "name_ja": "カメラを開く",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Scan Document",
+      "name_ja": "書類をスキャン",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Search in Files",
+      "name_ja": "ファイルを検索",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Make Image from Rich Text",
+      "name_ja": "リッチテキストから画像を作成",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Transcribe Audio",
+      "name_ja": "オーディオを文字起こし",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Listen to Page",
+      "name_ja": "ページを読み上げ",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Stop Recording (Voice Memos)",
+      "name_ja": "録音を停止（ボイスメモ）",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Freeform Board actions",
+      "name_ja": "フリーボードのボード操作",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Open Collection (Photos / Tips)",
+      "name_ja": "コレクションを開く（写真／ヒント）",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Show Passwords",
+      "name_ja": "パスワードを表示",
+      "change": "added"
+    },
+    {
+      "since": "17",
+      "baseline": "iOS 16",
+      "source": "ios17",
+      "name_en": "Folder action removed; merged into File",
+      "name_ja": "Folderアクションを廃止、Fileに統合",
+      "change": "removed"
+    },
+    {
+      "since": "17.4",
+      "baseline": "iOS 17.3",
+      "source": "ios17_apple",
+      "name_en": "Get Orientation",
+      "name_ja": "デバイスの向きを取得",
+      "change": "added"
+    },
+    {
+      "since": "17.4",
+      "baseline": "iOS 17.3",
+      "source": "ios17_apple",
+      "name_en": "Get Activity",
+      "name_ja": "アクティビティを取得",
+      "change": "added",
+      "platform": "iOS / iPadOS / watchOS",
+      "platform_ja": "iOS／iPadOS／watchOS"
+    },
+    {
+      "since": "18.0",
+      "baseline": "iOS 17",
+      "source": "ios18_apple",
+      "name_en": "Create Board / Open Board (Freeform)",
+      "name_ja": "ボードを作成／開く（フリーボード）",
+      "change": "added"
+    },
+    {
+      "since": "18.0",
+      "baseline": "iOS 17",
+      "source": "ios18_apple",
+      "name_en": "Create Entry / Create Audio Entry / Search Entries (Journal)",
+      "name_ja": "エントリーを作成／音声エントリーを作成／検索（ジャーナル）",
+      "change": "added"
+    },
+    {
+      "since": "18.0",
+      "baseline": "iOS 17",
+      "source": "ios18_apple",
+      "name_en": "Magnifier actions (Describe This, Detect Items, Open Reader, and more)",
+      "name_ja": "拡大鏡の操作（説明、項目を検出、リーダーを開く等）",
+      "change": "added"
+    },
+    {
+      "since": "18.0",
+      "baseline": "iOS 17",
+      "source": "ios18_apple",
+      "name_en": "Set Music Focus Filter / Open Card (Wallet)",
+      "name_ja": "ミュージックの集中モードフィルタを設定／カードを開く（ウォレット）",
+      "change": "added"
+    },
+    {
+      "since": "18.0",
+      "baseline": "iOS 17",
+      "source": "ios18_apple",
+      "name_en": "Create Folder / Create iCloud Link for Shortcut / Add Shortcut to Home Screen",
+      "name_ja": "フォルダ作成／ショートカットのiCloudリンク作成／ホーム画面に追加",
+      "change": "added"
+    },
+    {
+      "since": "18.1",
+      "baseline": "iOS 18.0",
+      "source": "ios18_apple",
+      "name_en": "Open Page (App Store) / Show Control Centre",
+      "name_ja": "ページを開く（App Store）／コントロールセンターを表示",
+      "change": "added"
+    },
+    {
+      "since": "18.1",
+      "baseline": "iOS 18.0",
+      "source": "ios18_apple",
+      "name_en": "Health actions (Open Data Type, Search in Health, Open View, Open Sleep Schedule)",
+      "name_ja": "ヘルスケア操作（データタイプ、検索、ビュー、睡眠スケジュール）",
+      "change": "added"
+    },
+    {
+      "since": "18.1",
+      "baseline": "iOS 18.0",
+      "source": "ios18_apple",
+      "name_en": "Check In / Move Shortcut / Rename Shortcut / Trim Whitespace",
+      "name_ja": "チェックイン／ショートカットを移動・名称変更／空白をトリミング",
+      "change": "added"
+    },
+    {
+      "since": "18.2",
+      "baseline": "iOS 18.1",
+      "source": "ios18_apple",
+      "name_en": "Get Current App / Fitness actions / Stocks watchlists",
+      "name_ja": "現在のAppを取得／フィットネス操作／株価ウォッチリスト",
+      "change": "added"
+    },
+    {
+      "since": "18.2",
+      "baseline": "iOS 18.1",
+      "source": "ios18_apple",
+      "name_en": "Rename Board / Update Board (Freeform)",
+      "name_ja": "ボードを名称変更／更新（フリーボード）",
+      "change": "added"
+    },
+    {
+      "since": "18.4",
+      "baseline": "iOS 18.3",
+      "source": "ios18_apple",
+      "name_en": "Add City / Remove City (Clock) / Open Conversation (Messages)",
+      "name_ja": "都市を追加／削除（時計）／会話を開く（メッセージ）",
+      "change": "added"
+    },
+    {
+      "since": "18.4",
+      "baseline": "iOS 18.3",
+      "source": "ios18_apple",
+      "name_en": "Get Settings / Change Settings for supported apps",
+      "name_ja": "対応Appの設定を取得／変更",
+      "change": "added"
+    },
+    {
+      "since": "18.5",
+      "baseline": "iOS 18.4",
+      "source": "ios18_apple",
+      "name_en": "Notes actions (Scan Documents, Rename Folder, Append Checklist Item, Add File)",
+      "name_ja": "メモ操作（書類スキャン、フォルダ名称変更、チェック項目・ファイル追加）",
+      "change": "added"
+    },
+    {
+      "since": "26.4",
+      "baseline": "iOS 26.2",
+      "source": "ios26_4",
+      "name_en": "Get Multitasking Mode",
+      "name_ja": "マルチタスクモードを取得",
+      "change": "added",
+      "platform": "iPadOS / macOS; iOS availability not established",
+      "platform_ja": "iPadOS／macOS。iOSでの提供は未確認"
+    },
+    {
+      "since": "26.4",
+      "baseline": "iOS 26.2",
+      "source": "ios26_4",
+      "name_en": "Set Multitasking Mode",
+      "name_ja": "マルチタスクモードを設定",
+      "change": "added",
+      "platform": "iPadOS / macOS; iOS availability not established",
+      "platform_ja": "iPadOS／macOS。iOSでの提供は未確認"
+    },
+    {
+      "since": "26.4",
+      "baseline": "iOS 26.2",
+      "source": "ios26_4",
+      "name_en": "Create Reminder: Urgent priority",
+      "name_ja": "リマインダーを作成：「緊急」優先度",
+      "change": "parameter",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.4",
+      "baseline": "iOS 26.2",
+      "source": "ios26_4",
+      "name_en": "Find Places: relevance and distance sort",
+      "name_ja": "場所を検索：関連度・距離順",
+      "change": "parameter",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.1",
+      "baseline": "iOS 26.0",
+      "source": "ios26_1",
+      "name_en": "Search in Files",
+      "name_ja": "ファイルを検索",
+      "change": "added",
+      "platform": "Community-reported for iOS; not independently confirmed in ToolKit",
+      "platform_ja": "コミュニティ報告。ToolKitで独立確認できていない"
+    },
+    {
+      "since": "26.1",
+      "baseline": "iOS 26.0",
+      "source": "ios26_1",
+      "name_en": "Photos: Open Person",
+      "name_ja": "写真：人物を開く",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.1",
+      "baseline": "iOS 26.0",
+      "source": "ios26_1",
+      "name_en": "Photos: Set Library View",
+      "name_ja": "写真：ライブラリ表示を設定",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.1",
+      "baseline": "iOS 26.0",
+      "source": "ios26_1",
+      "name_en": "Add Alarm: Open When Run parameter",
+      "name_ja": "アラームを追加：「実行時に開く」パラメータ",
+      "change": "parameter",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.1",
+      "baseline": "iOS 26.0",
+      "source": "ios26_1",
+      "name_en": "Create List: Type parameter",
+      "name_ja": "リストを作成：「種類」パラメータ",
+      "change": "parameter",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.1",
+      "baseline": "iOS 26.0",
+      "source": "ios26_1",
+      "name_en": "Notes: Add File renamed to Add File to Note",
+      "name_ja": "メモ：「ファイルを追加」から「メモにファイルを追加」に改称",
+      "change": "name_change",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.1",
+      "baseline": "iOS 26.0",
+      "source": "ios26_1",
+      "name_en": "Add New Contact action renamed",
+      "name_ja": "「新規連絡先を追加」アクションを改称",
+      "change": "name_change",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.1",
+      "baseline": "iOS 26.0",
+      "source": "ios26_1",
+      "name_en": "Add New Event action renamed",
+      "name_ja": "「新規イベントを追加」アクションを改称",
+      "change": "name_change",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.1",
+      "baseline": "iOS 26.0",
+      "source": "ios26_1",
+      "name_en": "Add New Reminder action renamed",
+      "name_ja": "「新規リマインダーを追加」アクションを改称",
+      "change": "name_change",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.1",
+      "baseline": "iOS 26.0",
+      "source": "ios26_1",
+      "name_en": "Show Result renamed to Show Content",
+      "name_ja": "「結果を表示」から「コンテンツを表示」に改称",
+      "change": "name_change",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Share and Collaborate",
+      "name_ja": "共有して共同作業",
+      "change": "added",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Set Switch Control Switch Set",
+      "name_ja": "スイッチコントロールのスイッチセットを設定",
+      "change": "added",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Toggle Hearing Aid Mute",
+      "name_ja": "補聴器の消音を切り替え",
+      "change": "added",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Toggle Vehicle Motion Cues",
+      "name_ja": "車両モーションキューを切り替え",
+      "change": "added",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Find Message (Mail)",
+      "name_ja": "メッセージを検索（メール）",
+      "change": "added",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Get What’s On Screen",
+      "name_ja": "画面上の内容を取得",
+      "change": "added",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Get What’s On Screen: previous identifier removed",
+      "name_ja": "画面上の内容を取得：旧識別子を削除",
+      "change": "removed",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Extract Text from Image renamed to Extract from Image",
+      "name_ja": "「画像からテキストを抽出」から「画像から抽出」に改称",
+      "change": "name_change",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Set Light/Dark Mode renamed for Apple TV",
+      "name_ja": "Apple TV向けアクション名を変更",
+      "change": "name_change",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Edit List internal identifier changed",
+      "name_ja": "「リストを編集」の内部識別子を変更",
+      "change": "name_change",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Append to Note: section, empty-line and Markdown parameters",
+      "name_ja": "メモに追加：セクション・空行・Markdownパラメータ",
+      "change": "parameter",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Create Note: Markdown parameter",
+      "name_ja": "メモを作成：Markdownパラメータ",
+      "change": "parameter",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Scan QR/Barcode: mode and image parameters",
+      "name_ja": "QR／バーコードをスキャン：モード・画像パラメータ",
+      "change": "parameter",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Use Model: broad world knowledge parameter",
+      "name_ja": "モデルを使用：広範な知識パラメータ",
+      "change": "parameter",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Get Distance/Travel Time: avoid tolls/highways",
+      "name_ja": "距離／所要時間を取得：有料道路・高速道路を回避",
+      "change": "parameter",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Safari Create Tab Group: Contents parameter",
+      "name_ja": "Safariでタブグループを作成：「内容」パラメータ",
+      "change": "parameter",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Hide/Quit App: Apps parameter",
+      "name_ja": "アプリを隠す／終了：「アプリ」パラメータ",
+      "change": "parameter",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Get Network Details: Ethernet details",
+      "name_ja": "ネットワーク詳細を取得：Ethernet情報",
+      "change": "parameter",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Delete Sections: Delete Reminders parameter",
+      "name_ja": "セクションを削除：「リマインダーを削除」パラメータ",
+      "change": "parameter",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Create Group: Name parameter renamed Group Name",
+      "name_ja": "グループ作成：「名前」から「グループ名」に改称",
+      "change": "parameter",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "27 beta",
+      "baseline": "OS 26.5",
+      "source": "ios27",
+      "name_en": "Find Album renamed Find Albums",
+      "name_ja": "「アルバムを検索」から「アルバムを検索（複数形）」に改称",
+      "change": "name_change",
+      "platform": "OS 27 comparison; iOS availability not individually established",
+      "platform_ja": "OS 27の比較情報。項目ごとのiOS対応は個別確認できていない"
+    },
+    {
+      "since": "26.4",
+      "baseline": "iOS 26.2",
+      "source": "ios26_4",
+      "name_en": "Set Battery Charge Limit",
+      "name_ja": "バッテリー充電上限を設定",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS／iPadOS／macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Freeform: Add Files to Board",
+      "name_ja": "Freeform：ボードにファイルを追加",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Image Playground: Create Image",
+      "name_ja": "Image Playground：画像を作成",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Mail: Find Message",
+      "name_ja": "メール：メッセージを検索",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Measure: Launch Measure",
+      "name_ja": "計測：計測アプリを開く",
+      "change": "added",
+      "platform": "iOS",
+      "platform_ja": "iOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Messages: Find Message",
+      "name_ja": "メッセージ：メッセージを検索",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Messages: Find Conversation",
+      "name_ja": "メッセージ：会話を検索",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Screen Time: Get App & Website Data",
+      "name_ja": "スクリーンタイム：アプリとWebサイトのデータを取得",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Sports: Get Upcoming Sports Events",
+      "name_ja": "スポーツ：今後のスポーツイベントを取得",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Photos: Rename Album",
+      "name_ja": "写真：アルバムの名前を変更",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Photos: Search Photos",
+      "name_ja": "写真：写真を検索",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Photos: Create New Memory",
+      "name_ja": "写真：新しいメモリーを作成",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Photos: Filter Library",
+      "name_ja": "写真：ライブラリをフィルタ",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Reminders: Show Quick Reminder",
+      "name_ja": "リマインダー：クイックリマインダーを表示",
+      "change": "added",
+      "platform": "iOS / iPadOS",
+      "platform_ja": "iOS / iPadOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Stocks: Delete Symbol from Watchlist",
+      "name_ja": "株価：ウォッチリストから銘柄を削除",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Stocks: Add Symbol to Watchlist",
+      "name_ja": "株価：ウォッチリストに銘柄を追加",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Use Model",
+      "name_ja": "モデルを使用",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Visual Intelligence: Open Visual Intelligence",
+      "name_ja": "ビジュアルインテリジェンス：機能を開く",
+      "change": "added",
+      "platform": "iOS",
+      "platform_ja": "iOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Voice Memos: Find Voice Recording",
+      "name_ja": "ボイスメモ：録音を検索",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Weather: Add Location to List",
+      "name_ja": "天気：リストに場所を追加",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Weather: Remove Locations from List",
+      "name_ja": "天気：リストから場所を削除",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Writing Tools: Adjust Tone of Text",
+      "name_ja": "作文ツール：テキストのトーンを調整",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Writing Tools: Make List from Text",
+      "name_ja": "作文ツール：テキストからリストを作成",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Writing Tools: Make Table from Text",
+      "name_ja": "作文ツール：テキストから表を作成",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Writing Tools: Proofread Text",
+      "name_ja": "作文ツール：テキストを校正",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Writing Tools: Rewrite Text",
+      "name_ja": "作文ツール：テキストを書き直す",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "26.0",
+      "baseline": "iOS 18",
+      "source": "ios26_apple",
+      "name_en": "Writing Tools: Summarise Text",
+      "name_ja": "作文ツール：テキストを要約",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Messages: Send Tapback",
+      "name_ja": "メッセージ：Tapbackを送信",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Messages: Mark as Read",
+      "name_ja": "メッセージ：既読にする",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Messages: Delete Messages",
+      "name_ja": "メッセージ：メッセージを削除",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Messages: Delete Conversations",
+      "name_ja": "メッセージ：会話を削除",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Messages: Open Inbox",
+      "name_ja": "メッセージ：受信箱を開く",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Messages: Search in Messages app",
+      "name_ja": "メッセージ：メッセージアプリ内を検索",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Reminders: Edit List",
+      "name_ja": "リマインダー：リストを編集",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Reminders: Create Groups",
+      "name_ja": "リマインダー：グループを作成",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Reminders: Delete Groups",
+      "name_ja": "リマインダー：グループを削除",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Reminders: Create Section",
+      "name_ja": "リマインダー：セクションを作成",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Reminders: Delete Sections",
+      "name_ja": "リマインダー：セクションを削除",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "VPN: Get Current VPN",
+      "name_ja": "VPN：現在のVPNを取得",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "VPN: Find VPNs",
+      "name_ja": "VPNを検索",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Shortcuts Storage: Get Stored Content",
+      "name_ja": "ショートカットの保存領域：保存済みコンテンツを取得",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Shortcuts Storage: Store Content",
+      "name_ja": "ショートカットの保存領域：コンテンツを保存",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Shortcuts Storage: Delete Stored Content",
+      "name_ja": "ショートカットの保存領域：保存済みコンテンツを削除",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Shortcuts Storage: Add Item to List",
+      "name_ja": "ショートカットの保存領域：リストに項目を追加",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "General: Get Selected Text",
+      "name_ja": "一般：選択したテキストを取得",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Photos: Favorite Photos",
+      "name_ja": "写真：写真をお気に入りにする",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Photos: Hide Photos",
+      "name_ja": "写真：写真を非表示",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Photos: Auto Enhance Photos",
+      "name_ja": "写真：写真を自動補正",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Photos: Find Albums",
+      "name_ja": "写真：アルバムを検索",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Photos: Delete Albums",
+      "name_ja": "写真：アルバムを削除",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Photos: Open Photo",
+      "name_ja": "写真：写真を開く",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "If: Otherwise If branch",
+      "name_ja": "If：「それ以外の場合」分岐",
+      "change": "condition",
+      "platform": "iOS 27; see Apple release notes for platform scope",
+      "platform_ja": "iOS 27。対応範囲はApple公式ノートを参照"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Use Model: enhanced models and web access",
+      "name_ja": "モデルを使用：新しいモデルとWeb検索",
+      "change": "parameter",
+      "platform": "iOS 27; see Apple release notes for platform scope",
+      "platform_ja": "iOS 27。対応範囲はApple公式ノートを参照"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Create Note / Append Text to Note: Markdown",
+      "name_ja": "メモを作成／テキストをメモに追加：Markdown",
+      "change": "parameter",
+      "platform": "iOS 27; see Apple release notes for platform scope",
+      "platform_ja": "iOS 27。対応範囲はApple公式ノートを参照"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Append Text to Note: target section",
+      "name_ja": "テキストをメモに追加：対象セクション",
+      "change": "parameter",
+      "platform": "iOS 27; see Apple release notes for platform scope",
+      "platform_ja": "iOS 27。対応範囲はApple公式ノートを参照"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Send Message: group chats",
+      "name_ja": "メッセージを送信：グループチャット",
+      "change": "parameter",
+      "platform": "iOS 27; see Apple release notes for platform scope",
+      "platform_ja": "iOS 27。対応範囲はApple公式ノートを参照"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Find Message: sender filter",
+      "name_ja": "メッセージを検索：送信者で絞り込み",
+      "change": "parameter",
+      "platform": "iOS 27; see Apple release notes for platform scope",
+      "platform_ja": "iOS 27。対応範囲はApple公式ノートを参照"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Get What’s On Screen: structured output",
+      "name_ja": "画面上の内容を取得：構造化された出力",
+      "change": "parameter",
+      "platform": "iOS 27; see Apple release notes for platform scope",
+      "platform_ja": "iOS 27。対応範囲はApple公式ノートを参照"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Extract Text From Image: tables and lists",
+      "name_ja": "画像からテキストを抽出：表とリスト",
+      "change": "parameter",
+      "platform": "iOS 27; see Apple release notes for platform scope",
+      "platform_ja": "iOS 27。対応範囲はApple公式ノートを参照"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Scan QR or Barcode: process files",
+      "name_ja": "QR／バーコードをスキャン：ファイル入力",
+      "change": "parameter",
+      "platform": "iOS 27; see Apple release notes for platform scope",
+      "platform_ja": "iOS 27。対応範囲はApple公式ノートを参照"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Set Volume: alarm, timer, and system sounds",
+      "name_ja": "音量を設定：アラーム・タイマー・システム音",
+      "change": "parameter",
+      "platform": "iOS 27; see Apple release notes for platform scope",
+      "platform_ja": "iOS 27。対応範囲はApple公式ノートを参照"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Get Network Details: Ethernet",
+      "name_ja": "ネットワークの詳細を取得：Ethernet",
+      "change": "parameter",
+      "platform": "iOS 27; see Apple release notes for platform scope",
+      "platform_ja": "iOS 27。対応範囲はApple公式ノートを参照"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Location: home and work locations",
+      "name_ja": "場所：自宅と職場",
+      "change": "parameter",
+      "platform": "iOS 27; see Apple release notes for platform scope",
+      "platform_ja": "iOS 27。対応範囲はApple公式ノートを参照"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Get Travel Time: avoid tolls and highways",
+      "name_ja": "移動時間を取得：有料道路・高速道路を回避",
+      "change": "parameter",
+      "platform": "iOS 27; see Apple release notes for platform scope",
+      "platform_ja": "iOS 27。対応範囲はApple公式ノートを参照"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Automation trigger: Notifications from an app",
+      "name_ja": "オートメーション：アプリからの通知",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS／iPadOS／macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Automation trigger: Keyboard connected",
+      "name_ja": "オートメーション：キーボード接続",
+      "change": "added",
+      "platform": "iOS / iPadOS",
+      "platform_ja": "iOS／iPadOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Automation trigger: Screenshot saved",
+      "name_ja": "オートメーション：スクリーンショット保存",
+      "change": "added",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS／iPadOS／macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Shortcut Editor: Create from natural-language description",
+      "name_ja": "ショートカットエディタ：自然言語の説明から作成",
+      "change": "feature",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS／iPadOS／macOS"
+    },
+    {
+      "since": "27.0",
+      "baseline": "iOS 26",
+      "source": "ios27_apple",
+      "name_en": "Shortcut automations integrated into shortcuts and synced between devices",
+      "name_ja": "ショートカットにオートメーションを統合し、デバイス間で同期",
+      "change": "feature",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS / iPadOS / macOS"
+    },
+    {
+      "since": "27.2",
+      "baseline": "iOS 27.0",
+      "source": "ios27_apple",
+      "name_en": "Automation trigger: iPhone opened or closed (iPhone Duo)",
+      "name_ja": "オートメーション：iPhone Duoの開閉",
+      "change": "added",
+      "platform": "iPhone Duo",
+      "platform_ja": "iPhone Duo"
+    },
+    {
+      "since": "27.2",
+      "baseline": "iOS 27.0",
+      "source": "ios27_apple",
+      "name_en": "Workout automation: support Fitness app",
+      "name_ja": "ワークアウトのオートメーション：Fitnessアプリに対応",
+      "change": "parameter",
+      "platform": "iOS / iPadOS / watchOS",
+      "platform_ja": "iOS／iPadOS／watchOS"
+    },
+    {
+      "since": "27.2",
+      "baseline": "iOS 27.0",
+      "source": "ios27_apple",
+      "name_en": "App automation: closed-app name for Weather",
+      "name_ja": "アプリのオートメーション：Weather終了時にアプリ名を取得",
+      "change": "parameter",
+      "platform": "iOS / iPadOS / macOS",
+      "platform_ja": "iOS／iPadOS／macOS"
+    },
+    {
+      "since": "27.2",
+      "baseline": "iOS 27.0",
+      "source": "ios27_apple",
+      "name_en": "Use Model: current web information in additional languages",
+      "name_ja": "モデルを使用：Web最新情報を追加言語で取得",
+      "change": "parameter",
+      "platform": "Apple Intelligence-supported languages",
+      "platform_ja": "Apple Intelligence対応言語"
+    },
+    {
+      "since": "27.2",
+      "baseline": "iOS 27.0",
+      "source": "ios27_apple",
+      "name_en": "Shortcut library: edit name and icon directly",
+      "name_ja": "ショートカットライブラリ：名称・アイコンを直接編集",
+      "change": "feature",
+      "platform": "iOS / iPadOS",
+      "platform_ja": "iOS／iPadOS"
+    }
   ]
 }
