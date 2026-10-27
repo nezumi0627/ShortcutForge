@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "name": "ShortcutForge Compatibility Smoke Test",
+  "actions": [
+    {
+      "id": "get_battery_level_is_workflow_actions_getbatterylevel_2fba33cd",
+      "as": "battery_level"
+    },
+    {
+      "id": "show_result",
+      "params": {
+        "text": {
+          "ref": "battery_level"
+        }
+      }
+    }
+  ]
+}

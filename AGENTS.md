@@ -10,7 +10,7 @@ The repository is public and configured as a GitHub template. Never assume secre
 
 ## Current capability boundaries
 
-- The built-in JSON compiler has five named actions: `current_date`, `text`, `notify`, `speak`, and `open_url`. It does not implement high-level calendar, conditional, or repeat builders.
+- The built-in JSON compiler has 19 hand-curated schemas and a sourced set of generated schemas. See [named actions](docs/named-actions.md) for supported IDs, parameters, evidence, and limits. It does not implement high-level conditional or repeat builders.
 - Raw JSON actions can carry exact Apple identifiers and parameters, but ShortcutForge only checks basic plist structure; it does not know whether iOS recognizes the action or parameters.
 - `.cherri` input is delegated to a separately installed external Cherri executable. ShortcutForge always disables Cherri signing and validates the resulting plist. A Windows smoke test has compiled the included If/Repeat example, but this does not establish support for every Cherri feature or release.
 - The action catalog is a versioned research/discovery index, not a full Apple schema or compiler registry. It supports iOS 17, 18, 26, and 27 with uneven evidence.
@@ -37,7 +37,7 @@ See [signing validation](docs/signing-validation.md) and [security model](docs/s
 - `src/shortcutforge/validator.py`: action, parameter, plist-compatible value, and reference validation.
 - `src/shortcutforge/compiler.py`: validated JSON plan to binary plist.
 - `src/shortcutforge/parser.py`: read-only inspection of existing workflow plists.
-- `src/shortcutforge/actions.py`: small named-action compilation schema.
+- `src/shortcutforge/actions.py`: hand-curated and generated named-action compilation schemas.
 - `src/shortcutforge/cherri.py`: optional external compiler adapter; no shell, signing disabled, bounded runtime, safe temporary output handling, plist validation.
 - `src/shortcutforge/catalog.py` and `src/shortcutforge/data/`: versioned action discovery data, evidence, aliases, and localized Markdown rendering.
 - `src/shortcutforge/signing.py`: supported signer integrations and response validation. Enforce platform restrictions in the CLI.
@@ -52,7 +52,7 @@ Keep modules narrow and APIs typed. Prefer the Python standard library. Do not a
 - Treat JSON plans, plist files, catalog contributions, `.cherri` sources, filenames, and downloaded responses as untrusted.
 - Reject malformed or unsupported input before final output is written. Avoid partial output on compiler failure.
 - The JSON plan contract is versioned (`version: 1`) and documented in [JSON plan format](docs/json-plan-format.md). Preserve its validation guarantees.
-- Add a named JSON action only when the exact identifier, accepted parameters, required/default values, and input/output behavior have evidence and focused tests.
+- Add a hand-curated JSON action only when the exact identifier, accepted parameters, required/default values, and input/output behavior have evidence and focused tests. Generated catalog imports must retain source/license metadata, filter to version-observed identifiers, reject unsupported parameter serializers, and document provenance and limitations. Update [named actions](docs/named-actions.md), [JSON plan format](docs/json-plan-format.md), and both READMEs when the set changes.
 - Raw action identifiers get structural checks only. Do not silently infer parameters, OS availability, or runtime behavior.
 - For Cherri, invoke the external binary without a shell, pass `--skip-sign`, use a timeout, validate the unsigned output, avoid clobbering existing intermediates, clean only files created by the invocation, and avoid echoing source diagnostics that may contain secrets.
 - Cherri is not bundled, downloaded, or redistributed by ShortcutForge. Keep its separate license and platform-support status clear.

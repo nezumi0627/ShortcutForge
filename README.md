@@ -14,7 +14,7 @@
 - Searches a version-scoped action discovery catalog for iOS 17, 18, 26, and 27, with English and Japanese Markdown output.
 - Provides a harness-neutral Skill. The AI interprets intent; ShortcutForge makes no model or network calls during build, validate, or inspect.
 
-The JSON compiler intentionally supports a small named action set. The larger action catalog is a research index, not a compiler schema or a promise that an action imports or runs.
+The JSON compiler supports hand-curated actions plus sourced generated schemas for standard parameter types. The larger action catalog remains a research index; version observation and a schema source do not guarantee that an action imports or runs on every device.
 
 ## Install
 
@@ -52,7 +52,7 @@ shortcutforge inspect NotifyCurrentTime.shortcut
 shortcutforge sign NotifyCurrentTime.shortcut
 ```
 
-The built-in named actions are `current_date`, `text`, `notify`, `speak`, and `open_url`. Raw Apple action identifiers and parameter dictionaries can also be supplied, but ShortcutForge only performs structural checks on raw actions. See the [JSON plan reference](docs/json-plan-format.md).
+The compiler includes named actions for text and input, notifications and speech, URLs and web requests, clipboard, location and device details, calendar events and reminders, Photos, battery level, and delay, plus over 200 sourced actions with supported parameter formats. See the [full list, sources, and limits](docs/named-actions.md). Raw Apple action identifiers and parameter dictionaries can also be supplied, but ShortcutForge only performs structural checks on raw actions. See the [JSON plan reference](docs/json-plan-format.md).
 
 ## Build Cherri source
 
@@ -110,11 +110,12 @@ Run `shortcutforge COMMAND --help` for options. On supported non-Windows hosts, 
 
 ## Limits and verification status
 
-- The named JSON action schema contains five actions; the catalog's thousands of identifiers are not all compilable.
+- The generated compiler schemas are a filtered subset of the discovery catalog; many identifiers still have unsupported parameter formats and cannot be built as named actions.
 - A valid plist does not prove that Shortcuts recognizes, imports, or runs a workflow.
 - Cherri is optional and maintained separately. ShortcutForge has smoke-tested one If/Repeat example on Windows; this does not establish support for every Cherri feature or release.
 - Catalog evidence for iOS 27 is simulator-based. Coverage for iOS 17, 18, and 26 is partial or unknown.
 - No physical iPhone import or runtime test has been completed. iOS 27 import remains unverified.
+- See the [version-by-version compatibility evidence and verification limits](docs/action-compatibility.md).
 - Build outputs are unsigned. Shortcuty and HubSign receive the shortcut remotely; Apple's macOS signer also sends a copy to Apple for validation. Windows methods other than Shortcuty remain research-only.
 
 ## Development

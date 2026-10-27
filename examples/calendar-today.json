@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "name": "Show today's events",
+  "actions": [
+    {
+      "id": "get_upcoming_events",
+      "params": {
+        "calendar": "All",
+        "count": 5,
+        "day": "Today"
+      },
+      "as": "events"
+    },
+    {
+      "id": "show_result",
+      "params": {
+        "text": {
+          "ref": "events"
+        }
+      }
+    }
+  ]
+}

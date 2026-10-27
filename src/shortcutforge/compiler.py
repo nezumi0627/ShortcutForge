@@ -7,6 +7,29 @@ from .actions import CATALOG
 from .validator import validate
 
 
+def _encode_reference(
+    name: str, output_uuid: str, serialization_type: str
+) -> dict[str, Any]:
+    if serialization_type == "WFTextTokenAttachment":
+        value = {
+            "OutputName": name,
+            "OutputUUID": output_uuid,
+            "Type": "ActionOutput",
+        }
+    else:
+        value = {
+            "string": "\ufffc",
+            "attachmentsByRange": {
+                "{0, 1}": {
+                    "OutputName": name,
+                    "OutputUUID": output_uuid,
+                    "Type": "ActionOutput",
+                }
+            },
+        }
+    return {"Value": value, "WFSerializationType": serialization_type}
+
+
 def compile_plan(plan: dict[str, Any], output: Path) -> None:
     validate(plan)
     actions = []
@@ -27,7 +50,13 @@ def compile_plan(plan: dict[str, Any], output: Path) -> None:
                 value = params.pop(key)
                 if isinstance(value, dict) and set(value) == {"ref"}:
                     name = value["ref"]
-                    value = {"Value": {"string": "\ufffc", "attachmentsByRange": {"{0, 1}": {"OutputName": name, "OutputUUID": output_ids[name], "Type": "ActionOutput"}}}, "WFSerializationType": "WFTextTokenString"}
+                    value = _encode_reference(
+                        name,
+                        output_ids[name],
+                        spec.get("reference_types", {}).get(
+                            key, "WFTextTokenString"
+                        ),
+                    )
                 params[plist_key] = value
         params.setdefault("UUID", action_uuids[id(item)])
         if "as" in item:

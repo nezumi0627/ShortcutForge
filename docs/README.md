@@ -5,10 +5,13 @@ Start with the README for installation and the shortest working example. These p
 ## User guides
 
 - [JSON plan format](json-plan-format.md): version 1 schema, action forms, parameters, and output references.
+- [Named JSON actions](named-actions.md): supported action schemas, examples, evidence, and compatibility limits.
+- [Today's calendar events example](../examples/calendar-today.json): event retrieval and typed output reference.
 - [Cherri integration](cherri-integration.md): optional `.cherri` compiler setup, unsigned builds, and platform caveats.
 - [Cherri If/Repeat example](../examples/cherri-control-flow.cherri): a compact source example used in the Windows compiler smoke test.
 - [Action catalog: English](action-catalog.en.md) · [日本語](action-catalog.ja.md): search and render catalog entries for a selected iOS version.
 - [Catalog sources and coverage](action-catalog-sources.md): provenance, evidence levels, and version gaps.
+- [Action compatibility](action-compatibility.md): version-specific evidence, local checks, and physical-device verification status.
 - [Signing setup and validation](signing-validation.md): available signers, Windows platform limits, data handling, and validation limits.
 - [Battery Decision Lab](../examples/battery-decision-lab.json): nested If and Repeat raw-action example for iOS 27 research.
 - [Template and release notes](template-and-release.md): public template setup and safe first steps.

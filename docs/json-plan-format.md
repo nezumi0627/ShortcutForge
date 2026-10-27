@@ -14,7 +14,7 @@ Unknown top-level fields are rejected. Each action is an object containing exact
 
 ## Named actions
 
-Use a readable ID from the small compiler schema. Parameter aliases are converted to Apple plist keys during compilation.
+Use a readable ID from the compiler schema. Hand-curated actions accept documented aliases; sourced generated actions use the exact Apple plist parameter keys. The current action list, defaults, validation rules, evidence, and limits are documented in [named actions](named-actions.md).
 
 ```json
 {
@@ -27,23 +27,37 @@ Use a readable ID from the small compiler schema. Parameter aliases are converte
 }
 ```
 
-Current named IDs and aliases:
+Current named IDs, aliases, outputs, and references:
 
-| ID | Accepted parameter | Output |
+| ID | Accepted parameters | Output |
 | --- | --- | --- |
-| `current_date` | `mode` or `WFDateActionMode` (defaults to `Current Date`) | yes |
-| `text` | `text` or `WFTextActionText` | yes |
-| `notify` | `text` or `WFNotificationActionBody` | no |
-| `speak` | `text` or `WFSpeakTextText` | no |
-| `open_url` | `url` or `WFURLActionURL` | no |
+| `current_date` | `mode` (defaults to `Current Date`) | yes |
+| `text` | `text` | yes |
+| `notify` | `text` | no |
+| `speak` | `text` | no |
+| `open_url` | `url` | no |
+| `ask_for_input` | `prompt`, `input_type` (defaults to `Text`), `default_answer`, `default_date`, `granularity` | yes |
+| `get_clipboard` | none | yes |
+| `set_clipboard` | `input` (output reference) | no |
+| `get_current_location` | none | yes |
+| `get_device_details` | `detail` (defaults to `Device Name`) | yes |
+| `get_upcoming_events` | `calendar`, `count` (defaults to `1`), `day` (defaults to `Any Day`), `specified_day` | yes |
+| `get_upcoming_reminders` | `list`, `count` (defaults to `1`) | yes |
+| `get_current_ip_address` | `address` (defaults to `External`), `type` (defaults to `IPv4`) | yes |
+| `get_latest_photos` | `count` (defaults to `1`), `include_screenshots` (defaults to `true`) | yes |
+| `get_contents_of_url` | `url` | yes |
+| `show_result` | `text` | no |
+| `save_to_photos` | `input` (output reference) | yes |
+| `get_battery_level` | none | yes |
+| `delay` | `seconds` (defaults to `1`; number) | no |
 
-Parameters can use catalog aliases or Apple plist parameter keys. Do not provide one parameter twice under both spellings. Only known named actions get schema and output-reference validation.
+Parameters can use readable aliases or Apple plist parameter keys. Do not provide one parameter twice under both spellings. For aliases, the compiler validates required fields, selected value types and enumerated values, and serializes references according to the receiving parameter. Raw Apple keys are passed through and only receive plist-structure checks. Only known named actions get schema and output-reference validation.
 
 ## Output references
 
 Set `as` on an action that produces output, then refer to it in a later named action using the exact object `{"ref":"output_name"}`. References must point to an earlier output-producing action. Duplicate names, forward references, and references to actions without output are rejected.
 
-The version 1 schema is a flat, ordered action list; it has no typed fields for conditions, loops, or nested blocks. A hand-authored plan can encode Apple control flow as raw marker actions with matching grouping IDs (see the example below), but the validator does not check their structure or semantics. The marker pattern is documented in community references such as [Shortcuts Playground](https://github.com/viticci/shortcuts-playground-plugin/blob/main/codex/skills/shortcuts-playground/SKILL.md) and [clean-shortcuts control flow](https://github.com/damionrashford/clean-shortcuts/blob/main/Documentation/CONTROL-FLOW.md); neither is an Apple compatibility guarantee. Calendar access is not implemented as a named action.
+The version 1 schema is a flat, ordered action list; it has no typed fields for conditions, loops, or nested blocks. A hand-authored plan can encode Apple control flow as raw marker actions with matching grouping IDs (see the example below), but the validator does not check their structure or semantics. The marker pattern is documented in community references such as [Shortcuts Playground](https://github.com/viticci/shortcuts-playground-plugin/blob/main/codex/skills/shortcuts-playground/SKILL.md) and [clean-shortcuts control flow](https://github.com/damionrashford/clean-shortcuts/blob/main/Documentation/CONTROL-FLOW.md); neither is an Apple compatibility guarantee. Calendar and reminder retrieval are available as named actions, but high-level conditional and repeat builders are not.
 
 ## Raw Apple actions
 

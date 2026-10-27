@@ -16,7 +16,7 @@ Action research ──► evidence catalog ──► version-filtered CLI / Mark
 Unsigned .shortcut ──► explicit signer ──► signed artifact
 ```
 
-The CLI is a thin adapter around package operations. `ir.py` loads plan JSON, `validator.py` checks supported semantics and safe plist value types, and `compiler.py` writes a binary plist. For `.cherri`, `cherri.py` invokes an optional executable, disables its signing, validates the returned plist, and atomically writes the requested output. `parser.py` inspects a workflow without executing it. `actions.py` is the intentionally small JSON build-time schema. `catalog.py` exposes the larger, evidence-oriented discovery index; discovery entries do not automatically become compilable actions.
+The CLI is a thin adapter around package operations. `ir.py` loads plan JSON, `validator.py` checks supported semantics and safe plist value types, and `compiler.py` writes a binary plist. For `.cherri`, `cherri.py` invokes an optional executable, disables its signing, validates the returned plist, and atomically writes the requested output. `parser.py` inspects a workflow without executing it. `actions.py` combines hand-curated schemas with sourced generated schemas from `data/scpl_ios27_actions.json`; only actions observed in the iOS 27 identifier catalog and parameters using supported serializers are included. `catalog.py` exposes the larger discovery index.
 
 ## Core design decisions
 
@@ -26,7 +26,7 @@ Version 1 plans are ordinary JSON with readable action IDs or exact raw Apple id
 
 ### Separate catalog evidence from compiler support
 
-The discovery catalog is useful for research and manual authoring. It tracks version and provenance evidence, including unknown availability. The small compiler schema lists only actions ShortcutForge currently knows how to serialize. A catalog hit alone is not approval to compile an action.
+The discovery catalog is useful for research and manual authoring. It tracks version and provenance evidence, including unknown availability. The named compiler schema only lists actions whose parameter keys, defaults, and reference serialization ShortcutForge has evidence to encode. A catalog hit alone is not approval to compile an action.
 
 ### Keep the core dependency-light
 
@@ -38,12 +38,12 @@ Python standard-library modules handle JSON, CLI parsing, plist serialization, a
 
 ### Keep compiler guarantees distinct
 
-The JSON compiler validates its versioned plan shape and its small named-action schema. Cherri owns parsing and language semantics for `.cherri`; ShortcutForge only controls invocation and checks that Cherri returned an unsigned plist with a workflow action list. Neither path proves the generated file imports or runs on a target iOS release.
+The JSON compiler validates its versioned plan shape and its hand-curated plus generated named-action schemas. Cherri owns parsing and language semantics for `.cherri`; ShortcutForge only controls invocation and checks that Cherri returned an unsigned plist with a workflow action list. Neither path proves the generated file imports or runs on a target iOS release.
 
 ## Compatibility boundaries
 
 - A valid binary plist is a serialization result, not proof of import or runtime behavior.
-- The named compiler actions are currently `current_date`, `text`, `notify`, `speak`, and `open_url`.
+- The compiler action set and its provenance are documented in [named actions](named-actions.md); it remains smaller than the discovery index.
 - The JSON compiler has no high-level conditional/repeat DSL. For code-first control flow, use the optional Cherri adapter and its [integration guide](cherri-integration.md).
 - The version catalog is an evidence index, not a complete Apple-maintained API catalog.
 - No physical iPhone import/runtime check has been completed; iOS 27 import remains unverified.

@@ -119,6 +119,15 @@ class CatalogTests(unittest.TestCase):
         self.assertIn("iOS 27 Simulator", ja)
         self.assertIn("iOSでの提供は未確認", ja)
 
+    def test_official_versioned_action_changes_appear_for_selected_ios(self):
+        ios17 = render_catalog_markdown("17", "en")
+        ios18 = render_catalog_markdown("18", "en")
+        ios26 = render_catalog_markdown("26", "en")
+
+        self.assertIn("Get Orientation", ios17)
+        self.assertIn("Create Entry / Create Audio Entry / Search Entries (Journal)", ios18)
+        self.assertIn("Create Image / Use Model / Writing Tools actions", ios26)
+
     def test_cli_supports_markdown_and_language(self):
         output = io.StringIO()
         with redirect_stdout(output):

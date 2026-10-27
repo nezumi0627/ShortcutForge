@@ -1,0 +1,4977 @@
+{
+  "source": "https://unpkg.com/scpl-macos-updated@2.3.1/built/src/Data/OutActions.json",
+  "upstream_repository": "https://github.com/cavingraves/scpl-macos-updated",
+  "upstream_license": "MIT",
+  "filter": "first-party identifier observed in iOS 27 Simulator; simple parameter classes only; every included parameter key must also be present in the iOS 27 Simulator parameter-key snapshot",
+  "actions": [
+    {
+      "identifier": "is.workflow.actions.addmusictoupnext",
+      "name": "Add to Up Next",
+      "aliases": [
+        "addmusictoupnext"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFWhenToPlay",
+          "label": "Play",
+          "defaultvalue": "Next",
+          "items": [
+            "Next",
+            "Later"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "add_to_up_next",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.airdropdocument",
+      "name": "AirDrop",
+      "aliases": [
+        "airdropdocument"
+      ],
+      "category": "communication",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "airdrop",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.airplanemode.set",
+      "name": "Set Airplane Mode",
+      "aliases": [
+        "set_airplane_mode",
+        "airplanemode_set"
+      ],
+      "category": "device",
+      "parameters": [
+        {
+          "key": "OnValue",
+          "label": "Airplane Mode",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "set_airplane_mode",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.alert",
+      "name": "Show Alert",
+      "aliases": [
+        "show_alert",
+        "alert"
+      ],
+      "category": "interaction",
+      "parameters": [
+        {
+          "key": "WFAlertActionTitle",
+          "label": "Title",
+          "defaultvalue": "Alert",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFAlertActionMessage",
+          "label": "Message",
+          "defaultvalue": "Do you want to continue?",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFAlertActionCancelButtonShown",
+          "label": "Show Cancel Button",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "show_alert",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.avairyeditphoto",
+      "name": "Markup",
+      "aliases": [
+        "avairyeditphoto"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Markup Result",
+        "Types": [
+          "WFImageContentItem",
+          "WFPDFContentItem"
+        ]
+      },
+      "id": "markup",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.base64encode",
+      "name": "Base64 Encode",
+      "aliases": [
+        "base64_encode",
+        "base64encode"
+      ],
+      "category": "data",
+      "parameters": [
+        {
+          "key": "WFEncodeMode",
+          "label": "Mode",
+          "defaultvalue": "Encode",
+          "items": [
+            "Encode",
+            "Decode"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFBase64LineBreakMode",
+          "label": "Line Breaks",
+          "defaultvalue": "Every 76 Characters",
+          "items": [
+            "None",
+            "Every 64 Characters",
+            "Every 76 Characters"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Base64 Encoded",
+        "Types": [
+          "WFStringContentItem",
+          "public.data"
+        ]
+      },
+      "id": "base64_encode",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.bluetooth.set",
+      "name": "Set Bluetooth",
+      "aliases": [
+        "set_bluetooth",
+        "bluetooth_set"
+      ],
+      "category": "device",
+      "parameters": [
+        {
+          "key": "OnValue",
+          "label": "Bluetooth",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "set_bluetooth",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.cellulardata.set",
+      "name": "Set Cellular Data",
+      "aliases": [
+        "set_cellular",
+        "cellulardata_set"
+      ],
+      "category": "device",
+      "parameters": [
+        {
+          "key": "OnValue",
+          "label": "Cellular Data",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "set_cellular_data",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.choosefromlist",
+      "name": "Choose from List",
+      "aliases": [
+        "choose_from_list",
+        "choosefromlist"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFChooseFromListActionPrompt",
+          "label": "Prompt",
+          "defaultvalue": "",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFChooseFromListActionSelectMultiple",
+          "label": "Select Multiple",
+          "defaultvalue": false,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFChooseFromListActionSelectAll",
+          "label": "Select All Initially",
+          "defaultvalue": false,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Chosen Item",
+        "Types": [
+          "WFContentItem"
+        ]
+      },
+      "id": "choose_from_list",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.clearupnext",
+      "name": "Clear Up Next",
+      "aliases": [
+        "clearupnext"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "clear_up_next",
+      "ios27_parameter_evidence": "identifier_only"
+    },
+    {
+      "identifier": "is.workflow.actions.comment",
+      "name": "Comment",
+      "aliases": [
+        "comment"
+      ],
+      "category": "control",
+      "parameters": [
+        {
+          "key": "WFCommentActionText",
+          "label": "",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "comment",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.correctspelling",
+      "name": "Correct Spelling",
+      "aliases": [
+        "correctspelling"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Corrected Spelling",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "correct_spelling",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.count",
+      "name": "Count",
+      "aliases": [
+        "count"
+      ],
+      "category": "data",
+      "parameters": [
+        {
+          "key": "WFCountType",
+          "label": "Count",
+          "items": [
+            "Items",
+            "Characters",
+            "Words",
+            "Sentences",
+            "Lines"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Count",
+        "Types": [
+          "NSDecimalNumber"
+        ]
+      },
+      "id": "count",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.createplaylist",
+      "name": "Create Playlist",
+      "aliases": [
+        "createplaylist"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFPlaylistName",
+          "label": "Name",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFPlaylistAuthor",
+          "label": "Author",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFPlaylistDescription",
+          "label": "Description",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "New Playlist",
+        "Types": [
+          "MPMediaItem"
+        ]
+      },
+      "id": "create_playlist",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.date",
+      "name": "Date",
+      "aliases": [
+        "date"
+      ],
+      "category": "calendar",
+      "parameters": [
+        {
+          "key": "WFDateActionMode",
+          "label": "Use",
+          "defaultvalue": "Current Date",
+          "items": [
+            "Current Date",
+            "Specified Date"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFDateActionDate",
+          "label": "Date",
+          "source_class": "WFDateFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Date",
+        "Types": [
+          "NSDate"
+        ]
+      },
+      "id": "date",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.delay",
+      "name": "Wait",
+      "aliases": [
+        "delay"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFDelayTime",
+          "label": "",
+          "defaultvalue": 1,
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "wait",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.deletephotos",
+      "name": "Delete Photos",
+      "aliases": [
+        "deletephotos"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "delete_photos",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.deskconnect.send",
+      "name": "Send via DeskConnect",
+      "aliases": [
+        "deskconnect_send"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "send_via_deskconnect",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.detect.address",
+      "name": "Get Addresses from Input",
+      "aliases": [
+        "detect_address"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Addresses",
+        "Types": [
+          "WFLocationContentItem"
+        ]
+      },
+      "id": "get_addresses_from_input",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.detect.contacts",
+      "name": "Get Contacts from Input",
+      "aliases": [
+        "detect_contacts"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Contacts",
+        "Types": [
+          "WFContactContentItem"
+        ]
+      },
+      "id": "get_contacts_from_input",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.detect.date",
+      "name": "Get Dates from Input",
+      "aliases": [
+        "detect_date"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Dates",
+        "Types": [
+          "WFDateContentItem"
+        ]
+      },
+      "id": "get_dates_from_input",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.detect.dictionary",
+      "name": "Get Dictionary from Input",
+      "aliases": [
+        "detect_dictionary"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Dictionary",
+        "Types": [
+          "WFDictionaryContentItem"
+        ]
+      },
+      "id": "get_dictionary_from_input",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.detect.emailaddress",
+      "name": "Get Email Addresses from Input",
+      "aliases": [
+        "detect_emailaddress"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Email Addresses",
+        "Types": [
+          "WFEmailAddressContentItem"
+        ]
+      },
+      "id": "get_email_addresses_from_input",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.detect.images",
+      "name": "Get Images from Input",
+      "aliases": [
+        "detect_images"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Images",
+        "Types": [
+          "WFImageContentItem"
+        ]
+      },
+      "id": "get_images_from_input",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.detect.link",
+      "name": "Get URLs from Input",
+      "aliases": [
+        "detect_link"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "URLs",
+        "Types": [
+          "WFURLContentItem"
+        ]
+      },
+      "id": "get_urls_from_input",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.detect.number",
+      "name": "Get Numbers from Input",
+      "aliases": [
+        "detect_number"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Numbers",
+        "Types": [
+          "WFNumberContentItem"
+        ]
+      },
+      "id": "get_numbers_from_input",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.detect.phonenumber",
+      "name": "Get Phone Numbers from Input",
+      "aliases": [
+        "detect_phonenumber"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Phone Numbers",
+        "Types": [
+          "WFPhoneNumberContentItem"
+        ]
+      },
+      "id": "get_phone_numbers_from_input",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.detect.text",
+      "name": "Get Text from Input",
+      "aliases": [
+        "get_text_from_input",
+        "detect_text"
+      ],
+      "category": "text",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Text",
+        "Types": [
+          "WFStringContentItem"
+        ]
+      },
+      "id": "get_text_from_input",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.detectlanguage",
+      "name": "Detect Language with Microsoft",
+      "aliases": [
+        "detectlanguage"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Language",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "detect_language_with_microsoft",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.evernote.getlink",
+      "name": "Get Note Link",
+      "aliases": [
+        "evernote_getlink"
+      ],
+      "category": "notes",
+      "parameters": [
+        {
+          "key": "WFEvernoteShareInAppLink",
+          "label": "In-App Link",
+          "defaultvalue": false,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Note Link",
+        "Types": [
+          "NSURL"
+        ]
+      },
+      "id": "get_note_link",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.exit",
+      "name": "Exit Shortcut",
+      "aliases": [
+        "exit_shortcut",
+        "exit"
+      ],
+      "category": "control",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "exit_shortcut",
+      "ios27_parameter_evidence": "identifier_only"
+    },
+    {
+      "identifier": "is.workflow.actions.exportsong",
+      "name": "Select Music",
+      "aliases": [
+        "exportsong"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFExportSongActionSelectMultiple",
+          "label": "Select Multiple Songs",
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Music",
+        "Types": [
+          "MPMediaItem"
+        ]
+      },
+      "id": "select_music",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.file.getlink",
+      "name": "Get Link to File",
+      "aliases": [
+        "file_getlink"
+      ],
+      "category": "files",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "Types": [
+          "NSURL"
+        ]
+      },
+      "id": "get_link_to_file",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.filter.eventattendees",
+      "name": "Filter Event Attendees",
+      "aliases": [
+        "filter_eventattendees"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "filter_event_attendees",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.filter.health.quantity",
+      "name": "Find Health Samples",
+      "aliases": [
+        "filter_health_quantity"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "find_health_samples",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.filter.reminders",
+      "name": "Find Reminders",
+      "aliases": [
+        "filter_reminders"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "find_reminders",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.format.filesize",
+      "name": "Format File Size",
+      "aliases": [
+        "format_filesize"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFFileSizeFormat",
+          "label": "Format",
+          "defaultvalue": "Automatic",
+          "items": [
+            "Automatic",
+            "Bytes",
+            "KB",
+            "MB",
+            "GB",
+            "TB",
+            "PB",
+            "EB",
+            "ZB",
+            "YB or Higher"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFFileSizeIncludeUnits",
+          "label": "Include Units",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Formatted File Size",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "format_file_size",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.format.number",
+      "name": "Format Number",
+      "aliases": [
+        "format_number"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFNumberFormatDecimalPlaces",
+          "label": "",
+          "defaultvalue": 2,
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Formatted Number",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "format_number",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.generatebarcode",
+      "name": "Generate QR Code",
+      "aliases": [
+        "generatebarcode"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFQRErrorCorrectionLevel",
+          "label": "Error Correction",
+          "defaultvalue": "Medium",
+          "items": [
+            "Low",
+            "Medium",
+            "Quartile",
+            "High"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "QR Code",
+        "Types": [
+          "UIImage"
+        ]
+      },
+      "id": "generate_qr_code",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getarticle",
+      "name": "Get Diffbot Article from Webpage",
+      "aliases": [
+        "getarticle"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "OutputName": "Article",
+        "Types": [
+          "WFArticleContentItem"
+        ]
+      },
+      "id": "get_diffbot_article_from_webpage",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getbatterylevel",
+      "name": "Get Battery Level",
+      "aliases": [
+        "get_battery",
+        "getbatterylevel"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Battery Level",
+        "Types": [
+          "NSDecimalNumber"
+        ]
+      },
+      "id": "get_battery_level_is_workflow_actions_getbatterylevel_2fba33cd",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getclassaction",
+      "name": "Get Object of Class",
+      "aliases": [
+        "getclassaction"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "Class",
+          "label": "Class",
+          "defaultvalue": "NSURL",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Object of Class",
+        "Types": [
+          "WFContentItem"
+        ]
+      },
+      "id": "get_object_of_class",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getclipboard",
+      "name": "Get Clipboard",
+      "aliases": [
+        "get_clipboard",
+        "getclipboard"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Clipboard",
+        "Types": [
+          "WFContentItem"
+        ]
+      },
+      "id": "get_clipboard_is_workflow_actions_getclipboard_75deba1d",
+      "ios27_parameter_evidence": "identifier_only"
+    },
+    {
+      "identifier": "is.workflow.actions.getcurrentlocation",
+      "name": "Get Current Location",
+      "aliases": [
+        "get_location",
+        "getcurrentlocation"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Current Location",
+        "Types": [
+          "CLLocation"
+        ]
+      },
+      "id": "get_current_location_is_workflow_actions_getcurrentlocation_6eeeced4",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getcurrentsong",
+      "name": "Get Current Song",
+      "aliases": [
+        "getcurrentsong"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Current Song",
+        "Types": [
+          "MPMediaItem"
+        ]
+      },
+      "id": "get_current_song",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getdevicedetails",
+      "name": "Get Device Details",
+      "aliases": [
+        "get_device_details",
+        "getdevicedetails"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFDeviceDetail",
+          "label": "Get",
+          "defaultvalue": "Device Name",
+          "items": [
+            "Device Name",
+            "Device Model",
+            "System Version",
+            "Screen Width",
+            "Screen Height",
+            "Current Volume",
+            "Current Brightness"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Device Details",
+        "Types": [
+          "NSString",
+          "NSNumber"
+        ]
+      },
+      "id": "get_device_details_is_workflow_actions_getdevicedetails_76020c35",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getframesfromimage",
+      "name": "Get Frames from Image",
+      "aliases": [
+        "getframesfromimage"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Frames from Image",
+        "Types": [
+          "WFImageContentItem",
+          "WFPhotoMediaContentItem"
+        ]
+      },
+      "id": "get_frames_from_image",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.gethtmlfromrichtext",
+      "name": "Make HTML from Rich Text",
+      "aliases": [
+        "gethtmlfromrichtext"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFMakeFullDocument",
+          "label": "Make Full Document",
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "HTML from Rich Text",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "make_html_from_rich_text",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getipaddress",
+      "name": "Get Current IP Address",
+      "aliases": [
+        "getipaddress"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFIPAddressSourceOption",
+          "label": "Address",
+          "defaultvalue": "External",
+          "items": [
+            "External",
+            "Local"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFIPAddressTypeOption",
+          "label": "Type",
+          "defaultvalue": "IPv4",
+          "items": [
+            "IPv4",
+            "IPv6"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Current IP Address",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "get_current_ip_address_is_workflow_actions_getipaddress_09d093de",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getitemfromlist",
+      "name": "Get Item from List",
+      "aliases": [
+        "get_item_from_list",
+        "getitemfromlist"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFItemSpecifier",
+          "label": "Get",
+          "defaultvalue": "First Item",
+          "items": [
+            "First Item",
+            "Last Item",
+            "Random Item",
+            "Item At Index",
+            "Items in Range"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFItemIndex",
+          "label": "Index",
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFItemRangeStart",
+          "label": "Get Items From Index",
+          "defaultvalue": 1,
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFItemRangeEnd",
+          "label": "To Index",
+          "source_class": "WFNumberFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Item from List",
+        "Types": [
+          "WFContentItem"
+        ]
+      },
+      "id": "get_item_from_list",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getitemname",
+      "name": "Get Name",
+      "aliases": [
+        "getitemname"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Name",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "get_name",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getitemtype",
+      "name": "Get Type",
+      "aliases": [
+        "getitemtype"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Type",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "get_type",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getlastphoto",
+      "name": "Get Latest Photos",
+      "aliases": [
+        "getlastphoto"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFGetLatestPhotoCount",
+          "label": "",
+          "defaultvalue": 1,
+          "source_class": "WFStepperParameter"
+        },
+        {
+          "key": "WFGetLatestPhotosActionIncludeScreenshots",
+          "label": "Include Screenshots",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Latest Photos",
+        "Types": [
+          "PHAsset"
+        ]
+      },
+      "id": "get_latest_photos_is_workflow_actions_getlastphoto_b72a1762",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getlastscreenshot",
+      "name": "Get Latest Screenshots",
+      "aliases": [
+        "getlastscreenshot"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFGetLatestPhotoCount",
+          "label": "",
+          "defaultvalue": 1,
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Latest Screenshots",
+        "Types": [
+          "PHAsset"
+        ]
+      },
+      "id": "get_latest_screenshots",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getlastvideo",
+      "name": "Get Latest Videos",
+      "aliases": [
+        "getlastvideo"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFGetLatestPhotoCount",
+          "label": "",
+          "defaultvalue": 1,
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Latest Videos",
+        "Types": [
+          "PHAsset"
+        ]
+      },
+      "id": "get_latest_videos",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getlatestbursts",
+      "name": "Get Latest Bursts",
+      "aliases": [
+        "getlatestbursts"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFGetLatestPhotoCount",
+          "label": "",
+          "defaultvalue": 1,
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Latest Bursts",
+        "Types": [
+          "PHAsset"
+        ]
+      },
+      "id": "get_latest_bursts",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getlatestlivephotos",
+      "name": "Get Latest Live Photos",
+      "aliases": [
+        "getlatestlivephotos"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFGetLatestPhotoCount",
+          "label": "",
+          "defaultvalue": 1,
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Latest Live Photos",
+        "Types": [
+          "PHAsset"
+        ]
+      },
+      "id": "get_latest_live_photos",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getlatestphotoimport",
+      "name": "Get Last Import",
+      "aliases": [
+        "getlatestphotoimport"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Imported Photos",
+        "Types": [
+          "PHAsset"
+        ]
+      },
+      "id": "get_last_import",
+      "ios27_parameter_evidence": "identifier_only"
+    },
+    {
+      "identifier": "is.workflow.actions.getmapslink",
+      "name": "Get Maps URL",
+      "aliases": [
+        "get_maps_url",
+        "getmapslink"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Maps URL",
+        "Types": [
+          "NSURL"
+        ]
+      },
+      "id": "get_maps_url",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getmarkdownfromrichtext",
+      "name": "Make Markdown from Rich Text",
+      "aliases": [
+        "getmarkdownfromrichtext"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Markdown from Rich Text",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "make_markdown_from_rich_text",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getmyworkflows",
+      "name": "Get My Shortcuts",
+      "aliases": [
+        "get_my_shortcuts",
+        "getmyworkflows"
+      ],
+      "category": "apps",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "My Shortcuts",
+        "Types": [
+          "WFWorkflow"
+        ]
+      },
+      "id": "get_my_shortcuts",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getnameofemoji",
+      "name": "Get Name of Emoji",
+      "aliases": [
+        "getnameofemoji"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Name of Emoji",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "get_name_of_emoji",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getrichtextfromhtml",
+      "name": "Make Rich Text from HTML",
+      "aliases": [
+        "getrichtextfromhtml"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Rich Text from HTML",
+        "Types": [
+          "public.html"
+        ]
+      },
+      "id": "make_rich_text_from_html",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getrichtextfrommarkdown",
+      "name": "Make Rich Text from Markdown",
+      "aliases": [
+        "getrichtextfrommarkdown"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Rich Text from Markdown",
+        "Types": [
+          "public.html"
+        ]
+      },
+      "id": "make_rich_text_from_markdown",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.gettext",
+      "name": "Text",
+      "aliases": [
+        "text",
+        "gettext"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFTextActionText",
+          "label": "",
+          "defaultvalue": "",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Text",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "text_is_workflow_actions_gettext_4ad22327",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.gettypeaction",
+      "name": "Get File of Type",
+      "aliases": [
+        "gettypeaction"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFFileType",
+          "label": "Type",
+          "defaultvalue": "public.rtf",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "File of Type",
+        "Types": [
+          "public.data"
+        ]
+      },
+      "id": "get_file_of_type",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.geturlcomponent",
+      "name": "Get Component of URL",
+      "aliases": [
+        "geturlcomponent"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFURLComponent",
+          "label": "Component",
+          "defaultvalue": "Scheme",
+          "items": [
+            "Scheme",
+            "User",
+            "Password",
+            "Host",
+            "Port",
+            "Path",
+            "Query",
+            "Fragment"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Component of URL",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "get_component_of_url",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getvalueforkey",
+      "name": "Get Dictionary Value",
+      "aliases": [
+        "get_dictionary_value",
+        "getvalueforkey"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFGetDictionaryValueType",
+          "label": "Get",
+          "defaultvalue": "Value",
+          "items": [
+            "Value",
+            "All Keys",
+            "All Values"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFDictionaryKey",
+          "label": "Key",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Dictionary Value",
+        "Types": [
+          "WFStringContentItem",
+          "WFNumberContentItem",
+          "WFDateContentItem",
+          "WFDictionaryContentItem",
+          "WFBooleanContentItem"
+        ]
+      },
+      "id": "get_dictionary_value",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getwebpagecontents",
+      "name": "Get Contents of Webpage",
+      "aliases": [
+        "getwebpagecontents"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Contents of Webpage",
+        "Types": [
+          "NSAttributedString"
+        ]
+      },
+      "id": "get_contents_of_webpage",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.giphy",
+      "name": "Search Giphy",
+      "aliases": [
+        "giphy"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFGiphyQuery",
+          "label": "Search",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFGiphyShowPicker",
+          "label": "Show GIF Picker",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFGiphyLimit",
+          "label": "",
+          "defaultvalue": 1,
+          "source_class": "WFStepperParameter"
+        },
+        {
+          "key": "WFGiphySelectMultiple",
+          "label": "Select Multiple",
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "GIFs",
+        "Types": [
+          "WFGiphyObject"
+        ]
+      },
+      "id": "search_giphy",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.goodreader.open",
+      "name": "Open in GoodReader",
+      "aliases": [
+        "goodreader_open"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "open_in_goodreader",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.handoff",
+      "name": "Continue Shortcut in App",
+      "aliases": [
+        "handoff"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "continue_shortcut_in_app",
+      "ios27_parameter_evidence": "identifier_only"
+    },
+    {
+      "identifier": "is.workflow.actions.hash",
+      "name": "Generate Hash",
+      "aliases": [
+        "hash"
+      ],
+      "category": "data",
+      "parameters": [
+        {
+          "key": "WFHashType",
+          "label": "Type",
+          "defaultvalue": "MD5",
+          "items": [
+            "MD5",
+            "SHA1",
+            "SHA256",
+            "SHA512"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Hash",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "generate_hash",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.image.crop",
+      "name": "Crop Image",
+      "aliases": [
+        "image_crop"
+      ],
+      "category": "media",
+      "parameters": [
+        {
+          "key": "WFImageCropPosition",
+          "label": "Position",
+          "defaultvalue": "Center",
+          "items": [
+            "Center",
+            "Top Left",
+            "Top Right",
+            "Bottom Left",
+            "Bottom Right",
+            "Custom"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFImageCropX",
+          "label": "X Coordinate",
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFImageCropY",
+          "label": "Y Coordinate",
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFImageCropWidth",
+          "label": "Width",
+          "defaultvalue": 100,
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFImageCropHeight",
+          "label": "Height",
+          "defaultvalue": 100,
+          "source_class": "WFNumberFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Cropped Image",
+        "Types": [
+          "UIImage"
+        ]
+      },
+      "id": "crop_image",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.image.flip",
+      "name": "Flip Image",
+      "aliases": [
+        "image_flip"
+      ],
+      "category": "media",
+      "parameters": [
+        {
+          "key": "WFImageFlipDirection",
+          "label": "Direction",
+          "defaultvalue": "Horizontal",
+          "items": [
+            "Horizontal",
+            "Vertical"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Flipped Image",
+        "Types": [
+          "UIImage"
+        ]
+      },
+      "id": "flip_image",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.image.resize",
+      "name": "Resize Image",
+      "aliases": [
+        "resize_image",
+        "image_resize"
+      ],
+      "category": "media",
+      "parameters": [
+        {
+          "key": "WFImageResizeWidth",
+          "label": "Width",
+          "defaultvalue": 640,
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFImageResizeHeight",
+          "label": "Height",
+          "source_class": "WFNumberFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Resized Image",
+        "Types": [
+          "UIImage"
+        ]
+      },
+      "id": "resize_image",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.image.rotate",
+      "name": "Rotate Image",
+      "aliases": [
+        "image_rotate"
+      ],
+      "category": "media",
+      "parameters": [
+        {
+          "key": "WFImageRotateAmount",
+          "label": "Degrees",
+          "defaultvalue": 90,
+          "source_class": "WFNumberFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Rotated Image",
+        "Types": [
+          "UIImage"
+        ]
+      },
+      "id": "rotate_image",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.imgur.upload",
+      "name": "Upload to Imgur",
+      "aliases": [
+        "imgur_upload"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFImgurAnonymous",
+          "label": "Upload Anonymously",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFImgurDirectLink",
+          "label": "Direct Link",
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFImgurAlbum",
+          "label": "Create Album",
+          "defaultvalue": false,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFImgurAlbumLayout",
+          "label": "Album Layout",
+          "defaultvalue": "Blog",
+          "items": [
+            "Blog",
+            "Grid",
+            "Horizontal",
+            "Vertical"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFImgurAlbumPrivacy",
+          "label": "Album Privacy",
+          "defaultvalue": "Hidden",
+          "items": [
+            "Public",
+            "Hidden",
+            "Secret"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFImgurTitle",
+          "label": "Title",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFImgurDescription",
+          "label": "Description",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Imgur URLs",
+        "Types": [
+          "NSURL"
+        ]
+      },
+      "id": "upload_to_imgur",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.instapaper.add",
+      "name": "Add to Instapaper",
+      "aliases": [
+        "instapaper_add"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFInstapaperFolder",
+          "label": "Folder",
+          "source_class": "WFDynamicEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "add_to_instapaper",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.instapaper.get",
+      "name": "Get Instapaper Bookmarks",
+      "aliases": [
+        "instapaper_get"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFInstapaperFolder",
+          "label": "Folder",
+          "source_class": "WFDynamicEnumerationParameter"
+        },
+        {
+          "key": "WFBookmarkCount",
+          "label": "",
+          "defaultvalue": 5,
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Instapaper Bookmarks",
+        "Types": [
+          "WFURLContentItem"
+        ]
+      },
+      "id": "get_instapaper_bookmarks",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.lowpowermode.set",
+      "name": "Set Low Power Mode",
+      "aliases": [
+        "lowpowermode_set"
+      ],
+      "category": "device",
+      "parameters": [
+        {
+          "key": "OnValue",
+          "label": "Low Power Mode",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "set_low_power_mode",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.makegif",
+      "name": "Make GIF",
+      "aliases": [
+        "makegif"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFMakeGIFActionDelayTime",
+          "label": "Seconds Per Photo",
+          "defaultvalue": 0.2,
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFMakeGIFActionLoopEnabled",
+          "label": "Loop Forever",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFMakeGIFActionLoopCount",
+          "label": "",
+          "source_class": "WFStepperParameter"
+        },
+        {
+          "key": "WFMakeGIFActionAutoSize",
+          "label": "Auto Size",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFMakeGIFActionManualSizeWidth",
+          "label": "Width",
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFMakeGIFActionManualSizeHeight",
+          "label": "Height",
+          "source_class": "WFNumberFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "GIF",
+        "Types": [
+          "com.compuserve.gif"
+        ]
+      },
+      "id": "make_gif",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.makepdf",
+      "name": "Make PDF",
+      "aliases": [
+        "make_pdf",
+        "makepdf"
+      ],
+      "category": "media",
+      "parameters": [
+        {
+          "key": "WFPDFIncludeMargin",
+          "label": "Include Margin",
+          "defaultvalue": false,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFPDFIncludedPages",
+          "label": "Include",
+          "defaultvalue": "All Pages",
+          "items": [
+            "All Pages",
+            "Single Page",
+            "Page Range"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFPDFSinglePage",
+          "label": "Page #",
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFPDFPageRangeStart",
+          "label": "Start Page #",
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFPDFPageRangeEnd",
+          "label": "End Page #",
+          "source_class": "WFNumberFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "PDF",
+        "Types": [
+          "WFPDFContentItem"
+        ]
+      },
+      "id": "make_pdf",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.makevideofromgif",
+      "name": "Make Video from GIF",
+      "aliases": [
+        "makevideofromgif"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFMakeVideoFromGIFActionLoopCount",
+          "label": "",
+          "defaultvalue": 1,
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Video",
+        "Types": [
+          "public.mpeg-4"
+        ]
+      },
+      "id": "make_video_from_gif",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.math",
+      "name": "Calculate",
+      "aliases": [
+        "math"
+      ],
+      "category": "data",
+      "parameters": [
+        {
+          "key": "WFMathOperation",
+          "label": "Operation",
+          "defaultvalue": "+",
+          "items": [
+            "+",
+            "-",
+            "×",
+            "÷",
+            "…"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFScientificMathOperation",
+          "label": "Scientific Operation",
+          "items": [
+            "Modulus",
+            "x^2",
+            "x^3",
+            "x^y",
+            "e^x",
+            "10^x",
+            "ln(x)",
+            "log(x)",
+            "√x",
+            "∛x",
+            "x!",
+            "sin(x)",
+            "cos(x)",
+            "tan(x)",
+            "abs(x)"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFMathOperand",
+          "label": "Operand",
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFScientificMathOperand",
+          "label": "Operand",
+          "source_class": "WFNumberFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Calculation Result",
+        "Types": [
+          "NSDecimalNumber"
+        ]
+      },
+      "id": "calculate",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.nothing",
+      "name": "Nothing",
+      "aliases": [
+        "nothing"
+      ],
+      "category": "control",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "nothing",
+      "ios27_parameter_evidence": "identifier_only"
+    },
+    {
+      "identifier": "is.workflow.actions.notification",
+      "name": "Show Notification",
+      "aliases": [
+        "show_notification",
+        "notification"
+      ],
+      "category": "interaction",
+      "parameters": [
+        {
+          "key": "WFNotificationActionTitle",
+          "label": "Title",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFNotificationActionBody",
+          "label": "Body",
+          "defaultvalue": "Hello World",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFNotificationActionSound",
+          "label": "Play Sound",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "show_notification",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.number",
+      "name": "Number",
+      "aliases": [
+        "number"
+      ],
+      "category": "data",
+      "parameters": [
+        {
+          "key": "WFNumberActionNumber",
+          "label": "Number",
+          "source_class": "WFNumberFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Number",
+        "Types": [
+          "NSDecimalNumber"
+        ]
+      },
+      "id": "number",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.number.random",
+      "name": "Random Number",
+      "aliases": [
+        "number_random"
+      ],
+      "category": "data",
+      "parameters": [
+        {
+          "key": "WFRandomNumberMinimum",
+          "label": "Minimum",
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFRandomNumberMaximum",
+          "label": "Maximum",
+          "source_class": "WFNumberFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Random Number",
+        "Types": [
+          "NSDecimalNumber"
+        ]
+      },
+      "id": "random_number",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.openurl",
+      "name": "Open URLs",
+      "aliases": [
+        "open_url",
+        "openurl"
+      ],
+      "category": "apps",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "open_urls",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.openxcallbackurl",
+      "name": "Open X-Callback URL",
+      "aliases": [
+        "openxcallbackurl"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFXCallbackCustomCallbackEnabled",
+          "label": "Custom Callback",
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFXCallbackCustomSuccessKey",
+          "label": "Success Key",
+          "defaultvalue": "x-success",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFXCallbackCustomCancelKey",
+          "label": "Cancel Key",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFXCallbackCustomErrorKey",
+          "label": "Error Key",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFXCallbackCustomSuccessURLEnabled",
+          "label": "Custom X-Success URL",
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFXCallbackCustomSuccessURL",
+          "label": "X-Success URL",
+          "defaultvalue": "shortcuts://callback",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "X-Callback Result",
+        "Types": [
+          "NSString",
+          "NSDictionary"
+        ]
+      },
+      "id": "open_x_callback_url",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.pausemusic",
+      "name": "Pause Music",
+      "aliases": [
+        "pause_music",
+        "pausemusic"
+      ],
+      "category": "music",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "pause_music",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.pinboard.add",
+      "name": "Add to Pinboard",
+      "aliases": [
+        "pinboard_add"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFPinTitle",
+          "label": "Title",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFPinTags",
+          "label": "Tags",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFPinPublic",
+          "label": "Public",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFPinUnread",
+          "label": "Unread",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFPinDescription",
+          "label": "Description",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "add_to_pinboard",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.pinboard.get",
+      "name": "Get Pinboard Bookmarks",
+      "aliases": [
+        "pinboard_get"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFPinTags",
+          "label": "Tags",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFBookmarkCount",
+          "label": "",
+          "defaultvalue": 5,
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Pinboard Bookmarks",
+        "Types": [
+          "WFURLContentItem"
+        ]
+      },
+      "id": "get_pinboard_bookmarks",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.playmusic",
+      "name": "Play Music",
+      "aliases": [
+        "play_music",
+        "playmusic"
+      ],
+      "category": "music",
+      "parameters": [
+        {
+          "key": "WFPlayMusicActionShuffle",
+          "label": "Shuffle",
+          "items": [
+            "Off",
+            "Songs"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFPlayMusicActionRepeat",
+          "label": "Repeat",
+          "items": [
+            "None",
+            "One",
+            "All"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "play_music",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.playsound",
+      "name": "Play Sound",
+      "aliases": [
+        "play_sound",
+        "playsound"
+      ],
+      "category": "interaction",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "play_sound",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.pocket.add",
+      "name": "Add to Pocket",
+      "aliases": [
+        "pocket_add"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFPocketTags",
+          "label": "Tags",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "add_to_pocket",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.pocket.get",
+      "name": "Get Items from Pocket",
+      "aliases": [
+        "pocket_get"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFPocketItemCount",
+          "label": "",
+          "source_class": "WFStepperParameter"
+        },
+        {
+          "key": "WFPocketItemState",
+          "label": "Type",
+          "defaultvalue": "All",
+          "items": [
+            "Unread",
+            "Archived",
+            "All"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFPocketItemSearchTerm",
+          "label": "Search",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFPocketItemSearchTags",
+          "label": "Tag",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Items from Pocket",
+        "Types": [
+          "NSURL"
+        ]
+      },
+      "id": "get_items_from_pocket",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.postonfacebook",
+      "name": "Post on Facebook",
+      "aliases": [
+        "postonfacebook"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "post_on_facebook",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.previewdocument",
+      "name": "Quick Look",
+      "aliases": [
+        "previewdocument"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFQuickLookActionFullScreen",
+          "label": "Full Screen",
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "quick_look",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.print",
+      "name": "Print",
+      "aliases": [
+        "print"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "print",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.properties.appstore",
+      "name": "Get Details of App Store App",
+      "aliases": [
+        "properties_appstore"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFContentItemPropertyName",
+          "label": "Get",
+          "items": [
+            "Content Rating",
+            "Release Date",
+            "# of Ratings (This Version)",
+            "Price",
+            "Supported Languages",
+            "iPad Screenshot URLs",
+            "Store URL",
+            "Version",
+            "Artist",
+            "Description",
+            "Supports Game Center",
+            "Formatted Price",
+            "Minimum OS Version",
+            "Currency Code",
+            "Screenshot URLs",
+            "Rating",
+            "Store ID",
+            "Category",
+            "Release Notes",
+            "Artwork",
+            "Artwork URL",
+            "Name",
+            "Rating (This Version)",
+            "Is Universal",
+            "Download Size",
+            "Last Updated",
+            "Supported Devices",
+            "# of Ratings"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "get_details_of_app_store_app",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.properties.articles",
+      "name": "Get Details of Diffbot Article",
+      "aliases": [
+        "properties_articles"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFContentItemPropertyName",
+          "label": "Get",
+          "items": [
+            "Name",
+            "Title",
+            "Published Date",
+            "Author",
+            "Number of Words",
+            "Main Image URL",
+            "URL",
+            "Excerpt"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "get_details_of_diffbot_article",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.properties.calendarevents",
+      "name": "Get Details of Calendar Events",
+      "aliases": [
+        "properties_calendarevents"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFContentItemPropertyName",
+          "label": "Get",
+          "items": [
+            "Attendees",
+            "Calendar",
+            "Creation Date",
+            "Duration",
+            "File Extension",
+            "File Size",
+            "Has Alarms",
+            "Is All Day",
+            "Last Modified Date",
+            "Location",
+            "Name",
+            "Notes",
+            "Organizer",
+            "Start Date",
+            "Title",
+            "URL"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "get_details_of_calendar_events",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.properties.contacts",
+      "name": "Get Details of Contacts",
+      "aliases": [
+        "properties_contacts"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFContentItemPropertyName",
+          "label": "Get",
+          "items": [
+            "Email Address",
+            "Phonetic First Name",
+            "Prefix",
+            "URL",
+            "Nickname",
+            "Last Name",
+            "Phone Number",
+            "Has Photo",
+            "File Size",
+            "Creation Date",
+            "Last Modified Date",
+            "Middle Name",
+            "Company",
+            "Department",
+            "Name",
+            "Contact Photo",
+            "First Name",
+            "Phonetic Last Name",
+            "File Extension",
+            "Street Address",
+            "Suffix",
+            "Job Title",
+            "Notes",
+            "Birthday",
+            "Group",
+            "Phonetic Middle Name"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "get_details_of_contacts",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.properties.files",
+      "name": "Get Details of Files",
+      "aliases": [
+        "properties_files"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFContentItemPropertyName",
+          "label": "Get",
+          "items": [
+            "Creation Date",
+            "File Size",
+            "File Extension",
+            "Last Modified Date",
+            "Name"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "get_details_of_files",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.properties.images",
+      "name": "Get Details of Images",
+      "aliases": [
+        "properties_images"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFContentItemPropertyName",
+          "label": "Get",
+          "items": [
+            "Width",
+            "Time Taken",
+            "Is a Screenshot",
+            "Media Type",
+            "Height",
+            "Location",
+            "Orientation",
+            "Date Taken",
+            "Duration",
+            "Camera Make",
+            "Is Hidden",
+            "Frame Rate",
+            "File Extension",
+            "Camera Model",
+            "Is Favorite",
+            "Creation Date",
+            "Album",
+            "Metadata Dictionary",
+            "File Size",
+            "Photo Type",
+            "Last Modified Date",
+            "Name"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "get_details_of_images",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.properties.itunesstore",
+      "name": "Get Details of iTunes Product",
+      "aliases": [
+        "properties_itunesstore"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFContentItemPropertyName",
+          "label": "Get",
+          "items": [
+            "Currency Code",
+            "Is Explicit",
+            "Genre",
+            "Store URL",
+            "Name",
+            "Release Date",
+            "Price",
+            "Artwork URL",
+            "Streamable",
+            "Store ID",
+            "Artist",
+            "Formatted Price",
+            "Artwork",
+            "Description",
+            "Duration"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "get_details_of_itunes_product",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.properties.locations",
+      "name": "Get Details of Locations",
+      "aliases": [
+        "properties_locations"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFContentItemPropertyName",
+          "label": "Get",
+          "items": [
+            "Phone Number",
+            "State",
+            "Altitude",
+            "Name",
+            "Longitude",
+            "Country",
+            "City",
+            "Street",
+            "URL",
+            "Latitude",
+            "ZIP Code"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "get_details_of_locations",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.properties.music",
+      "name": "Get Details of Music",
+      "aliases": [
+        "properties_music"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFContentItemPropertyName",
+          "label": "Get",
+          "items": [
+            "Last Played Date",
+            "File Extension",
+            "Release Date",
+            "Genre",
+            "Media Kind",
+            "Name",
+            "Artist",
+            "Creation Date",
+            "Composer",
+            "Duration",
+            "Disc #",
+            "Last Modified Date",
+            "Date Added",
+            "Play Count",
+            "Album Artwork",
+            "Album Track #",
+            "Has Album Artwork",
+            "Rating",
+            "Is Explicit",
+            "Comments",
+            "Skip Count",
+            "File Size",
+            "Lyrics",
+            "Is Cloud Item",
+            "Album Artist",
+            "Album"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "get_details_of_music",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.properties.safariwebpage",
+      "name": "Get Details of Safari Webpage",
+      "aliases": [
+        "properties_safariwebpage"
+      ],
+      "category": "items",
+      "parameters": [
+        {
+          "key": "WFContentItemPropertyName",
+          "label": "Get",
+          "items": [
+            "Name",
+            "Page Contents",
+            "Page URL",
+            "Page Selection"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "get_details_of_safari_webpage",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.readinglist",
+      "name": "Add to Reading List",
+      "aliases": [
+        "readinglist"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "add_to_reading_list",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.removeevents",
+      "name": "Remove Events",
+      "aliases": [
+        "removeevents"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFCalendarIncludeFutureEvents",
+          "label": "Include Future Events",
+          "defaultvalue": false,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "remove_events",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.removereminders",
+      "name": "Remove Reminders",
+      "aliases": [
+        "removereminders"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "remove_reminders",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.rss",
+      "name": "Get Items from RSS Feed",
+      "aliases": [
+        "rss"
+      ],
+      "category": "web",
+      "parameters": [
+        {
+          "key": "WFRSSFeedURL",
+          "label": "URL",
+          "defaultvalue": "https://www.apple.com/newsroom/rss-feed.rss",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFRSSItemQuantity",
+          "label": "",
+          "defaultvalue": 10,
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Items from RSS Feed",
+        "Types": [
+          "WFArticle",
+          "NSURL"
+        ]
+      },
+      "id": "get_items_from_rss_feed",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.rss.extract",
+      "name": "Get RSS Feeds from Page",
+      "aliases": [
+        "rss_extract"
+      ],
+      "category": "web",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "RSS Feeds from Page",
+        "Types": [
+          "WFURLContentItem"
+        ]
+      },
+      "id": "get_rss_feeds_from_page",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.runextension",
+      "name": "Share with Extensions",
+      "aliases": [
+        "runextension"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "share_with_extensions",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.runjavascriptonwebpage",
+      "name": "Run JavaScript on Webpage",
+      "aliases": [
+        "runjavascriptonwebpage"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFJavaScript",
+          "label": "JavaScript",
+          "defaultvalue": "var result = [];\n// Get all links from the page\nvar elements = document.querySelectorAll(\"a\");\nfor (let element of elements) {\n\tresult.push({\n\t\t\"url\": element.href,\n\t\t\"text\": element.innerText\n\t});\n}\n\n// Call completion to finish\ncompletion(result);",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "JavaScript Result",
+        "Types": [
+          "WFDictionaryContentItem",
+          "WFStringContentItem",
+          "WFBooleanContentItem",
+          "WFNumberContentItem"
+        ]
+      },
+      "id": "run_javascript_on_webpage",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.runsshscript",
+      "name": "Run Script Over SSH",
+      "aliases": [
+        "runsshscript"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFSSHHost",
+          "label": "Host",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFSSHPort",
+          "label": "Port",
+          "defaultvalue": "22",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFSSHUser",
+          "label": "User",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFSSHPassword",
+          "label": "Password",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFSSHScript",
+          "label": "Script",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Run Script Over SSH",
+        "Types": [
+          "public.data"
+        ]
+      },
+      "id": "run_script_over_ssh",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.searchlocalbusinesses",
+      "name": "Search Local Businesses",
+      "aliases": [
+        "searchlocalbusinesses"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFSearchQuery",
+          "label": "Search",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFSearchRadius",
+          "label": "Radius (km)",
+          "defaultvalue": 1.5,
+          "source_class": "WFNumberFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Local Businesses",
+        "Types": [
+          "MKMapItem"
+        ]
+      },
+      "id": "search_local_businesses",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.searchweb",
+      "name": "Search Web",
+      "aliases": [
+        "search_web",
+        "searchweb"
+      ],
+      "category": "apps",
+      "parameters": [
+        {
+          "key": "WFSearchWebDestination",
+          "label": "Search",
+          "defaultvalue": "Google",
+          "items": [
+            "Amazon",
+            "Bing",
+            "DuckDuckGo",
+            "eBay",
+            "Google",
+            "Reddit",
+            "Twitter",
+            "Yahoo!",
+            "YouTube"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "search_web",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.selectcontacts",
+      "name": "Select Contact",
+      "aliases": [
+        "selectcontacts"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFSelectMultiple",
+          "label": "Select Multiple",
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Contacts",
+        "Types": [
+          "WFContact"
+        ]
+      },
+      "id": "select_contact",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.selectemail",
+      "name": "Select Email Address",
+      "aliases": [
+        "selectemail"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Email Addresses",
+        "Types": [
+          "WFEmailAddress"
+        ]
+      },
+      "id": "select_email_address",
+      "ios27_parameter_evidence": "identifier_only"
+    },
+    {
+      "identifier": "is.workflow.actions.selectphone",
+      "name": "Select Phone Number",
+      "aliases": [
+        "selectphone"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Phone Numbers",
+        "Types": [
+          "WFPhoneNumber"
+        ]
+      },
+      "id": "select_phone_number",
+      "ios27_parameter_evidence": "identifier_only"
+    },
+    {
+      "identifier": "is.workflow.actions.selectphoto",
+      "name": "Select Photos",
+      "aliases": [
+        "select_photos",
+        "selectphoto"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFSelectMultiplePhotos",
+          "label": "Select Multiple",
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Photos",
+        "Types": [
+          "PHAsset"
+        ]
+      },
+      "id": "select_photos",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.setbrightness",
+      "name": "Set Brightness",
+      "aliases": [
+        "set_brightness",
+        "setbrightness"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFBrightness",
+          "label": "Brightness",
+          "defaultvalue": 0.5,
+          "source_class": "WFSliderParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "set_brightness",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.setclipboard",
+      "name": "Copy to Clipboard",
+      "aliases": [
+        "set_clipboard",
+        "setclipboard"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFLocalOnly",
+          "label": "Local Only",
+          "defaultvalue": false,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFExpirationDate",
+          "label": "Expire At",
+          "source_class": "WFDateFieldParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "copy_to_clipboard",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.setvalueforkey",
+      "name": "Set Dictionary Value",
+      "aliases": [
+        "set_dictionary_value",
+        "setvalueforkey"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFDictionaryKey",
+          "label": "Key",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFDictionaryValue",
+          "label": "Value",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Dictionary",
+        "Types": [
+          "WFDictionaryContentItem"
+        ]
+      },
+      "id": "set_dictionary_value",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.setvolume",
+      "name": "Set Volume",
+      "aliases": [
+        "set_volume",
+        "setvolume"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFVolume",
+          "label": "Volume",
+          "defaultvalue": 0.5,
+          "source_class": "WFSliderParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "set_volume",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.share",
+      "name": "Share",
+      "aliases": [
+        "share"
+      ],
+      "category": "communication",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "share",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.showdefinition",
+      "name": "Show Definition",
+      "aliases": [
+        "showdefinition"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "show_definition",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.showinblindsquare",
+      "name": "Show in BlindSquare",
+      "aliases": [
+        "showinblindsquare"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFBlindSquareSimulation",
+          "label": "Start Simulation",
+          "defaultvalue": false,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "show_in_blindsquare",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.showincalendar",
+      "name": "Show in Calendar",
+      "aliases": [
+        "showincalendar"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "show_in_calendar",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.showinstore",
+      "name": "Show in iTunes Store",
+      "aliases": [
+        "showinstore"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "show_in_itunes_store",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.showresult",
+      "name": "Show Result",
+      "aliases": [
+        "show_result",
+        "showresult"
+      ],
+      "category": "interaction",
+      "parameters": [
+        {
+          "key": "Text",
+          "label": "",
+          "defaultvalue": "",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "show_result_is_workflow_actions_showresult_1219693d",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.showwebpage",
+      "name": "Show Webpage",
+      "aliases": [
+        "showwebpage"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFEnterSafariReader",
+          "label": "Enter Safari Reader",
+          "defaultvalue": false,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "show_webpage",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.skipback",
+      "name": "Skip Back",
+      "aliases": [
+        "skipback"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFSkipBackBehavior",
+          "label": "Skip To",
+          "defaultvalue": "Beginning",
+          "items": [
+            "Beginning",
+            "Previous Song"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "skip_back",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.skipforward",
+      "name": "Skip Forward",
+      "aliases": [
+        "skipforward"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "skip_forward",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.statistics",
+      "name": "Calculate Statistics",
+      "aliases": [
+        "statistics"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFStatisticsOperation",
+          "label": "Operation",
+          "defaultvalue": "Average",
+          "items": [
+            "Average",
+            "Minimum",
+            "Maximum",
+            "Sum",
+            "Median",
+            "Mode",
+            "Range",
+            "Standard Deviation"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Statistics",
+        "Types": [
+          "NSNumber"
+        ]
+      },
+      "id": "calculate_statistics",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.takephoto",
+      "name": "Take Photo",
+      "aliases": [
+        "take_photo",
+        "takephoto"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFCameraCaptureShowPreview",
+          "label": "Show Camera Preview",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFPhotoCount",
+          "label": "",
+          "defaultvalue": 1,
+          "source_class": "WFStepperParameter"
+        },
+        {
+          "key": "WFCameraCaptureDevice",
+          "label": "Camera",
+          "defaultvalue": "Back",
+          "items": [
+            "Front",
+            "Back"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Photo",
+        "Required": true,
+        "Types": [
+          "UIImage"
+        ]
+      },
+      "id": "take_photo",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.takevideo",
+      "name": "Take Video",
+      "aliases": [
+        "takevideo"
+      ],
+      "category": "other",
+      "parameters": [
+        {
+          "key": "WFCameraCaptureDevice",
+          "label": "Camera",
+          "defaultvalue": "Back",
+          "items": [
+            "Front",
+            "Back"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFCameraCaptureQuality",
+          "label": "Quality",
+          "defaultvalue": "Medium",
+          "items": [
+            "Low",
+            "Medium",
+            "High"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFRecordingStart",
+          "label": "Start Recording",
+          "defaultvalue": "Immediately",
+          "items": [
+            "On Tap",
+            "Immediately"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Video",
+        "Types": [
+          "com.apple.quicktime-movie"
+        ]
+      },
+      "id": "take_video",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.text.changecase",
+      "name": "Change Case",
+      "aliases": [
+        "change_case",
+        "text_changecase"
+      ],
+      "category": "text",
+      "parameters": [
+        {
+          "key": "WFCaseType",
+          "label": "Case",
+          "defaultvalue": "UPPERCASE",
+          "items": [
+            "UPPERCASE",
+            "lowercase",
+            "Capitalize Every Word",
+            "Capitalize with Title Case",
+            "Capitalize with sentence case.",
+            "cApItAlIzE wItH aLtErNaTiNg CaSe."
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Text",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "change_case",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.text.combine",
+      "name": "Combine Text",
+      "aliases": [
+        "combine_text",
+        "text_combine"
+      ],
+      "category": "text",
+      "parameters": [
+        {
+          "key": "WFTextSeparator",
+          "label": "Separator",
+          "defaultvalue": "Spaces",
+          "items": [
+            "New Lines",
+            "Spaces",
+            "Custom"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFTextCustomSeparator",
+          "label": "Custom",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Combined Text",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "combine_text",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.text.match",
+      "name": "Match Text",
+      "aliases": [
+        "match_text",
+        "text_match"
+      ],
+      "category": "text",
+      "parameters": [
+        {
+          "key": "WFMatchTextPattern",
+          "label": "Pattern",
+          "defaultvalue": "[0-9a-zA-Z]",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFMatchTextCaseSensitive",
+          "label": "Case Sensitive",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Text Matches",
+        "Types": [
+          "WFTextMatch"
+        ]
+      },
+      "id": "match_text",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.text.match.getgroup",
+      "name": "Get Group from Matched Text",
+      "aliases": [
+        "text_match_getgroup"
+      ],
+      "category": "text",
+      "parameters": [
+        {
+          "key": "WFGetGroupType",
+          "label": "Get",
+          "defaultvalue": "Group At Index",
+          "items": [
+            "Group At Index",
+            "All Groups"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFGroupIndex",
+          "label": "Group Index",
+          "defaultvalue": 1,
+          "source_class": "WFNumberFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Group from Matched Text",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "get_group_from_matched_text",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.text.replace",
+      "name": "Replace Text",
+      "aliases": [
+        "replace_text",
+        "text_replace"
+      ],
+      "category": "text",
+      "parameters": [
+        {
+          "key": "WFReplaceTextFind",
+          "label": "Find Text",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFReplaceTextReplace",
+          "label": "Replace With",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFReplaceTextCaseSensitive",
+          "label": "Case Sensitive",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFReplaceTextRegularExpression",
+          "label": "Regular Expression",
+          "defaultvalue": false,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Replace Text",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "replace_text",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.text.split",
+      "name": "Split Text",
+      "aliases": [
+        "split_text",
+        "text_split"
+      ],
+      "category": "text",
+      "parameters": [
+        {
+          "key": "WFTextSeparator",
+          "label": "Separator",
+          "defaultvalue": "New Lines",
+          "items": [
+            "New Lines",
+            "Spaces",
+            "Every Character",
+            "Custom"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFTextCustomSeparator",
+          "label": "Custom",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Split Text",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "split_text",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.trello.add.board",
+      "name": "Create Trello Board",
+      "aliases": [
+        "trello_add_board"
+      ],
+      "category": "services",
+      "parameters": [
+        {
+          "key": "WFTrelloName",
+          "label": "Name",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFTrelloDescription",
+          "label": "",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Trello Board",
+        "Types": [
+          "WFTrelloBoard"
+        ]
+      },
+      "id": "create_trello_board",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.trimvideo",
+      "name": "Trim Media",
+      "aliases": [
+        "trimvideo"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Trimmed Media",
+        "Types": [
+          "com.apple.quicktime-movie"
+        ]
+      },
+      "id": "trim_media",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.tweet",
+      "name": "is.workflow.actions.tweet",
+      "aliases": [
+        "tweet"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "is_workflow_actions_tweet",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.unzip",
+      "name": "Extract Archive",
+      "aliases": [
+        "unzip"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Files",
+        "Types": [
+          "WFGenericFileContentItem"
+        ]
+      },
+      "id": "extract_archive",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.url",
+      "name": "URL",
+      "aliases": [
+        "url"
+      ],
+      "category": "web",
+      "parameters": [
+        {
+          "key": "WFURLActionURL",
+          "label": "URL",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "URL",
+        "Types": [
+          "NSURL"
+        ]
+      },
+      "id": "url",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.url.expand",
+      "name": "Expand URL",
+      "aliases": [
+        "expand_url",
+        "url_expand"
+      ],
+      "category": "web",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Expanded URL",
+        "Types": [
+          "WFURLContentItem"
+        ]
+      },
+      "id": "expand_url",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.url.getheaders",
+      "name": "Get Headers of URL",
+      "aliases": [
+        "get_headers_of_url",
+        "url_getheaders"
+      ],
+      "category": "web",
+      "parameters": [],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Headers of URL",
+        "Types": [
+          "NSDictionary"
+        ]
+      },
+      "id": "get_headers_of_url",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.urlencode",
+      "name": "URL Encode",
+      "aliases": [
+        "url_encode",
+        "urlencode"
+      ],
+      "category": "web",
+      "parameters": [
+        {
+          "key": "WFEncodeMode",
+          "label": "Mode",
+          "defaultvalue": "Encode",
+          "items": [
+            "Encode",
+            "Decode"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "URL Encoded Text",
+        "Types": [
+          "WFStringContentItem"
+        ]
+      },
+      "id": "url_encode",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.vibrate",
+      "name": "Vibrate Device",
+      "aliases": [
+        "vibrate"
+      ],
+      "category": "interaction",
+      "parameters": [
+        {
+          "key": "WFVibrateHapticType",
+          "label": "Haptic Pattern",
+          "defaultvalue": "Default",
+          "items": [
+            "Default",
+            "Up Direction",
+            "Down Direction",
+            "Success",
+            "Failure",
+            "Retry",
+            "Start",
+            "Stop",
+            "Click"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "vibrate_device",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.viewresult",
+      "name": "View Content Graph",
+      "aliases": [
+        "viewresult"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "view_content_graph",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.waittoreturn",
+      "name": "Wait to Return",
+      "aliases": [
+        "wait_to_return",
+        "waittoreturn"
+      ],
+      "category": "control",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "wait_to_return",
+      "ios27_parameter_evidence": "identifier_only"
+    },
+    {
+      "identifier": "is.workflow.actions.wifi.set",
+      "name": "Set Wi-Fi",
+      "aliases": [
+        "set_wifi",
+        "wifi_set"
+      ],
+      "category": "device",
+      "parameters": [
+        {
+          "key": "OnValue",
+          "label": "Wi-Fi",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "set_wi_fi",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.addnewcalendar",
+      "name": "Addnewcalendar",
+      "aliases": [
+        "addnewcalendar"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "addnewcalendar",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.addnewcontact",
+      "name": "Addnewcontact",
+      "aliases": [
+        "addnewcontact"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "addnewcontact",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.appearance",
+      "name": "Appearance",
+      "aliases": [
+        "appearance"
+      ],
+      "category": "device",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "appearance",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.calculateexpression",
+      "name": "Calculateexpression",
+      "aliases": [
+        "calculateexpression"
+      ],
+      "category": "data",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "calculateexpression",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.compresspdf",
+      "name": "Compresspdf",
+      "aliases": [
+        "compresspdf"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "compresspdf",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.converttimezone",
+      "name": "Converttimezone",
+      "aliases": [
+        "converttimezone"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "converttimezone",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.dnd.getfocus",
+      "name": "Dnd Getfocus",
+      "aliases": [
+        "dnd_getfocus"
+      ],
+      "category": "device",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "dnd_getfocus",
+      "ios27_parameter_evidence": "identifier_only"
+    },
+    {
+      "identifier": "is.workflow.actions.file",
+      "name": "File",
+      "aliases": [
+        "file"
+      ],
+      "category": "files",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "file",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.file.getfoldercontents",
+      "name": "File Getfoldercontents",
+      "aliases": [
+        "file_getfoldercontents"
+      ],
+      "category": "files",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "file_getfoldercontents",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.file.move",
+      "name": "File Move",
+      "aliases": [
+        "file_move"
+      ],
+      "category": "files",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "file_move",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.file.rename",
+      "name": "File Rename",
+      "aliases": [
+        "rename_file",
+        "file_rename"
+      ],
+      "category": "files",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "file_rename",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.file.select",
+      "name": "File Select",
+      "aliases": [
+        "file_select"
+      ],
+      "category": "files",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "file_select",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.filter.apps",
+      "name": "Filter Apps",
+      "aliases": [
+        "filter_apps"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "filter_apps",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.filter.windows",
+      "name": "Filter Windows",
+      "aliases": [
+        "filter_windows"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "filter_windows",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getcurrentapp",
+      "name": "Getcurrentapp",
+      "aliases": [
+        "getcurrentapp"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "getcurrentapp",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getepisodesforpodcast",
+      "name": "Getepisodesforpodcast",
+      "aliases": [
+        "getepisodesforpodcast"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "getepisodesforpodcast",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.gethomeaccessorystate",
+      "name": "Gethomeaccessorystate",
+      "aliases": [
+        "gethomeaccessorystate"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "gethomeaccessorystate",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.getonscreencontent",
+      "name": "Getonscreencontent",
+      "aliases": [
+        "getonscreencontent"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "getonscreencontent",
+      "ios27_parameter_evidence": "identifier_only"
+    },
+    {
+      "identifier": "is.workflow.actions.getpodcastsfromlibrary",
+      "name": "Getpodcastsfromlibrary",
+      "aliases": [
+        "getpodcastsfromlibrary"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "getpodcastsfromlibrary",
+      "ios27_parameter_evidence": "identifier_only"
+    },
+    {
+      "identifier": "is.workflow.actions.gettextfrompdf",
+      "name": "Gettextfrompdf",
+      "aliases": [
+        "gettextfrompdf"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "gettextfrompdf",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.homeaccessory",
+      "name": "Homeaccessory",
+      "aliases": [
+        "homeaccessory"
+      ],
+      "category": "home",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "homeaccessory",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.image.removebackground",
+      "name": "Image Removebackground",
+      "aliases": [
+        "image_removebackground"
+      ],
+      "category": "media",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "image_removebackground",
+      "ios27_parameter_evidence": "identifier_only"
+    },
+    {
+      "identifier": "is.workflow.actions.location",
+      "name": "Location",
+      "aliases": [
+        "location"
+      ],
+      "category": "location",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "location",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.lockscreen",
+      "name": "Lockscreen",
+      "aliases": [
+        "lock_screen",
+        "lockscreen"
+      ],
+      "category": "device",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "lockscreen",
+      "ios27_parameter_evidence": "identifier_only"
+    },
+    {
+      "identifier": "is.workflow.actions.makeimagefrompdfpage",
+      "name": "Makeimagefrompdfpage",
+      "aliases": [
+        "makeimagefrompdfpage"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "makeimagefrompdfpage",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.makeimagefromrichtext",
+      "name": "Makeimagefromrichtext",
+      "aliases": [
+        "makeimagefromrichtext"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "makeimagefromrichtext",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.makespokenaudiofromtext",
+      "name": "Makespokenaudiofromtext",
+      "aliases": [
+        "makespokenaudiofromtext"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "makespokenaudiofromtext",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.nightshift.set",
+      "name": "Nightshift Set",
+      "aliases": [
+        "nightshift_set"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "nightshift_set",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.openpasswords",
+      "name": "Openpasswords",
+      "aliases": [
+        "openpasswords"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "openpasswords",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.output",
+      "name": "Output",
+      "aliases": [
+        "stop_and_output",
+        "output"
+      ],
+      "category": "control",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "output",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.overlaytext",
+      "name": "Overlaytext",
+      "aliases": [
+        "overlaytext"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "overlaytext",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.photos.createalbum",
+      "name": "Photos Createalbum",
+      "aliases": [
+        "photos_createalbum"
+      ],
+      "category": "media",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "photos_createalbum",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.playpodcast",
+      "name": "Playpodcast",
+      "aliases": [
+        "playpodcast"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "playpodcast",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.podcasts.subscribe",
+      "name": "Podcasts Subscribe",
+      "aliases": [
+        "podcasts_subscribe"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "podcasts_subscribe",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.properties.podcast",
+      "name": "Properties Podcast",
+      "aliases": [
+        "properties_podcast"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "properties_podcast",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.properties.podcastshow",
+      "name": "Properties Podcastshow",
+      "aliases": [
+        "properties_podcastshow"
+      ],
+      "category": "items",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "properties_podcastshow",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.reboot",
+      "name": "Reboot",
+      "aliases": [
+        "reboot"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "reboot",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.reminders.showlist",
+      "name": "Reminders Showlist",
+      "aliases": [
+        "reminders_showlist"
+      ],
+      "category": "calendar",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "reminders_showlist",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.removefromalbum",
+      "name": "Removefromalbum",
+      "aliases": [
+        "removefromalbum"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "removefromalbum",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.ride.requestride",
+      "name": "Ride Requestride",
+      "aliases": [
+        "ride_requestride"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "ride_requestride",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.searchpodcasts",
+      "name": "Searchpodcasts",
+      "aliases": [
+        "searchpodcasts"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "searchpodcasts",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.seek",
+      "name": "Seek",
+      "aliases": [
+        "seek"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "seek",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.setairdropreceiving",
+      "name": "Setairdropreceiving",
+      "aliases": [
+        "setairdropreceiving"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "setairdropreceiving",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.setters.calendarevents",
+      "name": "Setters Calendarevents",
+      "aliases": [
+        "setters_calendarevents"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "setters_calendarevents",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.setters.contacts",
+      "name": "Setters Contacts",
+      "aliases": [
+        "setters_contacts"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "setters_contacts",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.setters.reminders",
+      "name": "Setters Reminders",
+      "aliases": [
+        "setters_reminders"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "setters_reminders",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.splitpdf",
+      "name": "Splitpdf",
+      "aliases": [
+        "splitpdf"
+      ],
+      "category": "text",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "splitpdf",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.stagemanager.set",
+      "name": "Stagemanager Set",
+      "aliases": [
+        "stagemanager_set"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "stagemanager_set",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.takescreenshot",
+      "name": "Takescreenshot",
+      "aliases": [
+        "take_screenshot",
+        "takescreenshot"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "takescreenshot",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.text.trimwhitespace",
+      "name": "Text Trimwhitespace",
+      "aliases": [
+        "text_trimwhitespace"
+      ],
+      "category": "text",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "text_trimwhitespace",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.truetone.set",
+      "name": "Truetone Set",
+      "aliases": [
+        "truetone_set"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "truetone_set",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.vpn.set",
+      "name": "Vpn Set",
+      "aliases": [
+        "vpn_set"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "vpn_set",
+      "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.wallpaper.set",
+      "name": "Wallpaper Set",
+      "aliases": [
+        "wallpaper_set"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "wallpaper_set",
+      "ios27_parameter_evidence": "matched"
+    }
+  ],
+  "excluded_due_to_parameter_key_mismatch": [
+    {
+      "id": "ask_for_input_is_workflow_actions_ask_a9f23dff",
+      "identifier": "is.workflow.actions.ask",
+      "name": "Ask for Input",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFAskActionDateGranularity",
+        "WFAskActionImmediateDictation"
+      ]
+    },
+    {
+      "id": "delete_notes",
+      "identifier": "is.workflow.actions.evernote.delete",
+      "name": "Delete Notes",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFEvernoteConfirmDeletion"
+      ]
+    },
+    {
+      "id": "delete_files",
+      "identifier": "is.workflow.actions.file.delete",
+      "name": "Delete Files",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFDeleteFileConfirmDeletion"
+      ]
+    },
+    {
+      "id": "set_flashlight",
+      "identifier": "is.workflow.actions.flashlight",
+      "name": "Set Flashlight",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFFlashlightSetting"
+      ]
+    },
+    {
+      "id": "get_time_between_dates",
+      "identifier": "is.workflow.actions.gettimebetweendates",
+      "name": "Get Time Between Dates",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFTimeUntilCustomDate",
+        "WFTimeUntilReferenceDate"
+      ]
+    },
+    {
+      "id": "combine_images",
+      "identifier": "is.workflow.actions.image.combine",
+      "name": "Combine Images",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFImageCombineDirection"
+      ]
+    },
+    {
+      "id": "round_number",
+      "identifier": "is.workflow.actions.round",
+      "name": "Round Number",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFRoundDecimalPlaces",
+        "WFRoundType"
+      ]
+    },
+    {
+      "id": "set_name",
+      "identifier": "is.workflow.actions.setitemname",
+      "name": "Set Name",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "Advanced"
+      ]
+    },
+    {
+      "id": "run_shell_script",
+      "identifier": "is.workflow.actions.runshellscript",
+      "name": "Run Shell Script",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFInputPassthrough"
+      ]
+    },
+    {
+      "id": "ask_llm",
+      "identifier": "is.workflow.actions.askllm",
+      "name": "Ask LLM",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFLLMFollowUp",
+        "WFLLMResultType"
+      ]
+    }
+  ]
+}
