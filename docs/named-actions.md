@@ -4,7 +4,7 @@ ShortcutForge's JSON compiler combines hand-curated schemas with a sourced gener
 
 ## Sourced generated actions
 
-In addition to the hand-curated entries below, the compiler loads **212 generated action schemas** from [`scpl_ios27_actions.json`](../src/shortcutforge/data/scpl_ios27_actions.json). Each generated ID is derived from the action's published English name (lowercase snake case); parameter names are the exact plist keys. The data is filtered to identifiers independently observed in the iOS 27 Simulator catalog, parameter keys cross-checked against its parameter snapshot, and parameter classes the current compiler can represent as direct plist values. Ten mismatched candidates are retained in the JSON file's exclusion list with their conflicting keys.
+In addition to the hand-curated entries below, the compiler loads **282 generated action schemas** from [`scpl_ios27_actions.json`](../src/shortcutforge/data/scpl_ios27_actions.json). Each generated ID comes from the published English action name in lowercase snake case; a short stable suffix is added when an ID conflicts with a hand-curated or generated ID. Parameter names are the exact plist keys. The data includes Apple and app-provided actions whose identifiers and every parameter key appear in the iOS 27 Simulator snapshots. App-provided actions may require their app to be installed. Forty-three candidates with parameter keys absent from the snapshot are retained in the JSON file's exclusion list. Regenerate the catalog from the pinned source using `python tools/generate_sourced_actions.py src/shortcutforge/data/scpl_macos_2.3.1_outactions.json`.
 
 Version compatibility and the limits of simulator and device verification are documented in [action compatibility](action-compatibility.md).
 

@@ -2,7 +2,7 @@
   "source": "https://unpkg.com/scpl-macos-updated@2.3.1/built/src/Data/OutActions.json",
   "upstream_repository": "https://github.com/cavingraves/scpl-macos-updated",
   "upstream_license": "MIT",
-  "filter": "first-party identifier observed in iOS 27 Simulator; simple parameter classes only; every included parameter key must also be present in the iOS 27 Simulator parameter-key snapshot",
+  "filter": "action identifier observed in iOS 27.0 Simulator; every parameter key must also be present in the iOS 27 Simulator parameter-key snapshot; schemas are raw-key mappings and do not prove runtime behavior",
   "actions": [
     {
       "identifier": "is.workflow.actions.addmusictoupnext",
@@ -250,7 +250,7 @@
       "output": false,
       "source_output": null,
       "id": "clear_up_next",
-      "ios27_parameter_evidence": "identifier_only"
+      "ios27_parameter_evidence": "matched"
     },
     {
       "identifier": "is.workflow.actions.comment",
@@ -686,7 +686,7 @@
       "output": false,
       "source_output": null,
       "id": "exit_shortcut",
-      "ios27_parameter_evidence": "identifier_only"
+      "ios27_parameter_evidence": "matched"
     },
     {
       "identifier": "is.workflow.actions.exportsong",
@@ -954,7 +954,7 @@
         ]
       },
       "id": "get_clipboard_is_workflow_actions_getclipboard_75deba1d",
-      "ios27_parameter_evidence": "identifier_only"
+      "ios27_parameter_evidence": "matched"
     },
     {
       "identifier": "is.workflow.actions.getcurrentlocation",
@@ -1358,7 +1358,7 @@
         ]
       },
       "id": "get_last_import",
-      "ios27_parameter_evidence": "identifier_only"
+      "ios27_parameter_evidence": "matched"
     },
     {
       "identifier": "is.workflow.actions.getmapslink",
@@ -1691,7 +1691,7 @@
       "output": false,
       "source_output": null,
       "id": "continue_shortcut_in_app",
-      "ios27_parameter_evidence": "identifier_only"
+      "ios27_parameter_evidence": "matched"
     },
     {
       "identifier": "is.workflow.actions.hash",
@@ -2217,7 +2217,7 @@
       "output": false,
       "source_output": null,
       "id": "nothing",
-      "ios27_parameter_evidence": "identifier_only"
+      "ios27_parameter_evidence": "matched"
     },
     {
       "identifier": "is.workflow.actions.notification",
@@ -3279,7 +3279,7 @@
         ]
       },
       "id": "select_email_address",
-      "ios27_parameter_evidence": "identifier_only"
+      "ios27_parameter_evidence": "matched"
     },
     {
       "identifier": "is.workflow.actions.selectphone",
@@ -3298,7 +3298,7 @@
         ]
       },
       "id": "select_phone_number",
-      "ios27_parameter_evidence": "identifier_only"
+      "ios27_parameter_evidence": "matched"
     },
     {
       "identifier": "is.workflow.actions.selectphoto",
@@ -4161,7 +4161,7 @@
       "output": false,
       "source_output": null,
       "id": "wait_to_return",
-      "ios27_parameter_evidence": "identifier_only"
+      "ios27_parameter_evidence": "matched"
     },
     {
       "identifier": "is.workflow.actions.wifi.set",
@@ -4273,7 +4273,7 @@
       "output": false,
       "source_output": null,
       "id": "dnd_getfocus",
-      "ios27_parameter_evidence": "identifier_only"
+      "ios27_parameter_evidence": "matched"
     },
     {
       "identifier": "is.workflow.actions.file",
@@ -4417,7 +4417,7 @@
       "output": false,
       "source_output": null,
       "id": "getonscreencontent",
-      "ios27_parameter_evidence": "identifier_only"
+      "ios27_parameter_evidence": "matched"
     },
     {
       "identifier": "is.workflow.actions.getpodcastsfromlibrary",
@@ -4430,7 +4430,7 @@
       "output": false,
       "source_output": null,
       "id": "getpodcastsfromlibrary",
-      "ios27_parameter_evidence": "identifier_only"
+      "ios27_parameter_evidence": "matched"
     },
     {
       "identifier": "is.workflow.actions.gettextfrompdf",
@@ -4469,7 +4469,7 @@
       "output": false,
       "source_output": null,
       "id": "image_removebackground",
-      "ios27_parameter_evidence": "identifier_only"
+      "ios27_parameter_evidence": "matched"
     },
     {
       "identifier": "is.workflow.actions.location",
@@ -4496,7 +4496,7 @@
       "output": false,
       "source_output": null,
       "id": "lockscreen",
-      "ios27_parameter_evidence": "identifier_only"
+      "ios27_parameter_evidence": "matched"
     },
     {
       "identifier": "is.workflow.actions.makeimagefrompdfpage",
@@ -4876,11 +4876,2615 @@
       "source_output": null,
       "id": "wallpaper_set",
       "ios27_parameter_evidence": "matched"
+    },
+    {
+      "identifier": "is.workflow.actions.addframetogif",
+      "name": "Add Frame to GIF",
+      "aliases": [
+        "addframetogif"
+      ],
+      "category": "photos & video",
+      "parameters": [
+        {
+          "key": "WFImage",
+          "label": "Image",
+          "source_class": "WFVariablePickerParameter"
+        },
+        {
+          "key": "WFGIFDelayTime",
+          "label": "Delay Time",
+          "defaultvalue": 0.25,
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFGIFAutoSize",
+          "label": "Auto Size",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFGIFManualSizeWidth",
+          "label": "Width",
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFGIFManualSizeHeight",
+          "label": "Height",
+          "source_class": "WFNumberFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "GIF",
+        "Types": [
+          "com.compuserve.gif"
+        ]
+      },
+      "id": "add_frame_to_gif",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.addtoplaylist",
+      "name": "Add to Playlist",
+      "aliases": [
+        "addtoplaylist"
+      ],
+      "category": "music",
+      "parameters": [
+        {
+          "key": "WFPlaylistName",
+          "label": "Playlist",
+          "source_class": "WFPlaylistPickerParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Updated Playlist",
+        "Types": [
+          "MPMediaItem"
+        ]
+      },
+      "id": "add_to_playlist",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.Music"
+    },
+    {
+      "identifier": "is.workflow.actions.appendvariable",
+      "name": "Add to Variable",
+      "aliases": [
+        "addtovariable"
+      ],
+      "category": "scripting",
+      "parameters": [
+        {
+          "key": "WFVariableName",
+          "label": "Variable",
+          "source_class": "WFVariableFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Variable",
+        "Types": [
+          "WFContentItem"
+        ]
+      },
+      "id": "add_to_variable",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.todoist.add",
+      "name": "Add Todoist Item",
+      "aliases": [
+        "addtodoistitem"
+      ],
+      "category": "text",
+      "parameters": [
+        {
+          "key": "WFTodoistContent",
+          "label": "Content",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFTodoistProject",
+          "label": "Project",
+          "defaultvalue": "Inbox",
+          "source_class": "WFTodoistProjectPickerParameter"
+        },
+        {
+          "key": "WFTodoistDueDate",
+          "label": "Due Date",
+          "source_class": "WFDateFieldParameter"
+        },
+        {
+          "key": "WFTodoistReminder",
+          "label": "Remind Me On",
+          "source_class": "WFDateFieldParameter"
+        },
+        {
+          "key": "WFTodoistReminderType",
+          "label": "Reminder Type",
+          "defaultvalue": "Email",
+          "items": [
+            "Email",
+            "Push Notification",
+            "Text Message"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFTodoistPriority",
+          "label": "Priority",
+          "defaultvalue": "4",
+          "items": [
+            "4",
+            "3",
+            "2",
+            "1"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFTodoistNotes",
+          "label": "Notes",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Todoist Item",
+        "Types": [
+          "NSURL"
+        ]
+      },
+      "id": "add_todoist_item",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.todoist.ios"
+    },
+    {
+      "identifier": "is.workflow.actions.trello.add.card",
+      "name": "Add Trello Card",
+      "aliases": [
+        "addtrellocard"
+      ],
+      "category": "text",
+      "parameters": [
+        {
+          "key": "WFTrelloName",
+          "label": "Name",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFTrelloBoard",
+          "label": "Board",
+          "source_class": "WFTrelloBoardPickerParameter"
+        },
+        {
+          "key": "WFTrelloList",
+          "label": "List",
+          "source_class": "WFTrelloListPickerParameter"
+        },
+        {
+          "key": "WFTrelloDueDate",
+          "label": "Due",
+          "source_class": "WFDateFieldParameter"
+        },
+        {
+          "key": "WFTrelloCardPosition",
+          "label": "Position",
+          "defaultvalue": "Top",
+          "items": [
+            "Top",
+            "Bottom"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFTrelloAttachments",
+          "label": "Attachments",
+          "source_class": "WFVariablePickerParameter"
+        },
+        {
+          "key": "WFTrelloDescription",
+          "label": "WFTrelloDescription",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Trello Card",
+        "Types": [
+          "WFTrelloCard"
+        ]
+      },
+      "id": "add_trello_card",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.fogcreek.trello"
+    },
+    {
+      "identifier": "com.apple.news.WFAppSettingEntityUpdaterAction",
+      "name": "App Setting Entity Updater",
+      "aliases": [
+        "appsettingentityupdater"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "app_setting_entity_updater",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.news"
+    },
+    {
+      "identifier": "is.workflow.actions.evernote.append",
+      "name": "Append to Note",
+      "aliases": [
+        "appendtonote"
+      ],
+      "category": "documents",
+      "parameters": [
+        {
+          "key": "WFEvernoteNotesTitleSearch",
+          "label": "Note Title",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFEvernoteWriteMode",
+          "label": "Mode",
+          "defaultvalue": "Append",
+          "items": [
+            "Append",
+            "Prepend"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFEvernoteNotesNotebookName",
+          "label": "In Notebook",
+          "source_class": "WFEvernoteNotebookPickerParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Note",
+        "Types": [
+          "ENNoteRef"
+        ]
+      },
+      "id": "append_to_note",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.evernote.iPhone.Evernote"
+    },
+    {
+      "identifier": "is.workflow.actions.contacts",
+      "name": "Contacts",
+      "aliases": [
+        "contacts"
+      ],
+      "category": "contacts",
+      "parameters": [
+        {
+          "key": "WFContact",
+          "label": "WFContact",
+          "source_class": "WFContactFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Contacts",
+        "Types": [
+          "WFContact"
+        ]
+      },
+      "id": "contacts",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.MobileAddressBook"
+    },
+    {
+      "identifier": "com.apple.MobileSMS.ConversationEntity",
+      "name": "Conversation Entity",
+      "aliases": [
+        "conversationentity"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "conversation_entity",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.MobileSMS"
+    },
+    {
+      "identifier": "com.apple.MobileSMS.ConversationListFocusFilterAction",
+      "name": "Conversation List Focus Filter",
+      "aliases": [
+        "conversationlistfocusfilter"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "conversation_list_focus_filter",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.MobileSMS"
+    },
+    {
+      "identifier": "is.workflow.actions.image.convert",
+      "name": "Convert Image",
+      "aliases": [
+        "convertimage"
+      ],
+      "category": "photos & video",
+      "parameters": [
+        {
+          "key": "WFImageFormat",
+          "label": "Format",
+          "defaultvalue": "JPEG",
+          "source_class": "WFImageConvertFormatPickerParameter"
+        },
+        {
+          "key": "WFImageCompressionQuality",
+          "label": "Quality",
+          "defaultvalue": 0.75,
+          "source_class": "WFSliderParameter"
+        },
+        {
+          "key": "WFImagePreserveMetadata",
+          "label": "Preserve Metadata",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Converted Image",
+        "Types": [
+          "UIImage"
+        ]
+      },
+      "id": "convert_image",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.measurement.convert",
+      "name": "Convert Measurement",
+      "aliases": [
+        "convertmeasurement"
+      ],
+      "category": "scripting",
+      "parameters": [
+        {
+          "key": "WFMeasurementUnitType",
+          "label": "Type",
+          "defaultvalue": "Length",
+          "source_class": "WFUnitTypePickerParameter"
+        },
+        {
+          "key": "WFMeasurementUnit",
+          "label": "Unit",
+          "source_class": "WFMeasurementUnitPickerParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Converted Measurement",
+        "Types": [
+          "NSMeasurement"
+        ]
+      },
+      "id": "convert_measurement",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "com.apple.shortcuts.CreateFolderAction",
+      "name": "Create Folder",
+      "aliases": [
+        "createfolder"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "create_folder",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.shortcuts"
+    },
+    {
+      "identifier": "com.apple.shortcuts.CreateShortcutiCloudLinkAction",
+      "name": "Create Shortcuti Cloud Link",
+      "aliases": [
+        "createshortcuticloudlink"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "create_shortcuti_cloud_link",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.shortcuts"
+    },
+    {
+      "identifier": "is.workflow.actions.trello.add.list",
+      "name": "Create Trello List",
+      "aliases": [
+        "createtrellolist"
+      ],
+      "category": "text",
+      "parameters": [
+        {
+          "key": "WFTrelloName",
+          "label": "Name",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFTrelloBoard",
+          "label": "Board",
+          "source_class": "WFTrelloBoardPickerParameter"
+        },
+        {
+          "key": "WFTrelloPosition",
+          "label": "Position",
+          "defaultvalue": "Top",
+          "items": [
+            "Top",
+            "Bottom"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Trello List",
+        "Types": [
+          "WFTrelloList"
+        ]
+      },
+      "id": "create_trello_list",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.fogcreek.trello"
+    },
+    {
+      "identifier": "com.apple.shortcuts.CreateWorkflowAction",
+      "name": "Create Workflow",
+      "aliases": [
+        "createworkflow"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "create_workflow",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.shortcuts"
+    },
+    {
+      "identifier": "com.apple.shortcuts.DeleteWorkflowAction",
+      "name": "Delete Workflow",
+      "aliases": [
+        "deleteworkflow"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "delete_workflow",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.shortcuts"
+    },
+    {
+      "identifier": "is.workflow.actions.dictatetext",
+      "name": "Dictate Text",
+      "aliases": [
+        "dictatetext"
+      ],
+      "category": "text",
+      "parameters": [
+        {
+          "key": "WFSpeechLanguage",
+          "label": "Language",
+          "items": [],
+          "source_class": "WFDictateTextLanguagePickerParameter"
+        },
+        {
+          "key": "WFDictateTextStopListening",
+          "label": "Stop Listening",
+          "defaultvalue": "After Pause",
+          "items": [
+            "After Pause",
+            "After Short Pause",
+            "On Tap"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Dictated Text",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "dictate_text",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.dictionary",
+      "name": "Dictionary",
+      "aliases": [
+        "dictionary"
+      ],
+      "category": "scripting",
+      "parameters": [
+        {
+          "key": "WFItems",
+          "label": "Items",
+          "source_class": "WFDictionaryParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Dictionary",
+        "Types": [
+          "NSDictionary"
+        ]
+      },
+      "id": "dictionary",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.email",
+      "name": "Email Address",
+      "aliases": [
+        "emailaddress"
+      ],
+      "category": "contacts",
+      "parameters": [
+        {
+          "key": "WFEmailAddress",
+          "label": "WFEmailAddress",
+          "source_class": "WFEmailAddressFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Email Address",
+        "Types": [
+          "WFEmailAddress"
+        ]
+      },
+      "id": "email_address",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.mobilemail"
+    },
+    {
+      "identifier": "is.workflow.actions.filter.articles",
+      "name": "Filter Articles",
+      "aliases": [
+        "filterarticles"
+      ],
+      "category": "web",
+      "parameters": [
+        {
+          "key": "WFContentItemFilter",
+          "label": "Filter",
+          "source_class": "WFFilterParameter"
+        },
+        {
+          "key": "WFContentItemSortProperty",
+          "label": "Sort by",
+          "items": [
+            "Name",
+            "Title",
+            "Published Date",
+            "Author",
+            "Number of Words",
+            "Main Image URL",
+            "URL",
+            "Excerpt",
+            "Random"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemSortOrder",
+          "label": "Order",
+          "items": [
+            "Oldest First",
+            "Newest First",
+            "Latest First",
+            "Smallest First",
+            "Biggest First",
+            "Ascending",
+            "Descending",
+            "Shortest First",
+            "Longest First",
+            "A to Z",
+            "Z to A"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemLimitEnabled",
+          "label": "Limit",
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFContentItemLimitNumber",
+          "label": "Get Items",
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "filter_articles",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.filter.files",
+      "name": "Filter Files",
+      "aliases": [
+        "filterfiles"
+      ],
+      "category": "documents",
+      "parameters": [
+        {
+          "key": "WFContentItemFilter",
+          "label": "Filter",
+          "source_class": "WFFilterParameter"
+        },
+        {
+          "key": "WFContentItemSortProperty",
+          "label": "Sort by",
+          "items": [
+            "Creation Date",
+            "File Size",
+            "File Extension",
+            "Last Modified Date",
+            "Name",
+            "Random"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemSortOrder",
+          "label": "Order",
+          "items": [
+            "Oldest First",
+            "Newest First",
+            "Latest First",
+            "Smallest First",
+            "Biggest First",
+            "Ascending",
+            "Descending",
+            "Shortest First",
+            "Longest First",
+            "A to Z",
+            "Z to A"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemLimitEnabled",
+          "label": "Limit",
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFContentItemLimitNumber",
+          "label": "Get Items",
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "filter_files",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.filter.images",
+      "name": "Filter Images",
+      "aliases": [
+        "filterimages"
+      ],
+      "category": "photos & video",
+      "parameters": [
+        {
+          "key": "WFContentItemFilter",
+          "label": "Filter",
+          "source_class": "WFFilterParameter"
+        },
+        {
+          "key": "WFContentItemSortProperty",
+          "label": "Sort by",
+          "items": [
+            "Width",
+            "Time Taken",
+            "Is a Screenshot",
+            "Media Type",
+            "Height",
+            "Location",
+            "Orientation",
+            "Date Taken",
+            "Duration",
+            "Camera Make",
+            "Is Hidden",
+            "Frame Rate",
+            "File Extension",
+            "Camera Model",
+            "Is Favorite",
+            "Creation Date",
+            "Album",
+            "Metadata Dictionary",
+            "File Size",
+            "Photo Type",
+            "Last Modified Date",
+            "Name",
+            "Random"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemSortOrder",
+          "label": "Order",
+          "items": [
+            "Oldest First",
+            "Newest First",
+            "Latest First",
+            "Smallest First",
+            "Biggest First",
+            "Ascending",
+            "Descending",
+            "Shortest First",
+            "Longest First",
+            "A to Z",
+            "Z to A"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemLimitEnabled",
+          "label": "Limit",
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFContentItemLimitNumber",
+          "label": "Get Items",
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "filter_images",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.filter.locations",
+      "name": "Filter Locations",
+      "aliases": [
+        "filterlocations"
+      ],
+      "category": "location",
+      "parameters": [
+        {
+          "key": "WFContentItemFilter",
+          "label": "Filter",
+          "source_class": "WFFilterParameter"
+        },
+        {
+          "key": "WFContentItemSortProperty",
+          "label": "Sort by",
+          "items": [
+            "Phone Number",
+            "State",
+            "Altitude",
+            "Name",
+            "Longitude",
+            "Country",
+            "City",
+            "Street",
+            "URL",
+            "Latitude",
+            "ZIP Code",
+            "Random"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemSortOrder",
+          "label": "Order",
+          "items": [
+            "Oldest First",
+            "Newest First",
+            "Latest First",
+            "Smallest First",
+            "Biggest First",
+            "Ascending",
+            "Descending",
+            "Shortest First",
+            "Longest First",
+            "A to Z",
+            "Z to A"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemLimitEnabled",
+          "label": "Limit",
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFContentItemLimitNumber",
+          "label": "Get Items",
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "filter_locations",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.filter.calendarevents",
+      "name": "Find Calendar Events",
+      "aliases": [
+        "findcalendarevents"
+      ],
+      "category": "calendar",
+      "parameters": [
+        {
+          "key": "WFContentItemFilter",
+          "label": "Filter",
+          "source_class": "WFFilterParameter"
+        },
+        {
+          "key": "WFContentItemSortProperty",
+          "label": "Sort by",
+          "items": [
+            "Attendees",
+            "Calendar",
+            "Creation Date",
+            "Duration",
+            "File Extension",
+            "File Size",
+            "Has Alarms",
+            "Is All Day",
+            "Last Modified Date",
+            "Location",
+            "Name",
+            "Notes",
+            "Organizer",
+            "Start Date",
+            "Title",
+            "URL",
+            "Random"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemSortOrder",
+          "label": "Order",
+          "items": [
+            "Oldest First",
+            "Newest First",
+            "Latest First",
+            "Smallest First",
+            "Biggest First",
+            "Ascending",
+            "Descending",
+            "Shortest First",
+            "Longest First",
+            "A to Z",
+            "Z to A"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemLimitEnabled",
+          "label": "Limit",
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFContentItemLimitNumber",
+          "label": "Get Items",
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "find_calendar_events",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.mobilecal"
+    },
+    {
+      "identifier": "is.workflow.actions.filter.contacts",
+      "name": "Find Contacts",
+      "aliases": [
+        "findcontacts"
+      ],
+      "category": "contacts",
+      "parameters": [
+        {
+          "key": "WFContentItemFilter",
+          "label": "Filter",
+          "source_class": "WFFilterParameter"
+        },
+        {
+          "key": "WFContentItemSortProperty",
+          "label": "Sort by",
+          "items": [
+            "Email Address",
+            "Phonetic First Name",
+            "Prefix",
+            "URL",
+            "Nickname",
+            "Last Name",
+            "Phone Number",
+            "Has Photo",
+            "File Size",
+            "Creation Date",
+            "Last Modified Date",
+            "Middle Name",
+            "Company",
+            "Department",
+            "Name",
+            "Contact Photo",
+            "First Name",
+            "Phonetic Last Name",
+            "File Extension",
+            "Street Address",
+            "Suffix",
+            "Job Title",
+            "Notes",
+            "Birthday",
+            "Group",
+            "Phonetic Middle Name",
+            "Random"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemSortOrder",
+          "label": "Order",
+          "items": [
+            "Oldest First",
+            "Newest First",
+            "Latest First",
+            "Smallest First",
+            "Biggest First",
+            "Ascending",
+            "Descending",
+            "Shortest First",
+            "Longest First",
+            "A to Z",
+            "Z to A"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemLimitEnabled",
+          "label": "Limit",
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFContentItemLimitNumber",
+          "label": "Get Items",
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "find_contacts",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.MobileAddressBook"
+    },
+    {
+      "identifier": "is.workflow.actions.filter.music",
+      "name": "Find Music",
+      "aliases": [
+        "findmusic"
+      ],
+      "category": "music",
+      "parameters": [
+        {
+          "key": "WFContentItemFilter",
+          "label": "Filter",
+          "source_class": "WFFilterParameter"
+        },
+        {
+          "key": "WFContentItemSortProperty",
+          "label": "Sort by",
+          "items": [
+            "Last Played Date",
+            "File Extension",
+            "Release Date",
+            "Genre",
+            "Media Kind",
+            "Name",
+            "Artist",
+            "Creation Date",
+            "Composer",
+            "Duration",
+            "Disc #",
+            "Last Modified Date",
+            "Date Added",
+            "Play Count",
+            "Album Artwork",
+            "Album Track #",
+            "Has Album Artwork",
+            "Rating",
+            "Is Explicit",
+            "Comments",
+            "Skip Count",
+            "File Size",
+            "Lyrics",
+            "Is Cloud Item",
+            "Album Artist",
+            "Album",
+            "Random"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemSortOrder",
+          "label": "Order",
+          "items": [
+            "Oldest First",
+            "Newest First",
+            "Latest First",
+            "Smallest First",
+            "Biggest First",
+            "Ascending",
+            "Descending",
+            "Shortest First",
+            "Longest First",
+            "A to Z",
+            "Z to A"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemLimitEnabled",
+          "label": "Limit",
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFContentItemLimitNumber",
+          "label": "Get Items",
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "find_music",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.Music"
+    },
+    {
+      "identifier": "is.workflow.actions.filter.photos",
+      "name": "Find Photos",
+      "aliases": [
+        "findphotos"
+      ],
+      "category": "photos & video",
+      "parameters": [
+        {
+          "key": "WFContentItemFilter",
+          "label": "Filter",
+          "source_class": "WFFilterParameter"
+        },
+        {
+          "key": "WFContentItemSortProperty",
+          "label": "Sort by",
+          "items": [
+            "File Size",
+            "Camera Make",
+            "Last Modified Date",
+            "File Extension",
+            "Media Type",
+            "Creation Date",
+            "Location",
+            "Album",
+            "Photo Type",
+            "Date Taken",
+            "Duration",
+            "Width",
+            "Time Taken",
+            "Is a Screenshot",
+            "Is Hidden",
+            "Frame Rate",
+            "Height",
+            "Camera Model",
+            "Is Favorite",
+            "Orientation",
+            "Metadata Dictionary",
+            "Name",
+            "Random"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemSortOrder",
+          "label": "Order",
+          "items": [
+            "Oldest First",
+            "Newest First",
+            "Latest First",
+            "Smallest First",
+            "Biggest First",
+            "Ascending",
+            "Descending",
+            "Shortest First",
+            "Longest First",
+            "A to Z",
+            "Z to A"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFContentItemLimitEnabled",
+          "label": "Limit",
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFContentItemLimitNumber",
+          "label": "Get Items",
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "find_photos",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.mobileslideshow"
+    },
+    {
+      "identifier": "is.workflow.actions.format.date",
+      "name": "Format Date",
+      "aliases": [
+        "formatdate"
+      ],
+      "category": "calendar",
+      "parameters": [
+        {
+          "key": "WFDateFormatStyle",
+          "label": "Date Format",
+          "defaultvalue": "Short",
+          "items": [
+            "None",
+            "Short",
+            "Medium",
+            "Long",
+            "Relative",
+            "RFC 2822",
+            "ISO 8601",
+            "Custom"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFRelativeDateFormatStyle",
+          "label": "Alternate Format",
+          "defaultvalue": "Medium",
+          "items": [
+            "Short",
+            "Medium",
+            "Long"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFTimeFormatStyle",
+          "label": "Time Format",
+          "defaultvalue": "Short",
+          "items": [
+            "None",
+            "Short",
+            "Medium",
+            "Long",
+            "Relative"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFISO8601IncludeTime",
+          "label": "Include ISO 8601 Time",
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFDateFormat",
+          "label": "Format String",
+          "source_class": "WFCustomDateFormatParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Formatted Date",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "format_date",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "com.apple.news.WFGetAppSettingAction",
+      "name": "Get App Setting",
+      "aliases": [
+        "getappsetting"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "get_app_setting",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.news"
+    },
+    {
+      "identifier": "is.workflow.actions.gethalfwaypoint",
+      "name": "Get Halfway Point",
+      "aliases": [
+        "gethalfwaypoint"
+      ],
+      "category": "location",
+      "parameters": [
+        {
+          "key": "WFGetHalfwayPointFirstLocation",
+          "label": "First Location",
+          "source_class": "WFLocationFieldParameter"
+        },
+        {
+          "key": "WFGetHalfwayPointSecondLocation",
+          "label": "Second Location",
+          "source_class": "WFLocationFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "OutputName": "Halfway Point",
+        "Types": [
+          "CLLocation"
+        ]
+      },
+      "id": "get_halfway_point",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.Maps"
+    },
+    {
+      "identifier": "is.workflow.actions.getwifi",
+      "name": "Get Network Details",
+      "aliases": [
+        "getnetworkdetails"
+      ],
+      "category": "scripting",
+      "parameters": [
+        {
+          "key": "WFNetworkDetailsNetwork",
+          "label": "Network",
+          "source_class": "WFNetworkPickerParameter"
+        },
+        {
+          "key": "WFWiFiDetail",
+          "label": "Get",
+          "defaultvalue": "Network Name",
+          "items": [
+            "Network Name",
+            "BSSID"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFCellularDetail",
+          "label": "Get",
+          "defaultvalue": "Carrier Name",
+          "items": [
+            "Carrier Name",
+            "Radio Technology",
+            "Country Code"
+          ],
+          "source_class": "WFEnumerationParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Network Details",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "get_network_details",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "com.apple.ShortcutsActions.GetOrientationAction",
+      "name": "Get Orientation",
+      "aliases": [
+        "getorientation"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "get_orientation",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.ShortcutsActions"
+    },
+    {
+      "identifier": "com.apple.ShortcutsActions.GetPhysicalActivity",
+      "name": "Get Physical Activity",
+      "aliases": [
+        "getphysicalactivity"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "get_physical_activity",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.ShortcutsActions"
+    },
+    {
+      "identifier": "is.workflow.actions.get.playlist",
+      "name": "Get Playlist",
+      "aliases": [
+        "getplaylist"
+      ],
+      "category": "music",
+      "parameters": [
+        {
+          "key": "WFPlaylistName",
+          "label": "Playlist",
+          "source_class": "WFPlaylistPickerParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Playlist",
+        "Types": [
+          "MPMediaItem"
+        ]
+      },
+      "id": "get_playlist",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.Music"
+    },
+    {
+      "identifier": "is.workflow.actions.trello.get",
+      "name": "Get Trello Items",
+      "aliases": [
+        "gettrelloitems"
+      ],
+      "category": "text",
+      "parameters": [
+        {
+          "key": "WFTrelloItemType",
+          "label": "Get",
+          "defaultvalue": "Boards",
+          "items": [
+            "Boards",
+            "Lists",
+            "Cards"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFTrelloBoard",
+          "label": "Board",
+          "source_class": "WFTrelloBoardPickerParameter"
+        },
+        {
+          "key": "WFTrelloList",
+          "label": "List",
+          "source_class": "WFTrelloListPickerParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Trello Items",
+        "Types": [
+          "WFTrelloBoard",
+          "WFTrelloList",
+          "WFTrelloCard"
+        ]
+      },
+      "id": "get_trello_items",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.fogcreek.trello"
+    },
+    {
+      "identifier": "is.workflow.actions.getupcomingevents",
+      "name": "Get Upcoming Events",
+      "aliases": [
+        "getupcomingevents"
+      ],
+      "category": "calendar",
+      "parameters": [
+        {
+          "key": "WFGetUpcomingItemCalendar",
+          "label": "Calendar",
+          "source_class": "WFCalendarPickerParameter"
+        },
+        {
+          "key": "WFGetUpcomingItemCount",
+          "label": "WFGetUpcomingItemCount",
+          "defaultvalue": 1,
+          "source_class": "WFStepperParameter"
+        },
+        {
+          "key": "WFDateSpecifier",
+          "label": "Day",
+          "defaultvalue": "Any Day",
+          "items": [
+            "Any Day",
+            "Today",
+            "Tomorrow",
+            "Specified Day"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFSpecifiedDate",
+          "label": "Specified Day",
+          "source_class": "WFDateFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Upcoming Events",
+        "Types": [
+          "EKEvent"
+        ]
+      },
+      "id": "get_upcoming_events_6a0bf7f4",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.mobilecal"
+    },
+    {
+      "identifier": "is.workflow.actions.getupcomingreminders",
+      "name": "Get Upcoming Reminders",
+      "aliases": [
+        "getupcomingreminders"
+      ],
+      "category": "calendar",
+      "parameters": [
+        {
+          "key": "WFGetUpcomingItemCalendar",
+          "label": "List",
+          "source_class": "WFCalendarPickerParameter"
+        },
+        {
+          "key": "WFGetUpcomingItemCount",
+          "label": "WFGetUpcomingItemCount",
+          "defaultvalue": 1,
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Upcoming Reminders",
+        "Types": [
+          "EKReminder"
+        ]
+      },
+      "id": "get_upcoming_reminders_496db0df",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.reminders"
+    },
+    {
+      "identifier": "is.workflow.actions.getvariable",
+      "name": "Get Variable",
+      "aliases": [
+        "getvariable"
+      ],
+      "category": "scripting",
+      "parameters": [
+        {
+          "key": "WFVariable",
+          "label": "Variable",
+          "source_class": "WFVariablePickerParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Variable",
+        "Types": [
+          "WFContentItem"
+        ]
+      },
+      "id": "get_variable",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.lightroom.import",
+      "name": "Import to Lightroom",
+      "aliases": [
+        "importtolightroom"
+      ],
+      "category": "photos & video",
+      "parameters": [
+        {
+          "key": "applyPreset",
+          "label": "Apply Preset",
+          "defaultvalue": false,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "presetGroup",
+          "label": "Preset Group",
+          "defaultvalue": "Color",
+          "items": [
+            "B&W",
+            "Color",
+            "Creative",
+            "Curve",
+            "Grain",
+            "Sharpening",
+            "Vignetting"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "preset",
+          "label": "Preset",
+          "source_class": "WFLightroomPresetPickerParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "import_to_lightroom",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.adobe.lrmobile"
+    },
+    {
+      "identifier": "is.workflow.actions.health.quantity.log",
+      "name": "Log Health Sample",
+      "aliases": [
+        "loghealthsample"
+      ],
+      "category": "health",
+      "parameters": [
+        {
+          "key": "WFQuantitySampleType",
+          "label": "Type",
+          "source_class": "WFQuantityTypePickerParameter"
+        },
+        {
+          "key": "WFQuantitySampleQuantity",
+          "label": "Value",
+          "source_class": "WFHealthQuantityFieldParameter"
+        },
+        {
+          "key": "WFQuantitySampleAdditionalQuantity",
+          "label": "WFQuantitySampleAdditionalQuantity",
+          "source_class": "WFHealthQuantityAdditionalFieldParameter"
+        },
+        {
+          "key": "WFQuantitySampleAdditionalEnumeration",
+          "label": "Reason",
+          "source_class": "WFHealthQuantityAdditionalPickerParameter"
+        },
+        {
+          "key": "WFCategorySampleEnumeration",
+          "label": "Value",
+          "source_class": "WFHealthCategoryPickerParameter"
+        },
+        {
+          "key": "WFCategorySampleAdditionalEnumerationKey",
+          "label": "Value",
+          "source_class": "WFHealthCategoryAdditionalPickerParameter"
+        },
+        {
+          "key": "WFQuantitySampleDate",
+          "label": "Date",
+          "source_class": "WFHealthCategoryStartDateFieldParameter"
+        },
+        {
+          "key": "WFSampleEndDate",
+          "label": "End Date",
+          "source_class": "WFHealthCategoryEndDateFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Health Sample",
+        "Types": [
+          "WFHKSampleContentItem"
+        ]
+      },
+      "id": "log_health_sample",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.Health"
+    },
+    {
+      "identifier": "is.workflow.actions.health.workout.log",
+      "name": "Log Workout",
+      "aliases": [
+        "logworkout"
+      ],
+      "category": "health",
+      "parameters": [
+        {
+          "key": "WFWorkoutReadableActivityType",
+          "label": "Type",
+          "source_class": "WFWorkoutTypePickerParameter"
+        },
+        {
+          "key": "WFWorkoutDate",
+          "label": "Date",
+          "source_class": "WFDateFieldParameter"
+        },
+        {
+          "key": "WFWorkoutDuration",
+          "label": "Duration",
+          "source_class": "WFDurationQuantityFieldParameter"
+        },
+        {
+          "key": "WFWorkoutCaloriesQuantity",
+          "label": "Calories",
+          "source_class": "WFHealthQuantityFieldParameter"
+        },
+        {
+          "key": "WFWorkoutDistanceQuantity",
+          "label": "Distance",
+          "source_class": "WFHealthQuantityFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Workout",
+        "Types": [
+          "WFHKWorkoutContentItem"
+        ]
+      },
+      "id": "log_workout",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.Health"
+    },
+    {
+      "identifier": "is.workflow.actions.makezip",
+      "name": "Make Archive",
+      "aliases": [
+        "makearchive"
+      ],
+      "category": "documents",
+      "parameters": [
+        {
+          "key": "WFZIPName",
+          "label": "Archive Name",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFArchiveFormat",
+          "label": "Format",
+          "source_class": "WFArchiveFormatParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Archive",
+        "Types": [
+          "WFGenericFileContentItem"
+        ]
+      },
+      "id": "make_archive",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.image.mask",
+      "name": "Mask Image",
+      "aliases": [
+        "maskimage"
+      ],
+      "category": "photos & video",
+      "parameters": [
+        {
+          "key": "WFMaskType",
+          "label": "Type",
+          "items": [
+            "Rounded Rectangle",
+            "Ellipse",
+            "Icon",
+            "Custom Image"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFMaskCornerRadius",
+          "label": "Corner Radius",
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFCustomMaskImage",
+          "label": "Image Mask",
+          "source_class": "WFVariablePickerParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Masked Image",
+        "Types": [
+          "WFImageContentItem"
+        ]
+      },
+      "id": "mask_image",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.measurement.create",
+      "name": "Measurement",
+      "aliases": [
+        "measurement"
+      ],
+      "category": "scripting",
+      "parameters": [
+        {
+          "key": "WFMeasurementUnitType",
+          "label": "Type",
+          "defaultvalue": "Length",
+          "source_class": "WFUnitTypePickerParameter"
+        },
+        {
+          "key": "WFMeasurementUnit",
+          "label": "Value",
+          "source_class": "WFUnitPickerParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Measurement",
+        "Types": [
+          "NSMeasurement"
+        ]
+      },
+      "id": "measurement",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "com.apple.MobileSMS.MessageEntity",
+      "name": "Message Entity",
+      "aliases": [
+        "messageentity"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "message_entity",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.MobileSMS"
+    },
+    {
+      "identifier": "com.apple.shortcuts.MoveShortcutToFolderAction",
+      "name": "Move Shortcut To Folder",
+      "aliases": [
+        "moveshortcuttofolder"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "move_shortcut_to_folder",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.shortcuts"
+    },
+    {
+      "identifier": "com.apple.MobileSMS.OpenConversationIntent",
+      "name": "Open Conversation",
+      "aliases": [
+        "openconversation"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "open_conversation",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.MobileSMS"
+    },
+    {
+      "identifier": "com.apple.shortcuts.OpenNavigationDestinationAction",
+      "name": "Open Navigation Destination",
+      "aliases": [
+        "opennavigationdestination"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "open_navigation_destination",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.shortcuts"
+    },
+    {
+      "identifier": "com.apple.shortcuts.OpenWorkflowAction",
+      "name": "Open Workflow",
+      "aliases": [
+        "openworkflow"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "open_workflow",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.shortcuts"
+    },
+    {
+      "identifier": "is.workflow.actions.overlayimageonimage",
+      "name": "Overlay Image",
+      "aliases": [
+        "overlayimage"
+      ],
+      "category": "photos & video",
+      "parameters": [
+        {
+          "key": "WFImage",
+          "label": "Image",
+          "source_class": "WFVariablePickerParameter"
+        },
+        {
+          "key": "WFShouldShowImageEditor",
+          "label": "Show Image Editor",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFImagePosition",
+          "label": "Position",
+          "defaultvalue": "Center",
+          "items": [
+            "Center",
+            "Top Left",
+            "Top Right",
+            "Bottom Left",
+            "Bottom Right",
+            "Custom"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFImageWidth",
+          "label": "Width",
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFImageHeight",
+          "label": "Height",
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFImageX",
+          "label": "X Coordinate",
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFImageY",
+          "label": "Y Coordinate",
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFRotation",
+          "label": "Rotation (Degrees)",
+          "defaultvalue": 0,
+          "source_class": "WFNumberFieldParameter"
+        },
+        {
+          "key": "WFOverlayImageOpacity",
+          "label": "Opacity",
+          "defaultvalue": 100,
+          "source_class": "WFNumberFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Overlaid Image",
+        "Types": [
+          "WFImageContentItem"
+        ]
+      },
+      "id": "overlay_image",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.phonenumber",
+      "name": "Phone Number",
+      "aliases": [
+        "phonenumber"
+      ],
+      "category": "contacts",
+      "parameters": [
+        {
+          "key": "WFPhoneNumber",
+          "label": "WFPhoneNumber",
+          "source_class": "WFPhoneNumberFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Phone Number",
+        "Types": [
+          "WFPhoneNumber"
+        ]
+      },
+      "id": "phone_number",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.tumblr.post",
+      "name": "Post to Tumblr",
+      "aliases": [
+        "posttotumblr"
+      ],
+      "category": "sharing",
+      "parameters": [
+        {
+          "key": "WFComposeInApp",
+          "label": "Compose In Tumblr",
+          "source_class": "WFTumblrComposeInAppParameter"
+        },
+        {
+          "key": "WFBlogName",
+          "label": "Blog",
+          "source_class": "WFTumblrBlogPickerParameter"
+        },
+        {
+          "key": "WFPostType",
+          "label": "Type",
+          "defaultvalue": "Text",
+          "items": [
+            "Text",
+            "Photos",
+            "Quote",
+            "Link",
+            "Chat",
+            "Audio",
+            "Video"
+          ],
+          "source_class": "WFDynamicEnumerationParameter"
+        },
+        {
+          "key": "WFPostState",
+          "label": "Post Status",
+          "defaultvalue": "Post Now",
+          "items": [
+            "Post Now",
+            "Add to Queue",
+            "Save as Draft",
+            "Post Privately"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFPostTitle",
+          "label": "Title",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFPostSource",
+          "label": "Source",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFPostCaption",
+          "label": "Caption",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFPostTags",
+          "label": "Tags",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFPostDescription",
+          "label": "Description",
+          "source_class": "WFTextInputParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Tumblr Post URL",
+        "Types": [
+          "WFURLContentItem"
+        ]
+      },
+      "id": "post_to_tumblr",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.tumblr.tumblr"
+    },
+    {
+      "identifier": "is.workflow.actions.recordaudio",
+      "name": "Record Audio",
+      "aliases": [
+        "recordaudio"
+      ],
+      "category": "photos & video",
+      "parameters": [
+        {
+          "key": "WFRecordingCompression",
+          "label": "Audio Quality",
+          "defaultvalue": "Normal",
+          "items": [
+            "Normal",
+            "Very High"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFRecordingStart",
+          "label": "Start Recording",
+          "defaultvalue": "On Tap",
+          "items": [
+            "On Tap",
+            "Immediately"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFRecordingEnd",
+          "label": "Finish Recording",
+          "defaultvalue": "On Tap",
+          "items": [
+            "On Tap",
+            "After Time"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "WFRecordingTimeInterval",
+          "label": "Duration",
+          "source_class": "WFTimeIntervalParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Recorded Audio",
+        "Types": [
+          "com.apple.m4a-audio"
+        ]
+      },
+      "id": "record_audio",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "com.apple.shortcuts.RenameShortcutAction",
+      "name": "Rename Shortcut",
+      "aliases": [
+        "renameshortcut"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "rename_shortcut",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.shortcuts"
+    },
+    {
+      "identifier": "is.workflow.actions.savetocameraroll",
+      "name": "Save to Photo Album",
+      "aliases": [
+        "savetophotoalbum"
+      ],
+      "category": "photos & video",
+      "parameters": [
+        {
+          "key": "WFCameraRollSelectedGroup",
+          "label": "Album",
+          "source_class": "WFPhotoAlbumPickerParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Saved Photo Media",
+        "Types": [
+          "PHAsset"
+        ]
+      },
+      "id": "save_to_photo_album",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.mobileslideshow"
+    },
+    {
+      "identifier": "is.workflow.actions.searchappstore",
+      "name": "Search App Store",
+      "aliases": [
+        "searchappstore"
+      ],
+      "category": "apps",
+      "parameters": [
+        {
+          "key": "WFSearchTerm",
+          "label": "Search",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFAttribute",
+          "label": "Search By",
+          "source_class": "WFDynamicEnumerationParameter"
+        },
+        {
+          "key": "WFEntity",
+          "label": "Results",
+          "source_class": "WFDynamicEnumerationParameter"
+        },
+        {
+          "key": "WFCountry",
+          "label": "Region",
+          "source_class": "WFiTunesStoreCountryPickerParameter"
+        },
+        {
+          "key": "WFItemLimit",
+          "label": "WFItemLimit",
+          "defaultvalue": 25,
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "App Store Apps",
+        "Types": [
+          "WFAppStoreAppContentItem"
+        ]
+      },
+      "id": "search_app_store",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.AppStore"
+    },
+    {
+      "identifier": "is.workflow.actions.searchitunes",
+      "name": "Search iTunes Store",
+      "aliases": [
+        "searchitunesstore"
+      ],
+      "category": "music",
+      "parameters": [
+        {
+          "key": "WFSearchTerm",
+          "label": "Search",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFMediaType",
+          "label": "Category",
+          "source_class": "WFDynamicEnumerationParameter"
+        },
+        {
+          "key": "WFAttribute",
+          "label": "Search By",
+          "source_class": "WFDynamicEnumerationParameter"
+        },
+        {
+          "key": "WFEntity",
+          "label": "Results",
+          "source_class": "WFDynamicEnumerationParameter"
+        },
+        {
+          "key": "WFCountry",
+          "label": "Region",
+          "source_class": "WFiTunesStoreCountryPickerParameter"
+        },
+        {
+          "key": "WFItemLimit",
+          "label": "WFItemLimit",
+          "defaultvalue": 25,
+          "source_class": "WFStepperParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "iTunes Products",
+        "Types": [
+          "WFiTunesProductContentItem"
+        ]
+      },
+      "id": "search_itunes_store",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.MobileStore"
+    },
+    {
+      "identifier": "com.apple.shortcuts.SearchShortcutsAction",
+      "name": "Search Shortcuts",
+      "aliases": [
+        "searchshortcuts"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "search_shortcuts",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.shortcuts"
+    },
+    {
+      "identifier": "is.workflow.actions.dnd.set",
+      "name": "Set Do Not Disturb",
+      "aliases": [
+        "setdonotdisturb"
+      ],
+      "category": "scripting",
+      "parameters": [
+        {
+          "key": "Enabled",
+          "label": "Do Not Disturb",
+          "defaultvalue": false,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "AssertionType",
+          "label": "Until",
+          "defaultvalue": "Turned Off",
+          "items": [
+            "Turned Off",
+            "Time",
+            "I Leave",
+            "Event Ends"
+          ],
+          "source_class": "WFEnumerationParameter"
+        },
+        {
+          "key": "Event",
+          "label": "Event",
+          "source_class": "WFVariablePickerParameter"
+        },
+        {
+          "key": "Time",
+          "label": "Time",
+          "source_class": "WFDateFieldParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "set_do_not_disturb",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.setvariable",
+      "name": "Set Variable",
+      "aliases": [
+        "setvariable"
+      ],
+      "category": "scripting",
+      "parameters": [
+        {
+          "key": "WFVariableName",
+          "label": "Variable",
+          "source_class": "WFVariableFieldParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "set_variable",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.getdirections",
+      "name": "Show Directions",
+      "aliases": [
+        "showdirections"
+      ],
+      "category": "location",
+      "parameters": [
+        {
+          "key": "WFGetDirectionsActionApp",
+          "label": "App",
+          "defaultvalue": "Maps",
+          "source_class": "WFMapsAppPickerParameter"
+        },
+        {
+          "key": "WFGetDirectionsActionMode",
+          "label": "Mode",
+          "defaultvalue": "Driving",
+          "source_class": "WFDynamicEnumerationParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "show_directions",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.searchmaps",
+      "name": "Show in Maps",
+      "aliases": [
+        "showinmaps"
+      ],
+      "category": "location",
+      "parameters": [
+        {
+          "key": "WFSearchMapsActionApp",
+          "label": "App",
+          "defaultvalue": "Maps",
+          "source_class": "WFMapsAppPickerParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "show_in_maps",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.speaktext",
+      "name": "Speak Text",
+      "aliases": [
+        "speaktext"
+      ],
+      "category": "text",
+      "parameters": [
+        {
+          "key": "WFSpeakTextWait",
+          "label": "Wait Until Finished",
+          "defaultvalue": true,
+          "source_class": "WFSwitchParameter"
+        },
+        {
+          "key": "WFSpeakTextRate",
+          "label": "Rate",
+          "source_class": "WFSpeakTextRateParameter"
+        },
+        {
+          "key": "WFSpeakTextPitch",
+          "label": "Pitch",
+          "defaultvalue": 1,
+          "source_class": "WFSliderParameter"
+        },
+        {
+          "key": "WFSpeakTextLanguage",
+          "label": "Language",
+          "defaultvalue": "Default",
+          "source_class": "WFSpeakTextLanguagePickerParameter"
+        },
+        {
+          "key": "WFSpeakTextVoice",
+          "label": "Voice",
+          "defaultvalue": "Default",
+          "source_class": "WFSpeakTextVoicePickerParameter"
+        }
+      ],
+      "output": false,
+      "source_output": null,
+      "id": "speak_text",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
+    },
+    {
+      "identifier": "is.workflow.actions.address",
+      "name": "Street Address",
+      "aliases": [
+        "streetaddress"
+      ],
+      "category": "location",
+      "parameters": [
+        {
+          "key": "WFAddressLine1",
+          "label": "Line 1",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFAddressLine2",
+          "label": "Line 2",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFCity",
+          "label": "City",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFState",
+          "label": "State",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFPostalCode",
+          "label": "Postal Code",
+          "source_class": "WFTextInputParameter"
+        },
+        {
+          "key": "WFCountry",
+          "label": "Region",
+          "source_class": "WFCountryFieldParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": false,
+        "OutputName": "Street Address",
+        "Types": [
+          "WFStreetAddress"
+        ]
+      },
+      "id": "street_address",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.Maps"
+    },
+    {
+      "identifier": "com.apple.news.TagIntent",
+      "name": "Tag",
+      "aliases": [
+        "tag"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "tag",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.news"
+    },
+    {
+      "identifier": "com.apple.ShortcutsActions.TimeMachineAction",
+      "name": "Time Machine",
+      "aliases": [
+        "timemachine"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "time_machine",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.ShortcutsActions"
+    },
+    {
+      "identifier": "com.apple.news.TodayIntent",
+      "name": "Today",
+      "aliases": [
+        "today"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "today",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.news"
+    },
+    {
+      "identifier": "com.apple.ShortcutsActions.TranscribeAudioAction",
+      "name": "Transcribe Audio",
+      "aliases": [
+        "transcribeaudio"
+      ],
+      "category": "other",
+      "parameters": [],
+      "output": false,
+      "source_output": null,
+      "id": "transcribe_audio",
+      "ios27_parameter_evidence": "matched",
+      "source_app": "com.apple.ShortcutsActions"
+    },
+    {
+      "identifier": "is.workflow.actions.text.translate",
+      "name": "Translate Text with Microsoft",
+      "aliases": [
+        "translatetextwithmicrosoft"
+      ],
+      "category": "text",
+      "parameters": [
+        {
+          "key": "WFSelectedFromLanguage",
+          "label": "From",
+          "source_class": "WFTranslateTextLanguagePickerParameter"
+        },
+        {
+          "key": "WFSelectedLanguage",
+          "label": "To",
+          "source_class": "WFTranslateTextLanguagePickerParameter"
+        }
+      ],
+      "output": true,
+      "source_output": {
+        "Multiple": true,
+        "OutputName": "Translated Text",
+        "Types": [
+          "NSString"
+        ]
+      },
+      "id": "translate_text_with_microsoft",
+      "ios27_parameter_evidence": "matched",
+      "source_app": null
     }
   ],
   "excluded_due_to_parameter_key_mismatch": [
     {
-      "id": "ask_for_input_is_workflow_actions_ask_a9f23dff",
+      "identifier": "com.apple.facetime.facetime",
+      "name": "FaceTime",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "IntentAppIdentifier"
+      ]
+    },
+    {
+      "identifier": "com.apple.mobilephone.call",
+      "name": "Call",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "IntentAppIdentifier"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.addnewevent",
+      "name": "Add New Event",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFCalendarItemCalendar",
+        "WFCalendarItemDates"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.addnewreminder",
+      "name": "Add New Reminder",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFAlertLocationProximity",
+        "WFAlertTrigger",
+        "WFCalendarItemAlert",
+        "WFCalendarItemCalendar"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.adjustdate",
+      "name": "Adjust Date",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFAdjustOffsetPicker"
+      ]
+    },
+    {
       "identifier": "is.workflow.actions.ask",
       "name": "Ask for Input",
       "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
@@ -4890,7 +7494,51 @@
       ]
     },
     {
-      "id": "delete_notes",
+      "identifier": "is.workflow.actions.askllm",
+      "name": "Ask LLM",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFLLMFollowUp",
+        "WFLLMResultType"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.documentpicker.open",
+      "name": "Get File",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "SelectMultiple",
+        "WFFileStorageService",
+        "WFGetFileInitialDirectoryPath",
+        "WFShowFilePicker"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.documentpicker.save",
+      "name": "Save File",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFFileStorageService"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.downloadurl",
+      "name": "Get Contents of URL",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "Advanced",
+        "ShowHeaders"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.encodemedia",
+      "name": "Encode Media",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "Metadata"
+      ]
+    },
+    {
       "identifier": "is.workflow.actions.evernote.delete",
       "name": "Delete Notes",
       "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
@@ -4899,7 +7547,38 @@
       ]
     },
     {
-      "id": "delete_files",
+      "identifier": "is.workflow.actions.evernote.get",
+      "name": "Get Notes",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFEvernoteNotesTags"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.evernote.new",
+      "name": "Create New Note",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFEvernoteTags"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.file.append",
+      "name": "Append to File",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFFileStorageService"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.file.createfolder",
+      "name": "Create Folder",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFFileStorageService"
+      ]
+    },
+    {
       "identifier": "is.workflow.actions.file.delete",
       "name": "Delete Files",
       "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
@@ -4908,7 +7587,6 @@
       ]
     },
     {
-      "id": "set_flashlight",
       "identifier": "is.workflow.actions.flashlight",
       "name": "Set Flashlight",
       "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
@@ -4917,7 +7595,14 @@
       ]
     },
     {
-      "id": "get_time_between_dates",
+      "identifier": "is.workflow.actions.getdistance",
+      "name": "Get Distance",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFGetDirectionsFrom"
+      ]
+    },
+    {
       "identifier": "is.workflow.actions.gettimebetweendates",
       "name": "Get Time Between Dates",
       "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
@@ -4927,7 +7612,14 @@
       ]
     },
     {
-      "id": "combine_images",
+      "identifier": "is.workflow.actions.gettraveltime",
+      "name": "Get Travel Time",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFGetDirectionsFrom"
+      ]
+    },
+    {
       "identifier": "is.workflow.actions.image.combine",
       "name": "Combine Images",
       "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
@@ -4936,7 +7628,86 @@
       ]
     },
     {
-      "id": "round_number",
+      "identifier": "is.workflow.actions.list",
+      "name": "List",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFItems"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.openapp",
+      "name": "Open App",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFAppIdentifier"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.openin",
+      "name": "Open In...",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFOpenInAppIdentifier"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.properties.eventattendees",
+      "name": "Get Details of Event Attendees",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "_UndefinedCoercion"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.properties.health.quantity",
+      "name": "Get Details of Health Sample",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "_UndefinedCoercion"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.properties.itunesartist",
+      "name": "Get Details of iTunes Artist",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "_UndefinedCoercion"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.properties.reminders",
+      "name": "Get Details of Reminders",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "_UndefinedCoercion"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.properties.trello",
+      "name": "Get Details of Trello Item",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "_UndefinedCoercion"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.properties.ulysses.sheet",
+      "name": "Get Details of Ulysses Sheet",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "_UndefinedCoercion"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.properties.weather.conditions",
+      "name": "Get Details of Weather Conditions",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "_UndefinedCoercion"
+      ]
+    },
+    {
       "identifier": "is.workflow.actions.round",
       "name": "Round Number",
       "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
@@ -4946,16 +7717,6 @@
       ]
     },
     {
-      "id": "set_name",
-      "identifier": "is.workflow.actions.setitemname",
-      "name": "Set Name",
-      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
-      "source_only_parameter_keys": [
-        "Advanced"
-      ]
-    },
-    {
-      "id": "run_shell_script",
       "identifier": "is.workflow.actions.runshellscript",
       "name": "Run Shell Script",
       "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
@@ -4964,13 +7725,79 @@
       ]
     },
     {
-      "id": "ask_llm",
-      "identifier": "is.workflow.actions.askllm",
-      "name": "Ask LLM",
+      "identifier": "is.workflow.actions.runworkflow",
+      "name": "Run Shortcut",
       "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
       "source_only_parameter_keys": [
-        "WFLLMFollowUp",
-        "WFLLMResultType"
+        "WFShowWorkflow",
+        "WFWorkflowName"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.sendemail",
+      "name": "Send Email",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFEmailAccountActionSelectedAccount"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.sendmessage",
+      "name": "Send Message",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "IntentAppIdentifier"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.setitemname",
+      "name": "Set Name",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "Advanced"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.venmo.pay",
+      "name": "Send Payment",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "IntentAppIdentifier"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.venmo.request",
+      "name": "Request Payment",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "IntentAppIdentifier"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.weather.currentconditions",
+      "name": "Get Current Weather",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFWeatherLocation"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.weather.forecast",
+      "name": "Get Weather Forecast",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "WFWeatherLocation"
+      ]
+    },
+    {
+      "identifier": "is.workflow.actions.wordpress.post",
+      "name": "Post to WordPress",
+      "reason": "parameter key is not present in the iOS 27 Simulator parameter-key snapshot",
+      "source_only_parameter_keys": [
+        "Advanced",
+        "Categories",
+        "ShowCustomFields",
+        "Tags"
       ]
     }
   ]

@@ -16,7 +16,7 @@ Action research ──► evidence catalog ──► version-filtered CLI / Mark
 Unsigned .shortcut ──► explicit signer ──► signed artifact
 ```
 
-The CLI is a thin adapter around package operations. `ir.py` loads plan JSON, `validator.py` checks supported semantics and safe plist value types, and `compiler.py` writes a binary plist. For `.cherri`, `cherri.py` invokes an optional executable, disables its signing, validates the returned plist, and atomically writes the requested output. `parser.py` inspects a workflow without executing it. `actions.py` combines hand-curated schemas with sourced generated schemas from `data/scpl_ios27_actions.json`; only actions observed in the iOS 27 identifier catalog and parameters using supported serializers are included. `catalog.py` exposes the larger discovery index.
+The CLI is a thin adapter around package operations. `ir.py` loads plan JSON, `validator.py` checks supported semantics and safe plist value types, and `compiler.py` writes a binary plist. For `.cherri`, `cherri.py` invokes an optional executable, disables its signing, validates the returned plist, and atomically writes the requested output. `parser.py` inspects a workflow without executing it. `actions.py` combines 19 hand-curated schemas with 282 sourced schemas from `data/scpl_ios27_actions.json`; each sourced identifier and parameter key is cross-checked against iOS 27 Simulator observations. This is schema evidence, not device testing. `catalog.py` exposes the larger discovery index.
 
 ## Core design decisions
 

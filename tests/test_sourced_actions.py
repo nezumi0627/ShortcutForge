@@ -20,7 +20,7 @@ class SourcedActionTests(unittest.TestCase):
         )
         ids = [action["id"] for action in data["actions"]]
 
-        self.assertEqual(len(ids), 212)
+        self.assertEqual(len(ids), 282)
         self.assertEqual(len(ids), len(set(ids)))
         self.assertEqual(set(ids), set(SOURCED_CATALOG))
         self.assertTrue(all(CATALOG[action_id]["availability"] == {"27": "observed"} for action_id in ids))
@@ -41,6 +41,29 @@ class SourcedActionTests(unittest.TestCase):
 
         self.assertTrue(payload.startswith(b"bplist00"))
         self.assertEqual(len(document["WFWorkflowActions"]), len(SOURCED_CATALOG))
+
+    def test_each_generated_parameter_key_matches_the_ios27_snapshot(self):
+        catalog = json.loads(
+            files("shortcutforge")
+            .joinpath("data/action_catalog.json")
+            .read_text(encoding="utf-8")
+        )["actions"]
+        data = json.loads(
+            files("shortcutforge")
+            .joinpath("data/scpl_ios27_actions.json")
+            .read_text(encoding="utf-8")
+        )
+
+        for action in data["actions"]:
+            observed_keys = {
+                parameter["key"]
+                for parameter in catalog[action["identifier"]].get("parameters", [])
+            }
+            source_keys = {parameter["key"] for parameter in action["parameters"]}
+            self.assertTrue(source_keys.issubset(observed_keys), action["identifier"])
+            self.assertEqual(action["ios27_parameter_evidence"], "matched")
+
+        self.assertEqual(len(data["excluded_due_to_parameter_key_mismatch"]), 43)
 
     def test_generated_action_compiles_with_source_default(self):
         action_id = "add_to_up_next"

@@ -4,7 +4,7 @@
 
 The bundled catalog currently indexes **2,501 unique identifiers**. Of these, **1,206** were observed in the iOS 27.0 Simulator ToolKit v78 snapshot, and **1,072** records have at least one parameter key/type observed on iOS 27 Simulator. The ToolKit v63 list contributes 1,794 identifiers, but declares no OS or platform. A separate unversioned public catalog contributes 415 references.
 
-An observed identifier means only that the source snapshot contained that identifier. It does not prove a valid parameter schema, support on a physical iPhone, successful import, or working runtime behavior. `actions list` is a discovery index; only the hand-curated schemas and 212 sourced generated schemas described in [action compatibility](action-compatibility.md) are compiled through named IDs. Use a raw action definition only when its parameters are sourced from an actual compatible shortcut or reliable device export.
+An observed identifier means only that the source snapshot contained that identifier. It does not prove a valid parameter schema, support on a physical iPhone, successful import, or working runtime behavior. `actions list` is a discovery index; only the hand-curated schemas and 282 sourced generated schemas described in [action compatibility](action-compatibility.md) are compiled through named IDs. Use a raw action definition only when its parameters are sourced from an actual compatible shortcut or reliable device export.
 
 Independent reports of on-device testing are listed in [action compatibility](action-compatibility.md) with their exact scope; they do not transfer runtime evidence to ShortcutForge's compiler automatically.
 

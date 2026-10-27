@@ -14,7 +14,7 @@
 - Searches a version-scoped action discovery catalog for iOS 17, 18, 26, and 27, with English and Japanese Markdown output.
 - Provides a harness-neutral Skill. The AI interprets intent; ShortcutForge makes no model or network calls during build, validate, or inspect.
 
-The JSON compiler supports hand-curated actions plus sourced generated schemas for standard parameter types. The larger action catalog remains a research index; version observation and a schema source do not guarantee that an action imports or runs on every device.
+The JSON compiler currently exposes 301 named schemas: 19 hand-curated actions plus 282 sourced schemas. The generated set includes Apple and app-provided actions whose identifiers and parameter keys were observed in iOS 27 Simulator data. App-provided actions may require their app. The larger 2,501-identifier catalog is a research index; observation does not guarantee import or runtime support on a device.
 
 ## Install
 

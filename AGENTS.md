@@ -10,7 +10,7 @@ The repository is public and configured as a GitHub template. Never assume secre
 
 ## Current capability boundaries
 
-- The built-in JSON compiler has 19 hand-curated schemas and a sourced set of generated schemas. See [named actions](docs/named-actions.md) for supported IDs, parameters, evidence, and limits. It does not implement high-level conditional or repeat builders.
+- The built-in JSON compiler has 19 hand-curated schemas and 282 sourced generated schemas. The generated schemas are simulator-evidence candidates, not device-tested guarantees. See [named actions](docs/named-actions.md) for IDs, parameters, evidence, and limits. It does not implement high-level conditional or repeat builders.
 - Raw JSON actions can carry exact Apple identifiers and parameters, but ShortcutForge only checks basic plist structure; it does not know whether iOS recognizes the action or parameters.
 - `.cherri` input is delegated to a separately installed external Cherri executable. ShortcutForge always disables Cherri signing and validates the resulting plist. A Windows smoke test has compiled the included If/Repeat example, but this does not establish support for every Cherri feature or release.
 - The action catalog is a versioned research/discovery index, not a full Apple schema or compiler registry. It supports iOS 17, 18, 26, and 27 with uneven evidence.
